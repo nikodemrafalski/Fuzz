@@ -1,0 +1,5 @@
+glob:FuzzyProject.5.0.ReSharper.user
+glob:*.suo
+glob:*/bin/*
+glob:*/obj/*
+glob:*_ReSharper*
