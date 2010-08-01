@@ -1,18 +1,31 @@
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Commons;
+using Logic;
+using Logic.Algorithms;
+using Autofac;
 
 namespace FuzzyProject
 {
     public class MainViewPresenter
     {
-        private readonly IMainView view;
+        private Autofac.IContainer container;
+        private IMainView view;
         private Bitmap originalSizeSource;
         private Bitmap originalSizeProcessed;
+        private IAlgorithm selectedAlgoritm;
 
-        public MainViewPresenter(IMainView view)
+        public MainViewPresenter()
+        {
+            this.container = AppFacade.DI.Container;
+        }
+
+        public void AttachView(IMainView view)
         {
             this.view = view;
+            this.view.UpdateAlgorithmsList(AlgorithmsNames.All);
         }
 
         public void LoadImage()
@@ -44,6 +57,11 @@ namespace FuzzyProject
         {
             var cancelEventArgs = new CancelEventArgs();
             Application.Exit(cancelEventArgs);
+        }
+
+        public void ChangeSelectedAlgorithm(string algorithmName)
+        {
+            this.selectedAlgoritm = container.Resolve<IAlgorithm>(algorithmName);
         }
     }
 }

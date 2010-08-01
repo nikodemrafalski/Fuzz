@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Commons;
 
 namespace FuzzyProject
 {
@@ -15,6 +16,10 @@ namespace FuzzyProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            AppFacade.DI.CreateBuilder();
+            AppFacade.DI.Container = AppFacade.DI.Builder.Build();
+
             Application.Run(new MainForm());
         }
     }

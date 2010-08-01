@@ -42,6 +42,8 @@ namespace FuzzyProject
             this.processedPictureBox = new System.Windows.Forms.PictureBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.startProcessingButton = new System.Windows.Forms.Button();
+            this.algoritmsListCombo = new System.Windows.Forms.ComboBox();
+            this.algoritmLabel = new System.Windows.Forms.Label();
             this.mainMenuStrip.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.sourceImagePage.SuspendLayout();
@@ -154,18 +156,39 @@ namespace FuzzyProject
             // startProcessingButton
             // 
             this.startProcessingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.startProcessingButton.Location = new System.Drawing.Point(12, 502);
+            this.startProcessingButton.Location = new System.Drawing.Point(216, 501);
             this.startProcessingButton.Name = "startProcessingButton";
             this.startProcessingButton.Size = new System.Drawing.Size(86, 35);
             this.startProcessingButton.TabIndex = 3;
             this.startProcessingButton.Text = "Przetwarzaj";
             this.startProcessingButton.UseVisualStyleBackColor = true;
             // 
+            // algoritmsListCombo
+            // 
+            this.algoritmsListCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.algoritmsListCombo.FormattingEnabled = true;
+            this.algoritmsListCombo.Location = new System.Drawing.Point(19, 515);
+            this.algoritmsListCombo.Name = "algoritmsListCombo";
+            this.algoritmsListCombo.Size = new System.Drawing.Size(191, 21);
+            this.algoritmsListCombo.TabIndex = 4;
+            this.algoritmsListCombo.SelectedValueChanged += new System.EventHandler(this.OnAlgoritmsListSelectionChanged);
+            // 
+            // algoritmLabel
+            // 
+            this.algoritmLabel.AutoSize = true;
+            this.algoritmLabel.Location = new System.Drawing.Point(16, 499);
+            this.algoritmLabel.Name = "algoritmLabel";
+            this.algoritmLabel.Size = new System.Drawing.Size(50, 13);
+            this.algoritmLabel.TabIndex = 5;
+            this.algoritmLabel.Text = "Algorytm:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.algoritmLabel);
+            this.Controls.Add(this.algoritmsListCombo);
             this.Controls.Add(this.startProcessingButton);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.tabContainer);
@@ -200,6 +223,8 @@ namespace FuzzyProject
         private System.Windows.Forms.PictureBox sourcePictureBox;
         private System.Windows.Forms.TabPage processedImageTabPage;
         private System.Windows.Forms.PictureBox processedPictureBox;
+        private System.Windows.Forms.ComboBox algoritmsListCombo;
+        private System.Windows.Forms.Label algoritmLabel;
     }
 }
 

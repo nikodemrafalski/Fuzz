@@ -34,7 +34,11 @@
     <Reference Include="AForge.Imaging">
       <HintPath>..\..\..\..\..\Kod\Libs\Aforge.net\Release\AForge.Imaging.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\Libs\Autofac\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -44,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\AppFacade.cs" />
     <Compile Include="Guard.cs" />
     <Compile Include="ImageHelpers.cs" />
+    <Compile Include="Infrastructure\IModuleInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnmanagedImageExtensions.cs" />
   </ItemGroup>

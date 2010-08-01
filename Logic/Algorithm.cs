@@ -8,11 +8,6 @@ namespace Logic
     {
         public event EventHandler<EventArgs> ExecutionCompleted = (s, a) => { };
 
-        protected Algorithm(UnmanagedImage input)
-        {
-            this.Input = input;
-        }
-
         public UnmanagedImage Input { get; set; }
         public AlgorithmResult Output { get; protected set; }
 
@@ -25,13 +20,13 @@ namespace Logic
                 .ContinueWith(t =>
                                   {
                                       Output = t.Result;
-                                      this.InvokeExecutionCompleted();
+                                      InvokeExecutionCompleted();
                                   });
         }
 
         private void InvokeExecutionCompleted()
         {
-            EventHandler<EventArgs> handler = this.ExecutionCompleted;
+            EventHandler<EventArgs> handler = ExecutionCompleted;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
