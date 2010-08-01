@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using AForge.Imaging;
 using Commons;
 using Logic;
 using Logic.Algorithms;
@@ -28,13 +29,28 @@ namespace FuzzyProject
             this.view.UpdateAlgorithmsList(AlgorithmsNames.All);
         }
 
+        public void ProcessImage()
+        {
+            this.view.StartNotifyingProgress();
+            this.selectedAlgoritm.Input = new AlgorithmInput(originalSizeSource);
+            this.selectedAlgoritm.ExecutionCompleted += new EventHandler<EventArgs>(OnAlgorithmExecutionCompleted);
+            this.selectedAlgoritm.ProcessDataAsync();
+        }
+
+        private void OnAlgorithmExecutionCompleted(object sender, EventArgs e)
+        {
+            this.originalSizeProcessed = selectedAlgoritm.Output.Image.ToManagedImage();
+            this.view.StoptNotifyingProgress();
+            this.view.DisplayProcessedImage(this.originalSizeProcessed);
+        }
+
         public void LoadImage()
         {
             using (var dialog = new OpenFileDialog())
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.originalSizeSource = new Bitmap(dialog.OpenFile());
+                    this.originalSizeSource = new Bitmap(dialog.OpenFile()).ConvertToGrayScale();
                     view.DisplaySourceImage(originalSizeSource);
                 }
             }
@@ -49,7 +65,7 @@ namespace FuzzyProject
 
             if (this.originalSizeProcessed != null)
             {
-                //
+                view.DisplayProcessedImage(this.originalSizeProcessed);
             }
         }
 

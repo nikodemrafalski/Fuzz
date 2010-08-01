@@ -6,9 +6,9 @@ namespace Logic
 {
     internal abstract class Algorithm : IAlgorithm
     {
-        public event EventHandler<EventArgs> ExecutionCompleted = (s, a) => { };
+        public event EventHandler<EventArgs> ExecutionCompleted;
 
-        public UnmanagedImage Input { get; set; }
+        public AlgorithmInput Input { get; set; }
         public AlgorithmResult Output { get; protected set; }
 
         public abstract AlgorithmResult ProcessData();
@@ -21,7 +21,7 @@ namespace Logic
                                   {
                                       Output = t.Result;
                                       InvokeExecutionCompleted();
-                                  });
+                                  },TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void InvokeExecutionCompleted()

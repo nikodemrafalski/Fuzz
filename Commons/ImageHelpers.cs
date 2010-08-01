@@ -1,4 +1,5 @@
 ﻿using System.Drawing.Drawing2D;
+using AForge.Imaging;
 
 namespace Commons
 {
@@ -10,7 +11,7 @@ namespace Commons
     {
         public static Bitmap ConvertToGrayScale(this Image sourceImage)
         {
-            var result = new Bitmap(sourceImage.Width, sourceImage.Height);
+            var result = new Bitmap(sourceImage.Width, sourceImage.Height, PixelFormat.Format24bppRgb);
 
             Graphics g = Graphics.FromImage(result);
 

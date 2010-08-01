@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge.Imaging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Aforge.net\Release\AForge.Imaging.dll</HintPath>
+    </Reference>
     <Reference Include="Autofac">
       <HintPath>..\..\..\Libs\Autofac\Autofac.dll</HintPath>
     </Reference>
@@ -49,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlExtensions.cs" />
     <Compile Include="MainView\IMainView.cs" />
     <Compile Include="MainView\MainForm.cs">
       <SubType>Form</SubType>

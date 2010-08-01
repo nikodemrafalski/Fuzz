@@ -6,7 +6,7 @@ namespace Logic
     public interface IAlgorithm
     {
         event EventHandler<EventArgs> ExecutionCompleted;
-        UnmanagedImage Input { get; set; }
+        AlgorithmInput Input { get; set; }
         AlgorithmResult Output { get; }
         AlgorithmResult ProcessData();
         void ProcessDataAsync();
