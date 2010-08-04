@@ -10,7 +10,7 @@ namespace Logic
     {
         public static byte[,] GetPixels(this UnmanagedImage unmanagedImage)
         {
-            int sourceBytes = unmanagedImage.Stride * unmanagedImage.Height;
+            int sourceBytes = unmanagedImage.Width * unmanagedImage.Height * 3;
             var rgbRawValues = new byte[sourceBytes];
             Marshal.Copy(unmanagedImage.ImageData, rgbRawValues, 0, sourceBytes);
 

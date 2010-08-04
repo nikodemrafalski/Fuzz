@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Commons;
+using Logic;
 
 namespace FuzzyProject
 {
@@ -15,27 +16,31 @@ namespace FuzzyProject
             InitializeComponent();
             this.presenter = new MainViewPresenter();
             this.presenter.AttachView(this);
+            this.presenter.HandlePictureResized(this.sourcePictureBox.Width, this.sourcePictureBox.Height);
         }
 
         #region IMainView implementation
 
         public void DisplaySourceImage(Image image)
         {
-            this.sourcePictureBox.Image = image.ResizeImage(
-                this.sourcePictureBox.Width,
-                this.sourcePictureBox.Height);
+            this.sourcePictureBox.Image = image;
+
         }
 
         public void DisplayProcessedImage(Image image)
         {
-            this.processedPictureBox.Image = image.ResizeImage(
-                this.processedPictureBox.Width,
-                this.processedPictureBox.Height);
+            this.processedPictureBox.Image = image;
+            this.tabContainer.SelectedTab = this.processedImageTabPage;
         }
 
         public void UpdateAlgorithmsList(IEnumerable<string> algoritmsNames)
         {
             this.algoritmsListCombo.DataSource = algoritmsNames;
+        }
+
+        public void UpdateParametersList(IEnumerable<AlgorithmParameter> paramerers)
+        {
+            this.algorithmParametersBindingSource.DataSource = paramerers;
         }
 
         public void StartNotifyingProgress()
@@ -69,7 +74,7 @@ namespace FuzzyProject
 
         private void OnSizeChanged(object sender, EventArgs e)
         {
-            this.presenter.HandleResize();
+            this.presenter.HandlePictureResized(this.sourcePictureBox.Width, this.sourcePictureBox.Height);
         }
 
         private void OnProcessImageClick(object sender, EventArgs e)
@@ -87,6 +92,16 @@ namespace FuzzyProject
             }
 
             this.presenter.ChangeSelectedAlgorithm(combo.SelectedValue as string);
+        }
+
+        private void OnParametersGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var parameter = this.algorithmParametersBindingSource.Current as AlgorithmParameter;
+            if (parameter != null)
+            {
+                parameter.Value = parameter.DefaultValue;
+                this.algorithmParametersBindingSource.ResetCurrentItem();
+            }
         }
 
         #endregion

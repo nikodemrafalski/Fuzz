@@ -15,33 +15,41 @@ namespace FuzzyProject
         private Autofac.IContainer container;
         private IMainView view;
         private Bitmap originalSizeSource;
-        private Bitmap originalSizeProcessed;
+        private Bitmap resizedSource;
+        private Bitmap resizedProcessed;
         private IAlgorithm selectedAlgoritm;
+        private int pictureWidth;
+        private int pictureHeight;
 
         public MainViewPresenter()
         {
             this.container = AppFacade.DI.Container;
         }
 
-        public void AttachView(IMainView view)
+        public void AttachView(IMainView mainView)
         {
-            this.view = view;
+            this.view = mainView;
             this.view.UpdateAlgorithmsList(AlgorithmsNames.All);
         }
 
         public void ProcessImage()
         {
+            if (this.resizedSource == null)
+            {
+                return;
+            }
+
             this.view.StartNotifyingProgress();
-            this.selectedAlgoritm.Input = new AlgorithmInput(originalSizeSource);
-            this.selectedAlgoritm.ExecutionCompleted += new EventHandler<EventArgs>(OnAlgorithmExecutionCompleted);
+            this.selectedAlgoritm.Input = new AlgorithmInput(this.resizedSource);
+            this.selectedAlgoritm.ExecutionCompleted += OnAlgorithmExecutionCompleted;
             this.selectedAlgoritm.ProcessDataAsync();
         }
 
         private void OnAlgorithmExecutionCompleted(object sender, EventArgs e)
         {
-            this.originalSizeProcessed = selectedAlgoritm.Output.Image.ToManagedImage();
+            this.resizedProcessed = selectedAlgoritm.Output.Image.ToManagedImage();
             this.view.StoptNotifyingProgress();
-            this.view.DisplayProcessedImage(this.originalSizeProcessed);
+            this.view.DisplayProcessedImage(this.resizedProcessed);
         }
 
         public void LoadImage()
@@ -51,21 +59,17 @@ namespace FuzzyProject
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     this.originalSizeSource = new Bitmap(dialog.OpenFile()).ConvertToGrayScale();
-                    view.DisplaySourceImage(originalSizeSource);
+                    this.ShowSourceImage();
                 }
             }
         }
 
-        public void HandleResize()
+        private void ShowSourceImage()
         {
             if (this.originalSizeSource != null)
             {
-                view.DisplaySourceImage(this.originalSizeSource);
-            }
-
-            if (this.originalSizeProcessed != null)
-            {
-                view.DisplayProcessedImage(this.originalSizeProcessed);
+                this.resizedSource = this.originalSizeSource.ResizeImage(this.pictureWidth, this.pictureHeight);
+                view.DisplaySourceImage(this.resizedSource);
             }
         }
 
@@ -78,6 +82,14 @@ namespace FuzzyProject
         public void ChangeSelectedAlgorithm(string algorithmName)
         {
             this.selectedAlgoritm = container.Resolve<IAlgorithm>(algorithmName);
+            this.view.UpdateParametersList(this.selectedAlgoritm.Parameters);
+        }
+
+        public void HandlePictureResized(int width, int height)
+        {
+            this.pictureWidth = width;
+            this.pictureHeight = height;
+            this.ShowSourceImage();
         }
     }
 }
