@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Commons;
 
 
@@ -70,6 +71,20 @@ namespace Logic.Algorithms
         private double InversedMembershipFunction(double membership)
         {
             return this.maxGrayLevel + this.denominationalFuzzifier * (1 - 1 / Math.Pow(membership, 1 / exponentialFuzzifier));
+        }
+
+        public event EventHandler<EventArgs> SomeEvent;
+
+        // Version 4 
+        protected void OnSomeEvent(EventArgs e)
+        {
+            EventHandler<EventArgs> temp =
+               Interlocked.CompareExchange(ref SomeEvent, null, null);
+
+            if (temp != null)
+            {
+                temp(this, e);
+            }
         }
 
         protected override void OnParameterChanged(AlgorithmParameter parameter)

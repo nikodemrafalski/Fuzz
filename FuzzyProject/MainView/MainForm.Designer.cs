@@ -31,7 +31,7 @@ namespace FuzzyProject
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,10 +49,10 @@ namespace FuzzyProject
             this.algoritmLabel = new System.Windows.Forms.Label();
             this.algorithmConfigurationGroup = new System.Windows.Forms.GroupBox();
             this.parametersGridView = new System.Windows.Forms.DataGridView();
+            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainMenuStrip.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.sourceImagePage.SuspendLayout();
@@ -245,6 +245,10 @@ namespace FuzzyProject
             this.parametersGridView.TabIndex = 5;
             this.parametersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnParametersGridViewCellContentClick);
             // 
+            // algorithmParametersBindingSource
+            // 
+            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
+            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
@@ -255,9 +259,8 @@ namespace FuzzyProject
             // valueDataGridViewTextBoxColumn
             // 
             this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Format = "N2";
+            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.valueDataGridViewTextBoxColumn.HeaderText = "Wartość";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             // 
@@ -266,10 +269,6 @@ namespace FuzzyProject
             this.setParameterDefaultButtonValue.HeaderText = "Wartość domyślna";
             this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
             this.setParameterDefaultButtonValue.Text = "Przywróć";
-            // 
-            // algorithmParametersBindingSource
-            // 
-            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
             // 
             // MainForm
             // 
