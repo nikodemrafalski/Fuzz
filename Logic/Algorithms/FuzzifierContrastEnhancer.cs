@@ -2,18 +2,13 @@ using System;
 using System.Threading;
 using Commons;
 
-
 namespace Logic.Algorithms
 {
     internal class FuzzifierContrastEnhancer : Algorithm
     {
         private double exponentialFuzzifier = 1;
         private double denominationalFuzzifier = 16;
-
-        private int height;
-        private int width;
         private double maxGrayLevel;
-        private double minGrayLevel;
 
         public FuzzifierContrastEnhancer()
         {
@@ -23,9 +18,6 @@ namespace Logic.Algorithms
 
         public override AlgorithmResult ProcessData()
         {
-            this.width = this.Input.Image.Width;
-            this.height = this.Input.Image.Height;
-
             byte[,] pixels = this.Input.Image.GetPixels();
             double[,] membershipValues = this.Fuzzify(pixels);
             double[,] modifiedMembershipValues = membershipValues.ApplyTransform(IntOperator);
@@ -54,7 +46,6 @@ namespace Logic.Algorithms
         private double[,] Fuzzify(byte[,] input)
         {
             Tuple<byte, byte> minMax = input.GetMinAndMaxValues();
-            this.minGrayLevel = minMax.Item1;
             this.maxGrayLevel = minMax.Item2;
             double[,] result = input.ApplyTransform(this.MembershipFunction);
             return result;
