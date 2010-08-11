@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace Logic.Algorithms
 {
@@ -21,13 +22,12 @@ namespace Logic.Algorithms
         {
             byte[,] pixels = Input.Image.GetPixels();
             var result = new byte[this.Input.Image.Width, this.Input.Image.Height];
-            for (int i = 1; i < pixels.GetLength(0) - 1; i++)
-            {
-                for (int j = 1; j < pixels.GetLength(1) - 1; j++)
+            Parallel.For(1, pixels.GetLength(0) - 1, i =>
+                Parallel.For(1, pixels.GetLength(1) - 1, j =>
                 {
-                    int[] featureVector = this.CalculateFeatureVector(i, j, pixels);
-                    double edgeMemberhip = this.EdgedMembership(featureVector);
-                    double backgroundMembership = this.BackgroundMembership(featureVector);
+                    int[] featureVector = CalculateFeatureVector(i, j, pixels);
+                    double edgeMemberhip = EdgedMembership(featureVector);
+                    double backgroundMembership = BackgroundMembership(featureVector);
                     if (backgroundMembership >= edgeMemberhip)
                     {
                         result[i, j] = 255;
@@ -36,8 +36,8 @@ namespace Logic.Algorithms
                     {
                         result[i, j] = 0;
                     }
-                }
-            }
+                }));
+
 
             Input.Image.SetPixels(result);
             return new AlgorithmResult(Input.Image);

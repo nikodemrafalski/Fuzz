@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace Commons
 {
@@ -9,14 +10,12 @@ namespace Commons
             int dim1 = self.GetLength(0);
             int dim2 = self.GetLength(1);
             var result = new double[dim1, dim2];
-            for (int i = 0; i < dim1; i++)
-            {
-                for (int j = 0; j < dim2; j++)
-                {
-                    result[i, j] = transform(self[i, j]);
-                }
-            }
 
+            Parallel.For(0, dim1, i => Parallel.For(0, dim2, j =>
+            {
+                result[i, j] = transform(self[i, j]);
+            }));
+            
             return result;
         }
 
@@ -41,13 +40,11 @@ namespace Commons
             int dim1 = self.GetLength(0);
             int dim2 = self.GetLength(1);
             var result = new double[dim1, dim2];
-            for (int i = 0; i < dim1; i++)
+
+            Parallel.For(0, dim1, i => Parallel.For(0, dim2, j =>
             {
-                for (int j = 0; j < dim2; j++)
-                {
-                    result[i, j] = transform(self[i, j]);
-                }
-            }
+                result[i, j] = transform(self[i, j]);
+            }));
 
             return result;
         }
@@ -55,15 +52,15 @@ namespace Commons
         public static Tuple<byte, byte> GetMinAndMaxValues(this byte[,] self)
         {
             byte min = byte.MaxValue, max = byte.MinValue;
-            for (int i = 0; i < self.GetLength(0); i++)
+            int dim1 = self.GetLength(0);
+            int dim2 = self.GetLength(1);
+
+            Parallel.For(0, dim1, i => Parallel.For(0, dim2, j =>
             {
-                for (int j = 0; j < self.GetLength(1); j++)
-                {
-                    byte current = self[i, j];
-                    if (current > max) { max = current; }
-                    if (current < min) { min = current; }
-                }
-            }
+                byte current = self[i, j];
+                if (current > max) { max = current; }
+                if (current < min) { min = current; }
+            }));
 
             return new Tuple<byte, byte>(min, max);
         }

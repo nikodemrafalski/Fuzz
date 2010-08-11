@@ -10,6 +10,7 @@ namespace FuzzyProject
     public partial class MainForm : Form, IMainView
     {
         private readonly MainViewPresenter presenter;
+        private long operatonStartedTicks;
 
         public MainForm()
         {
@@ -24,7 +25,6 @@ namespace FuzzyProject
         public void DisplaySourceImage(Image image)
         {
             this.sourcePictureBox.Image = image;
-
         }
 
         public void DisplayProcessedImage(Image image)
@@ -45,6 +45,7 @@ namespace FuzzyProject
 
         public void StartNotifyingProgress()
         {
+            this.operatonStartedTicks = DateTime.Now.Ticks;
             this.operationProgressBar.Enabled = true;
             this.operationProgressBar.Style = ProgressBarStyle.Marquee;
         }
@@ -55,6 +56,8 @@ namespace FuzzyProject
                                       {
                                           this.operationProgressBar.Style = ProgressBarStyle.Continuous;
                                           this.operationProgressBar.Enabled = false;
+                                          var span = new TimeSpan(DateTime.Now.Ticks - this.operatonStartedTicks);
+                                          this.operationTimerLabel.Text = span.ToString("G");
                                       });
         }
 

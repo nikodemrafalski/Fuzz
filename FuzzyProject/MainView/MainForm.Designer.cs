@@ -49,10 +49,11 @@ namespace FuzzyProject
             this.algoritmLabel = new System.Windows.Forms.Label();
             this.algorithmConfigurationGroup = new System.Windows.Forms.GroupBox();
             this.parametersGridView = new System.Windows.Forms.DataGridView();
-            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.operationTimerLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenuStrip.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.sourceImagePage.SuspendLayout();
@@ -166,7 +167,8 @@ namespace FuzzyProject
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.operationProgressBar});
+            this.operationProgressBar,
+            this.operationTimerLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 692);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(784, 22);
@@ -245,10 +247,6 @@ namespace FuzzyProject
             this.parametersGridView.TabIndex = 5;
             this.parametersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnParametersGridViewCellContentClick);
             // 
-            // algorithmParametersBindingSource
-            // 
-            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
@@ -269,6 +267,15 @@ namespace FuzzyProject
             this.setParameterDefaultButtonValue.HeaderText = "Wartość domyślna";
             this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
             this.setParameterDefaultButtonValue.Text = "Przywróć";
+            // 
+            // algorithmParametersBindingSource
+            // 
+            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
+            // 
+            // operationTimerLabel
+            // 
+            this.operationTimerLabel.Name = "operationTimerLabel";
+            this.operationTimerLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // MainForm
             // 
@@ -324,6 +331,7 @@ namespace FuzzyProject
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn setParameterDefaultButtonValue;
+        private System.Windows.Forms.ToolStripStatusLabel operationTimerLabel;
     }
 }
 
