@@ -99,6 +99,11 @@ namespace FuzzyProject
 
         private void OnParametersGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex != 2)
+            {
+                return;
+            }
+
             var parameter = this.algorithmParametersBindingSource.Current as AlgorithmParameter;
             if (parameter != null)
             {
