@@ -99,6 +99,7 @@
     <Compile Include="Algorithms\FuzzyClassifierEdgeDetector.cs" />
     <Compile Include="Histogram.cs" />
     <Compile Include="IAlgorithm.cs" />
+    <Compile Include="Evalutation\ContrastEvaluator.cs" />
     <Compile Include="ModuleInitializer.cs" />
     <Compile Include="UnmanagedImageExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +113,7 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

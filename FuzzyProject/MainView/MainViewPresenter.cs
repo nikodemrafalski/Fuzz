@@ -7,6 +7,7 @@ using Commons;
 using Logic;
 using Logic.Algorithms;
 using Autofac;
+using Logic.Evalutation;
 
 namespace FuzzyProject
 {
@@ -50,6 +51,14 @@ namespace FuzzyProject
             this.resizedProcessed = selectedAlgoritm.Output.Image.ToManagedImage();
             this.view.StoptNotifyingProgress();
             this.view.DisplayProcessedImage(this.resizedProcessed);
+            this.Evaluate();
+        }
+
+        private void Evaluate()
+        {
+            double sourceScore = ContrastEvaluator.Evaluate(UnmanagedImage.FromManagedImage(resizedSource));
+            double processedScore = ContrastEvaluator.Evaluate(UnmanagedImage.FromManagedImage(resizedProcessed));
+            this.view.DisplayEvaluationScores(sourceScore, processedScore);
         }
 
         public void LoadImage()

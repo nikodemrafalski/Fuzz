@@ -54,6 +54,11 @@ namespace FuzzyProject
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.evaluationTabPage = new System.Windows.Forms.TabPage();
+            this.sourceImageEvaluationScore = new System.Windows.Forms.Label();
+            this.processedImageEvaluationScore = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.mainMenuStrip.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.sourceImagePage.SuspendLayout();
@@ -64,6 +69,7 @@ namespace FuzzyProject
             this.algorithmConfigurationGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).BeginInit();
+            this.evaluationTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -112,6 +118,7 @@ namespace FuzzyProject
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabContainer.Controls.Add(this.sourceImagePage);
             this.tabContainer.Controls.Add(this.processedImageTabPage);
+            this.tabContainer.Controls.Add(this.evaluationTabPage);
             this.tabContainer.Location = new System.Drawing.Point(12, 27);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.SelectedIndex = 0;
@@ -277,6 +284,56 @@ namespace FuzzyProject
             this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
             this.setParameterDefaultButtonValue.Text = "Przywróć";
             // 
+            // evaluationTabPage
+            // 
+            this.evaluationTabPage.Controls.Add(this.label2);
+            this.evaluationTabPage.Controls.Add(this.label1);
+            this.evaluationTabPage.Controls.Add(this.processedImageEvaluationScore);
+            this.evaluationTabPage.Controls.Add(this.sourceImageEvaluationScore);
+            this.evaluationTabPage.Location = new System.Drawing.Point(4, 22);
+            this.evaluationTabPage.Name = "evaluationTabPage";
+            this.evaluationTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.evaluationTabPage.Size = new System.Drawing.Size(752, 461);
+            this.evaluationTabPage.TabIndex = 2;
+            this.evaluationTabPage.Text = "Ewaluacja";
+            this.evaluationTabPage.UseVisualStyleBackColor = true;
+            // 
+            // sourceImageEvaluationScore
+            // 
+            this.sourceImageEvaluationScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.sourceImageEvaluationScore.Location = new System.Drawing.Point(197, 13);
+            this.sourceImageEvaluationScore.Name = "sourceImageEvaluationScore";
+            this.sourceImageEvaluationScore.Size = new System.Drawing.Size(128, 20);
+            this.sourceImageEvaluationScore.TabIndex = 0;
+            // 
+            // processedImageEvaluationScore
+            // 
+            this.processedImageEvaluationScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.processedImageEvaluationScore.Location = new System.Drawing.Point(196, 36);
+            this.processedImageEvaluationScore.Name = "processedImageEvaluationScore";
+            this.processedImageEvaluationScore.Size = new System.Drawing.Size(129, 20);
+            this.processedImageEvaluationScore.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(7, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Obraz źródłowy:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(7, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Obraz przetworzony:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +360,8 @@ namespace FuzzyProject
             this.algorithmConfigurationGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).EndInit();
+            this.evaluationTabPage.ResumeLayout(false);
+            this.evaluationTabPage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,6 +391,11 @@ namespace FuzzyProject
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn setParameterDefaultButtonValue;
+        private System.Windows.Forms.TabPage evaluationTabPage;
+        private System.Windows.Forms.Label sourceImageEvaluationScore;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label processedImageEvaluationScore;
     }
 }
 

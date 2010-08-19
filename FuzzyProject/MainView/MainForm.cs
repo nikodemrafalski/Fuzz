@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Commons;
 using Logic;
 
 namespace FuzzyProject
@@ -59,6 +58,12 @@ namespace FuzzyProject
                                           var span = new TimeSpan(DateTime.Now.Ticks - this.operatonStartedTicks);
                                           this.operationTimerLabel.Text = span.ToString("G");
                                       });
+        }
+
+        public void DisplayEvaluationScores(double sourceScore, double processedScore)
+        {
+            this.sourceImageEvaluationScore.Text = sourceScore.ToString();
+            this.processedImageEvaluationScore.Text = processedScore.ToString();
         }
 
         #endregion
