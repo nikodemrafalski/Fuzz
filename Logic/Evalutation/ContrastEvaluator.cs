@@ -6,7 +6,7 @@ namespace Logic.Evalutation
 {
     public static class ContrastEvaluator
     {
-        public static double Evaluate(UnmanagedImage image)
+        public static double EvaluateC(UnmanagedImage image)
         {
             byte[,] pixels = image.GetPixels();
             Tuple<byte, byte> minMax = pixels.GetMinAndMaxValues();
@@ -29,7 +29,7 @@ namespace Logic.Evalutation
             return (maxGrayLevel - minGrayLevel) / aggregate;
         }
 
-        public static double Evaluate2(UnmanagedImage image)
+        public static double EvaluateW(UnmanagedImage image)
         {
             byte[,] pixels = image.GetPixels();
             Tuple<byte, byte> minMax = pixels.GetMinAndMaxValues();
