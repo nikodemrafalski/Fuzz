@@ -56,10 +56,11 @@
   <ItemGroup>
     <Reference Include="AForge.Imaging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\Aforge.net\Release\AForge.Imaging.dll</HintPath>
+      <HintPath>..\Libraries\AForge.NET\AForge.Imaging.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac">
-      <HintPath>..\..\..\Libs\Autofac\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=2.2.4.900, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Autofac\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

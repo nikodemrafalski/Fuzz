@@ -33,7 +33,7 @@ namespace Logic
 
         public static void SetPixels(this UnmanagedImage unmanagedImage, byte[,] pixels)
         {
-            int bytesCount = unmanagedImage.Stride * unmanagedImage.Height;
+            int bytesCount = unmanagedImage.Width * unmanagedImage.Height * 3;
             byte[] imageBytes = new byte[bytesCount];
             int offset = 0;
             for (int y = 0; y < pixels.GetLength(1); y++)

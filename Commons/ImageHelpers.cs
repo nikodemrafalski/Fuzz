@@ -17,9 +17,9 @@ namespace Commons
 
             var colorMatrix = new ColorMatrix(new[]
             {
-                new[] {.3f, .3f, .3f, 0f, 0f},
-                new[] {.59f, .59f, .59f, 0f, 0f},
-                new[] {.11f, .11f, .11f, 0f, 0f},
+                new[] {.299f, .299f, .299f, 0f, 0f},
+                new[] {.587f, .587f, .587f, 0f, 0f},
+                new[] {.114f, .114f, .114f, 0f, 0f},
                 new[] {0f, 0f, 0f, 1f, 0f},
                 new[] {0f, 0f, 0f, 0f, 1f}
             });

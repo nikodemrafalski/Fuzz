@@ -21,9 +21,11 @@ namespace Logic.Algorithms
         public override AlgorithmResult ProcessData()
         {
             byte[,] pixels = Input.Image.GetPixels();
+            int width = pixels.GetLength(0);
+            int height = pixels.GetLength(1);
             var result = new byte[this.Input.Image.Width, this.Input.Image.Height];
-            Parallel.For(1, pixels.GetLength(0) - 1, i =>
-                Parallel.For(1, pixels.GetLength(1) - 1, j =>
+            Parallel.For(1, width - 1, i =>
+                Parallel.For(1, height - 1, j =>
                 {
                     int[] featureVector = CalculateFeatureVector(i, j, pixels);
                     double edgeMemberhip = EdgedMembership(featureVector);
@@ -38,6 +40,17 @@ namespace Logic.Algorithms
                     }
                 }));
 
+            for (int i = 0; i < width; i++)
+            {
+                result[i, 0] = 255;
+                result[i, height - 1] = 255;
+            }
+
+            for (int i = 0; i < height; i++)
+            {
+                result[0, i] = 255;
+                result[width - 1, i] = 255;
+            }
 
             Input.Image.SetPixels(result);
             return new AlgorithmResult(Input.Image);
@@ -54,7 +67,7 @@ namespace Logic.Algorithms
             vector[4] = pixels[x + 1, y] - center;
             vector[5] = pixels[x - 1, y + 1] - center;
             vector[6] = pixels[x, y + 1] - center;
-            vector[7] = pixels[x - 1, y + 1] - center;
+            vector[7] = pixels[x + 1, y + 1] - center;
 
             return vector;
         }
@@ -71,6 +84,7 @@ namespace Logic.Algorithms
             var tempVector = new int[8];
             for (int i = 0; i < 8; i++)
             {
+                featureVector[i] = Math.Abs(featureVector[i]);
                 tempVector[i] = (int)Math.Abs(featureVector[i] - h);
             }
 
@@ -90,6 +104,7 @@ namespace Logic.Algorithms
             var tempVector = new int[8];
             for (int i = 0; i < 8; i++)
             {
+                featureVector[i] = Math.Abs(featureVector[i]);
                 tempVector[i] = (int)Math.Abs(featureVector[i] - l);
             }
 

@@ -5,12 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FuzzyProject")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Modelowanie rozmyte w przetwarzaniu obrazów")]
+[assembly: AssemblyDescription(@"Implementacje projektu i algorytmów opisanych w pracy magisterskiej 
+    pt. ""Modelowanie rozmyte w przetwarzaniu obrazów"" autor: Nikodem Rafalski")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Nikodem Rafalski")]
 [assembly: AssemblyProduct("FuzzyProject")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2010")]
+[assembly: AssemblyCopyright("Copyright © Nikodem Rafalski 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
