@@ -79,8 +79,8 @@ namespace Logic.Algorithms
             {
                 this.denominationalFuzzifier = this.CalculateDenominationalFuzzifier(minMax.Item1, minMax.Item2);
             }
-            
-            double[,] result = input.ApplyTransform(this.MembershipFunction);
+
+            double[,] result = input.ApplyTransform((Func<byte, double>)this.MembershipFunction);
             return result;
         }
 

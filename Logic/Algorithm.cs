@@ -6,7 +6,7 @@ using AForge.Imaging;
 
 namespace Logic
 {
-    internal abstract class Algorithm : IAlgorithm
+    public abstract class Algorithm : IAlgorithm
     {
         public event EventHandler<EventArgs> ExecutionCompleted;
         private readonly IList<AlgorithmParameter> parameters = new List<AlgorithmParameter>();

@@ -31,7 +31,7 @@ namespace FuzzyProject
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -251,7 +251,7 @@ namespace FuzzyProject
             this.startProcessingButton.Name = "startProcessingButton";
             this.startProcessingButton.Size = new System.Drawing.Size(125, 35);
             this.startProcessingButton.TabIndex = 3;
-            this.startProcessingButton.Text = "Przetwarzaj";
+            this.startProcessingButton.Text = "Przetwarza&j";
             this.startProcessingButton.UseVisualStyleBackColor = true;
             this.startProcessingButton.Click += new System.EventHandler(this.OnProcessImageClick);
             // 
@@ -325,8 +325,8 @@ namespace FuzzyProject
             // valueDataGridViewTextBoxColumn
             // 
             this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            dataGridViewCellStyle1.Format = "N5";
-            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "N5";
+            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.valueDataGridViewTextBoxColumn.HeaderText = "Wartość";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             // 

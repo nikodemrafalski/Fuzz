@@ -49,6 +49,20 @@ namespace Commons
             return result;
         }
 
+        public static byte[,] ApplyTransform(this byte[,] self, Func<byte, byte> transform)
+        {
+            int dim1 = self.GetLength(0);
+            int dim2 = self.GetLength(1);
+            var result = new byte[dim1, dim2];
+
+            Parallel.For(0, dim1, i => Parallel.For(0, dim2, j =>
+            {
+                result[i, j] = transform(self[i, j]);
+            }));
+
+            return result;
+        }
+
         public static Tuple<byte, byte> GetMinAndMaxValues(this byte[,] self)
         {
             byte min = byte.MaxValue, max = byte.MinValue;

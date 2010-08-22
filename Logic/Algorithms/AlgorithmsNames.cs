@@ -6,6 +6,7 @@ namespace Logic.Algorithms
     {
         public const string FuzzyClassifierEdgeDetector = "FuzzyClassifierEdgeDetector";
         public const string FuzzifierContrastEnhancer = "FuzzifierContrastEnhancer";
+        public const string RuleBasedContrastEnhancer = "RuleBasedContrastEnhancer";
 
         public static IEnumerable<string> All
         {
@@ -15,7 +16,7 @@ namespace Logic.Algorithms
 
         static AlgorithmsNames()
         {
-            All = new List<string> { FuzzifierContrastEnhancer, FuzzyClassifierEdgeDetector };
+            All = new List<string> { FuzzifierContrastEnhancer, RuleBasedContrastEnhancer, FuzzyClassifierEdgeDetector };
         }
     }
 }

@@ -73,6 +73,9 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge.Fuzzy">
+      <HintPath>..\Libraries\AForge.NET\AForge.Fuzzy.dll</HintPath>
+    </Reference>
     <Reference Include="AForge.Imaging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\AForge.NET\AForge.Imaging.dll</HintPath>
@@ -99,6 +102,7 @@
     <Compile Include="Algorithms\FuzzifierContrastEnhancer.cs" />
     <Compile Include="AlgorithmParameter.cs" />
     <Compile Include="Algorithms\FuzzyClassifierEdgeDetector.cs" />
+    <Compile Include="Algorithms\RuleBasedContrastEnhancer.cs" />
     <Compile Include="Evalutation\FuzzyMeasures.cs" />
     <Compile Include="Histogram.cs" />
     <Compile Include="IAlgorithm.cs" />

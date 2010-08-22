@@ -1,5 +1,4 @@
 ﻿using System.Drawing.Drawing2D;
-using AForge.Imaging;
 
 namespace Commons
 {
@@ -52,11 +51,13 @@ namespace Commons
                 aspectRatio = (float)newHeight / originalImage.Height;
                 calculatedWidth = Convert.ToInt32(originalImage.Width * aspectRatio);
             }
+
             if (originalImage.Width <= newWidth || originalImage.Height <= newHeight)
             {
                 calculatedHeight = originalImage.Height;
                 calculatedWidth = originalImage.Width;
             }
+
             var result = new Bitmap(calculatedWidth, calculatedHeight, originalImage.PixelFormat);
             using (Graphics graphics = Graphics.FromImage(result))
             {
