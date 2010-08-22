@@ -7,9 +7,9 @@ namespace Logic
     {
         public AlgorithmResult(UnmanagedImage image)
         {
-            this.Image = image;    
+            this.Image = image;
         }
 
-        public UnmanagedImage Image { get; private  set; }
+        public UnmanagedImage Image { get; private set; }
     }
 }
