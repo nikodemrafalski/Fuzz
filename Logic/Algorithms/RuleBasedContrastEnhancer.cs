@@ -18,7 +18,7 @@ namespace Logic.Algorithms
             {
                 for (int j = 0; j < pixels.GetLength(1); j++)
                 {
-                    system.SetInput("LumaIn", pixels[i,j]);
+                    system.SetInput("LumaIn", pixels[i, j]);
                     double inferrenceResult = system.Evaluate("LumaOut");
                     result[i, j] = (byte)inferrenceResult;
                 }
@@ -37,7 +37,7 @@ namespace Logic.Algorithms
             var darkFunction = new TrapezoidalFunction(minLuma, crossover, TrapezoidalFunction.EdgeType.Right);
             var darkSet = new FuzzySet("Dark", darkFunction);
 
-            var mediumFunction = new TrapezoidalFunction(minLuma, crossover, maxLuma);
+            var mediumFunction = new TrapezoidalFunction(minLuma, crossover, maxLuma - 20);
             var mediumSet = new FuzzySet("Medium", mediumFunction);
 
             var lightFunction = new TrapezoidalFunction(crossover, maxLuma, TrapezoidalFunction.EdgeType.Left);
@@ -45,8 +45,10 @@ namespace Logic.Algorithms
 
             var lighterFunction = new SingletonFunction(255);
             var lighterSet = new FuzzySet("Lighter", lighterFunction);
+
             var darkerFunction = new SingletonFunction(0);
             var darkerSet = new FuzzySet("Darker", darkerFunction);
+
             var medium2Function = new SingletonFunction(128);
             var medium2Set = new FuzzySet("Medium2", medium2Function);
 
@@ -109,7 +111,7 @@ namespace Logic.Algorithms
             }
 
             return (128 * mediumMembership + 255 * lightMembership) /
-                   (darkMembership + mediumMembership + lightMembership);
+                (darkMembership + mediumMembership + lightMembership);
         }
     }
 }
