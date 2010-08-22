@@ -13,7 +13,7 @@ namespace FuzzyProject
 {
     public class MainViewPresenter
     {
-        private Autofac.IContainer container;
+        private readonly Autofac.IContainer container;
         private IMainView view;
         private Bitmap originalSizeSource;
         private Bitmap resizedSource;

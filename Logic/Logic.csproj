@@ -99,6 +99,7 @@
     <Compile Include="Algorithms\FuzzifierContrastEnhancer.cs" />
     <Compile Include="AlgorithmParameter.cs" />
     <Compile Include="Algorithms\FuzzyClassifierEdgeDetector.cs" />
+    <Compile Include="Evalutation\FuzzyMeasures.cs" />
     <Compile Include="Histogram.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="Evalutation\ContrastEvaluator.cs" />
