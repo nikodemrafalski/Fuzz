@@ -13,5 +13,6 @@ namespace FuzzyProject
         void StartNotifyingProgress();
         void StoptNotifyingProgress();
         void DisplayEvaluationScores(double sourceScore, double processedScore);
+        void DisplayMeasures(double sourceScore, double processedScore);
     }
 }

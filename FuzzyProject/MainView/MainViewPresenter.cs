@@ -51,11 +51,12 @@ namespace FuzzyProject
             this.resizedProcessed = selectedAlgoritm.Output.Image.ToManagedImage();
             this.view.StoptNotifyingProgress();
             this.view.DisplayProcessedImage(this.resizedProcessed);
-            this.Evaluate();
+            this.EvaluateScores();
         }
 
-        private void Evaluate()
+        private void EvaluateScores()
         {
+            this.view.DisplayMeasures(this.selectedAlgoritm.Input.Measure, this.selectedAlgoritm.Output.Measure);
             double sourceScore = ContrastEvaluator.EvaluateW(UnmanagedImage.FromManagedImage(resizedSource));
             double processedScore = ContrastEvaluator.EvaluateW(UnmanagedImage.FromManagedImage(resizedProcessed));
             this.view.DisplayEvaluationScores(sourceScore, processedScore);

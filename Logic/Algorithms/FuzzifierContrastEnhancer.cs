@@ -25,6 +25,7 @@ namespace Logic.Algorithms
         {
             byte[,] pixels = this.Input.Image.GetPixels();
             double[,] membershipValues = this.Fuzzify(pixels);
+            this.Input.Measure = FuzzyMeasures.Fuzz(membershipValues);
             double[,] modifiedMembershipValues = membershipValues;
             if (desiredFuzziness != 0)
             {
@@ -46,7 +47,10 @@ namespace Logic.Algorithms
 
             byte[,] defuzzifiedPixels = this.Defuzzfy(modifiedMembershipValues);
             this.Input.Image.SetPixels(defuzzifiedPixels);
-            return new AlgorithmResult(this.Input.Image);
+            return new AlgorithmResult(this.Input.Image)
+            {
+                Measure = FuzzyMeasures.Fuzz(modifiedMembershipValues)
+            };
         }
 
         private static double IntOperator(double membership)

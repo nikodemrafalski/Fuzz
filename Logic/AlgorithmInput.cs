@@ -16,5 +16,7 @@ namespace Logic
         }
 
         public UnmanagedImage Image { get; private set; }
+
+        public double Measure { get; set; }
     }
 }

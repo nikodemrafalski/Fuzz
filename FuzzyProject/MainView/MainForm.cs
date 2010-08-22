@@ -66,6 +66,12 @@ namespace FuzzyProject
             this.processedImageEvaluationScore.Text = processedScore.ToString();
         }
 
+        public void DisplayMeasures(double sourceScore, double processedScore)
+        {
+            this.fuzzSourceScore.Text = sourceScore.ToString();
+            this.fuzzProcessedScore.Text = processedScore.ToString();
+        }
+
         #endregion
 
         #region EventHandlers
