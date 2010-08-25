@@ -16,9 +16,9 @@ namespace Logic.Algorithms
         public FuzzifierContrastEnhancer()
         {
             this.AddParameter(new AlgorithmParameter("ExponentialFuzzifier", 1));
-            this.AddParameter(new AlgorithmParameter("DenominationalFuzzifier", 18));
+            this.AddParameter(new AlgorithmParameter("DenominationalFuzzifier", -1));
             this.AddParameter(new AlgorithmParameter("Iterations", 1));
-            this.AddParameter(new AlgorithmParameter("DesiredFuzziness", 0));
+            this.AddParameter(new AlgorithmParameter("DesiredFuzziness", -1));
         }
 
         public override AlgorithmResult ProcessData()
@@ -35,7 +35,7 @@ namespace Logic.Algorithms
             for (int i = 0; i < iterations; i++)
             {
                 modifiedMembershipValues = modifiedMembershipValues.ApplyTransform(IntOperator);
-                if (desiredFuzziness != 0)
+                if (desiredFuzziness != -1)
                 {
                     double measure = FuzzyMeasures.Fuzz(modifiedMembershipValues);
                     if (measure <= desiredFuzziness)
@@ -79,7 +79,7 @@ namespace Logic.Algorithms
         {
             Tuple<byte, byte> minMax = input.GetMinAndMaxValues();
             this.maxGrayLevel = minMax.Item2;
-            if (this.denominationalFuzzifier == 0)
+            if (this.denominationalFuzzifier == -1)
             {
                 this.denominationalFuzzifier = this.CalculateDenominationalFuzzifier(minMax.Item1, minMax.Item2);
             }

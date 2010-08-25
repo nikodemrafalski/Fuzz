@@ -7,11 +7,27 @@ namespace Logic.Algorithms
 {
     public class RuleBasedContrastEnhancer : Algorithm
     {
+        private int gMin = -1, gMean = -1, gMax = -1;
+
+        public RuleBasedContrastEnhancer()
+        {
+            this.AddParameter(new AlgorithmParameter("GMin", -1));
+            this.AddParameter(new AlgorithmParameter("GMean", -1));
+            this.AddParameter(new AlgorithmParameter("GMax", -1));
+        }
+
         public override AlgorithmResult ProcessData()
         {
             byte[,] pixels = this.Input.Image.GetPixels();
-            Tuple<byte, byte> minMax = pixels.GetMinAndMaxValues();
-            InferenceSystem system = this.SetupInferenceSystem(minMax.Item1, minMax.Item2);
+            if (gMin == -1 || gMean == -1 || gMax == -1)
+            {
+                Tuple<byte, byte> minMax = pixels.GetMinAndMaxValues();
+                gMin = minMax.Item1;
+                gMax = minMax.Item2;
+                gMean = (byte)((gMax - gMin) / 2 + gMin);
+            }
+
+            InferenceSystem system = this.SetupInferenceSystem((byte)gMin, (byte)gMax, (byte)gMean);
             var result = new byte[pixels.GetLength(0), pixels.GetLength(1)];
 
             for (int i = 0; i < pixels.GetLength(0); i++)
@@ -28,19 +44,18 @@ namespace Logic.Algorithms
             return new AlgorithmResult(this.Input.Image);
         }
 
-        private InferenceSystem SetupInferenceSystem(byte minLuma, byte maxLuma)
+        private InferenceSystem SetupInferenceSystem(byte minLuma, byte maxLuma, byte meanLuma)
         {
-            byte crossover = (byte)((maxLuma - minLuma) / 2 + minLuma);
             var lumaIn = new LinguisticVariable("LumaIn", 0, 255);
             var lumaOut = new LinguisticVariable("LumaOut", 0, 255);
 
-            var darkFunction = new TrapezoidalFunction(minLuma, crossover, TrapezoidalFunction.EdgeType.Right);
+            var darkFunction = new TrapezoidalFunction(minLuma, meanLuma, TrapezoidalFunction.EdgeType.Right);
             var darkSet = new FuzzySet("Dark", darkFunction);
 
-            var mediumFunction = new TrapezoidalFunction(minLuma, crossover, maxLuma - 20);
+            var mediumFunction = new TrapezoidalFunction(minLuma, meanLuma, maxLuma);
             var mediumSet = new FuzzySet("Medium", mediumFunction);
 
-            var lightFunction = new TrapezoidalFunction(crossover, maxLuma, TrapezoidalFunction.EdgeType.Left);
+            var lightFunction = new TrapezoidalFunction(meanLuma, maxLuma, TrapezoidalFunction.EdgeType.Left);
             var lightSet = new FuzzySet("Light", lightFunction);
 
             lumaIn.AddLabel(darkSet);
@@ -71,6 +86,22 @@ namespace Logic.Algorithms
             inferenceSystem.NewRule("Rule 3", "IF LumaIn IS Light THEN LumaOut is White");
 
             return inferenceSystem;
+        }
+
+        protected override void OnParameterChanged(AlgorithmParameter parameter)
+        {
+            if (parameter.Name.Equals("GMin"))
+            {
+                this.gMin = (int)parameter.Value;
+            }
+            else if (parameter.Name.Equals("GMean"))
+            {
+                this.gMean = (int)parameter.Value;
+            }
+            else if (parameter.Name.Equals("Gmax"))
+            {
+                this.gMax = (int)parameter.Value;
+            }
         }
     }
 
