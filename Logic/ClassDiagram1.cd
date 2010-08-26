@@ -11,7 +11,7 @@
   <Class Name="Logic.AlgorithmInput">
     <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>AlgorithmInput.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -25,15 +25,8 @@
   <Class Name="Logic.AlgorithmResult">
     <Position X="11.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>AlgorithmResult.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Logic.Histogram">
-    <Position X="12" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
-      <FileName>Histogram.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Logic.ModuleInitializer" BaseTypeListCollapsed="true">
@@ -54,14 +47,14 @@
   <Class Name="Logic.Algorithms.AlgorithmsNames">
     <Position X="7" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAIAAA=</HashCode>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAABAAAAAIAAAAAIAAA=</HashCode>
       <FileName>Algorithms\AlgorithmsNames.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Logic.Algorithms.FuzzifierContrastEnhancer">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAIAAAAAACAAAAAAAAAEAEAEAgAABAAAAAAACABAA=</HashCode>
+      <HashCode>EAAAIAAAAAACAAAAAgAAAEAEAEAgACBAAAAAAACABEA=</HashCode>
       <FileName>Algorithms\FuzzifierContrastEnhancer.cs</FileName>
     </TypeIdentifier>
   </Class>

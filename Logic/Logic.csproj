@@ -80,6 +80,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\AForge.NET\AForge.Imaging.dll</HintPath>
     </Reference>
+    <Reference Include="AForge.Math">
+      <HintPath>..\Libraries\AForge.NET\AForge.Math.dll</HintPath>
+    </Reference>
     <Reference Include="Autofac, Version=2.2.4.900, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\Autofac\Autofac.dll</HintPath>
@@ -104,7 +107,7 @@
     <Compile Include="Algorithms\FuzzyClassifierEdgeDetector.cs" />
     <Compile Include="Algorithms\RuleBasedContrastEnhancer.cs" />
     <Compile Include="Evalutation\FuzzyMeasures.cs" />
-    <Compile Include="Histogram.cs" />
+    <Compile Include="HistogramData.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="Evalutation\ContrastEvaluator.cs" />
     <Compile Include="ModuleInitializer.cs" />

@@ -54,9 +54,15 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge.Controls">
+      <HintPath>..\Libraries\AForge.NET\AForge.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="AForge.Imaging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\AForge.NET\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math">
+      <HintPath>..\Libraries\AForge.NET\AForge.Math.dll</HintPath>
     </Reference>
     <Reference Include="Autofac, Version=2.2.4.900, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -75,6 +81,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlExtensions.cs" />
+    <Compile Include="CustomPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomPictureBox.Designer.cs">
+      <DependentUpon>CustomPictureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistogramWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistogramWindow.Designer.cs">
+      <DependentUpon>HistogramWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainView\IMainView.cs" />
     <Compile Include="MainView\MainForm.cs">
       <SubType>Form</SubType>
@@ -85,6 +103,12 @@
     <Compile Include="MainView\MainViewPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomPictureBox.resx">
+      <DependentUpon>CustomPictureBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistogramWindow.resx">
+      <DependentUpon>HistogramWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainView\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

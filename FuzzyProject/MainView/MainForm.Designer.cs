@@ -39,9 +39,9 @@ namespace FuzzyProject
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.sourceImagePage = new System.Windows.Forms.TabPage();
-            this.sourcePictureBox = new System.Windows.Forms.PictureBox();
+            this.sourcePictureBox = new CustomPictureBox();
             this.processedImageTabPage = new System.Windows.Forms.TabPage();
-            this.processedPictureBox = new System.Windows.Forms.PictureBox();
+            this.processedPictureBox = new CustomPictureBox();
             this.evaluationTabPage = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
