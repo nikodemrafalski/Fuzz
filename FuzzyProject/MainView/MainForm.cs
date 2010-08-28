@@ -18,6 +18,13 @@ namespace FuzzyProject
             this.presenter = new MainViewPresenter();
             this.presenter.AttachView(this);
             this.presenter.HandlePictureResized(this.sourcePictureBox.Width, this.sourcePictureBox.Height);
+            this.sourcePictureBox.IsSource = true;
+            this.processedPictureBox.ChangeSourceRequested += this.OnChangeSourceRequested;
+        }
+
+        private void OnChangeSourceRequested(object sender, EventArgs args)
+        {
+            presenter.SetProcessedAsSource();
         }
 
         #region IMainView implementation
@@ -25,6 +32,7 @@ namespace FuzzyProject
         public void DisplaySourceImage(Image image)
         {
             this.sourcePictureBox.Image = image;
+            this.tabContainer.SelectedTab = this.sourceImageTabPage;
         }
 
         public void DisplayProcessedImage(Image image)
@@ -60,6 +68,7 @@ namespace FuzzyProject
                                           this.operationTimerLabel.Text = span.ToString("G");
                                       });
         }
+
 
         public void DisplayEvaluationScores(double sourceScore, double processedScore)
         {

@@ -38,7 +38,7 @@ namespace FuzzyProject
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContainer = new System.Windows.Forms.TabControl();
-            this.sourceImagePage = new System.Windows.Forms.TabPage();
+            this.sourceImageTabPage = new System.Windows.Forms.TabPage();
             this.processedImageTabPage = new System.Windows.Forms.TabPage();
             this.evaluationTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -67,7 +67,7 @@ namespace FuzzyProject
             this.processedPictureBox = new FuzzyProject.CustomPictureBox();
             this.mainMenuStrip.SuspendLayout();
             this.tabContainer.SuspendLayout();
-            this.sourceImagePage.SuspendLayout();
+            this.sourceImageTabPage.SuspendLayout();
             this.processedImageTabPage.SuspendLayout();
             this.evaluationTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -124,7 +124,7 @@ namespace FuzzyProject
             this.tabContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabContainer.Controls.Add(this.sourceImagePage);
+            this.tabContainer.Controls.Add(this.sourceImageTabPage);
             this.tabContainer.Controls.Add(this.processedImageTabPage);
             this.tabContainer.Controls.Add(this.evaluationTabPage);
             this.tabContainer.Location = new System.Drawing.Point(12, 27);
@@ -133,16 +133,16 @@ namespace FuzzyProject
             this.tabContainer.Size = new System.Drawing.Size(760, 487);
             this.tabContainer.TabIndex = 1;
             // 
-            // sourceImagePage
+            // sourceImageTabPage
             // 
-            this.sourceImagePage.Controls.Add(this.sourcePictureBox);
-            this.sourceImagePage.Location = new System.Drawing.Point(4, 22);
-            this.sourceImagePage.Name = "sourceImagePage";
-            this.sourceImagePage.Padding = new System.Windows.Forms.Padding(3);
-            this.sourceImagePage.Size = new System.Drawing.Size(752, 461);
-            this.sourceImagePage.TabIndex = 0;
-            this.sourceImagePage.Text = "Źródło";
-            this.sourceImagePage.UseVisualStyleBackColor = true;
+            this.sourceImageTabPage.Controls.Add(this.sourcePictureBox);
+            this.sourceImageTabPage.Location = new System.Drawing.Point(4, 22);
+            this.sourceImageTabPage.Name = "sourceImageTabPage";
+            this.sourceImageTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.sourceImageTabPage.Size = new System.Drawing.Size(752, 461);
+            this.sourceImageTabPage.TabIndex = 0;
+            this.sourceImageTabPage.Text = "Źródło";
+            this.sourceImageTabPage.UseVisualStyleBackColor = true;
             // 
             // processedImageTabPage
             // 
@@ -419,7 +419,7 @@ namespace FuzzyProject
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.tabContainer.ResumeLayout(false);
-            this.sourceImagePage.ResumeLayout(false);
+            this.sourceImageTabPage.ResumeLayout(false);
             this.processedImageTabPage.ResumeLayout(false);
             this.evaluationTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -446,7 +446,7 @@ namespace FuzzyProject
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.TabControl tabContainer;
-        private System.Windows.Forms.TabPage sourceImagePage;
+        private System.Windows.Forms.TabPage sourceImageTabPage;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.Button startProcessingButton;
         private System.Windows.Forms.TabPage processedImageTabPage;

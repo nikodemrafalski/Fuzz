@@ -32,9 +32,6 @@ namespace Logic.Evalutation
         public static double EvaluateW(UnmanagedImage image)
         {
             byte[,] pixels = image.GetPixels();
-            Tuple<byte, byte> minMax = pixels.GetMinAndMaxValues();
-            byte minGrayLevel = minMax.Item1;
-            byte maxGrayLevel = minMax.Item2;
             double aggregate = 0;
 
             int width = pixels.GetLength(0);

@@ -103,5 +103,11 @@ namespace FuzzyProject
             this.pictureHeight = height;
             this.ShowSourceImage();
         }
+
+        public void SetProcessedAsSource()
+        {
+            this.originalSizeSource = this.resizedProcessed;
+            this.ShowSourceImage();
+        }
     }
 }
