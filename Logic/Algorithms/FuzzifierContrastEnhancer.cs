@@ -9,7 +9,8 @@ namespace Logic.Algorithms
     internal class FuzzifierContrastEnhancer : Algorithm
     {
         private double exponentialFuzzifier = 1;
-        private double denominationalFuzzifier = -1;
+        private double denominationalFuzzifier;
+        private int crossoverPoint = -1;
         private double maxGrayLevel;
         private int iterations = 1;
         private double desiredFuzziness = 0;
@@ -17,7 +18,7 @@ namespace Logic.Algorithms
         public FuzzifierContrastEnhancer()
         {
             this.AddParameter(new AlgorithmParameter("ExponentialFuzzifier", 1));
-            this.AddParameter(new AlgorithmParameter("DenominationalFuzzifier", -1));
+            this.AddParameter(new AlgorithmParameter("Crossover", -1));
             this.AddParameter(new AlgorithmParameter("Iterations", 1));
             this.AddParameter(new AlgorithmParameter("DesiredFuzziness", -1));
         }
@@ -64,9 +65,9 @@ namespace Logic.Algorithms
             return 1 - 2 * Math.Pow(1 - membership, 2);
         }
 
-        private double CalculateDenominationalFuzzifier(byte min, byte max)
+        private double CalculateDenominationalFuzzifier(int crossover, byte max)
         {
-            return (max - (max - min) / 2 + min) / (Math.Pow(0.5, -1 / exponentialFuzzifier) - 1);
+            return (max - crossover) / (Math.Pow(0.5, -1 / exponentialFuzzifier) - 1);
         }
 
         private byte[,] Defuzzfy(double[,] membershipValues)
@@ -81,10 +82,12 @@ namespace Logic.Algorithms
             var stats = new ImageStatistics(this.Input.Image);
             int minGrayLevel = stats.Gray.Min;
             this.maxGrayLevel = stats.Gray.Max;
-            if (this.denominationalFuzzifier == -1)
+            if (this.crossoverPoint == -1)
             {
-                this.denominationalFuzzifier = this.CalculateDenominationalFuzzifier((byte)minGrayLevel, (byte)maxGrayLevel);
+                crossoverPoint = (byte)(maxGrayLevel - minGrayLevel) / 2 + minGrayLevel;
             }
+
+            this.denominationalFuzzifier = this.CalculateDenominationalFuzzifier(crossoverPoint, (byte)maxGrayLevel);
 
             double[,] result = input.ApplyTransform((Func<byte, double>)this.MembershipFunction);
             return result;
@@ -109,9 +112,9 @@ namespace Logic.Algorithms
             {
                 this.exponentialFuzzifier = parameter.Value;
             }
-            else if (parameter.Name.Equals("DenominationalFuzzifier"))
+            else if (parameter.Name.Equals("Crossover"))
             {
-                this.denominationalFuzzifier = parameter.Value;
+                this.crossoverPoint = (int)parameter.Value;
             }
             else if (parameter.Name.Equals("Iterations"))
             {
