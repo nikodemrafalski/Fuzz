@@ -9,7 +9,7 @@ namespace Logic.Algorithms
     internal class FuzzifierContrastEnhancer : Algorithm
     {
         private double exponentialFuzzifier = 1;
-        private double denominationalFuzzifier = 18;
+        private double denominationalFuzzifier = -1;
         private double maxGrayLevel;
         private int iterations = 1;
         private double desiredFuzziness = 0;

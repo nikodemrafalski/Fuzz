@@ -62,24 +62,5 @@ namespace Commons
 
             return result;
         }
-
-        public static Tuple<byte, byte> GetMinAndMaxValues(this byte[,] self)
-        {
-            byte min = byte.MaxValue, max = byte.MinValue;
-            int dim1 = self.GetLength(0);
-            int dim2 = self.GetLength(1);
-
-            for (int i = 0; i < dim1; i++)
-            {
-                for (int j = 0; j < dim2; j++)
-                {
-                    byte current = self[i, j];
-                    if (current > max) { max = current; }
-                    if (current < min) { min = current; }
-                }
-            }
-
-            return new Tuple<byte, byte>(min, max);
-        }
     }
 }

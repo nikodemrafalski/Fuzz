@@ -9,9 +9,9 @@ namespace Logic.Evalutation
         public static double EvaluateC(UnmanagedImage image)
         {
             byte[,] pixels = image.GetPixels();
-            Tuple<byte, byte> minMax = pixels.GetMinAndMaxValues();
-            byte minGrayLevel = minMax.Item1;
-            byte maxGrayLevel = minMax.Item2;
+            var stats = new ImageStatistics(image);
+            byte minGrayLevel = (byte) stats.Gray.Min;
+            byte maxGrayLevel = (byte) stats.Gray.Max;
             double aggregate = 0;
 
             int width = pixels.GetLength(0);

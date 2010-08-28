@@ -46,7 +46,7 @@ namespace Logic.Algorithms
 
         private InferenceSystem SetupInferenceSystem(byte minLuma, byte maxLuma, byte meanLuma)
         {
-            var lumaIn = new LinguisticVariable("LumaIn", 0, 255);
+            var lumaIn = new LinguisticVariable("LumaIn", minLuma, maxLuma);
             var lumaOut = new LinguisticVariable("LumaOut", 0, 255);
 
             var darkFunction = new TrapezoidalFunction(minLuma, meanLuma, TrapezoidalFunction.EdgeType.Right);
