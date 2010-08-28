@@ -4,6 +4,7 @@ namespace Logic.Algorithms
 {
     public static class AlgorithmsNames
     {
+        public const string LocalyAdaptiveFuzzyHistogramHiberbolization = "LocalyAdaptiveFuzzyHistogramHiberbolization";
         public const string FuzzyClassifierEdgeDetector = "FuzzyClassifierEdgeDetector";
         public const string FuzzifierContrastEnhancer = "FuzzifierContrastEnhancer";
         public const string FuzzyHistogramHiberbolization = "FuzzyHistogramHiberbolization";
@@ -17,7 +18,7 @@ namespace Logic.Algorithms
 
         static AlgorithmsNames()
         {
-            All = new List<string> { FuzzifierContrastEnhancer, RuleBasedContrastEnhancer, FuzzyHistogramHiberbolization, FuzzyClassifierEdgeDetector };
+            All = new List<string> { FuzzifierContrastEnhancer, RuleBasedContrastEnhancer, FuzzyHistogramHiberbolization, LocalyAdaptiveFuzzyHistogramHiberbolization, FuzzyClassifierEdgeDetector };
         }
     }
 }

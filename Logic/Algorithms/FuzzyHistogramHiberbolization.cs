@@ -34,17 +34,17 @@ namespace Logic.Algorithms
 
         private double MembershipFunction(byte grayLevel, int minGrayLevel, int maxGrayLevel)
         {
-            return (double) (grayLevel - minGrayLevel) / (double)(maxGrayLevel - minGrayLevel);
+            return (double)(grayLevel - minGrayLevel) / (double)(maxGrayLevel - minGrayLevel);
         }
 
         private double MembershipModification(double memberhip)
         {
-            return (Math.Pow(Math.E, -Math.Pow(memberhip, this.beta)) - 1) / (Math.Pow(Math.E, -1) - 1);
+            return Math.Pow(memberhip, this.beta);
         }
 
         private double Defuzzyfication(double modifiedMembership)
         {
-            return 255 * modifiedMembership;
+            return (255 / (Math.Pow(Math.E, -1) - 1)) * (Math.Pow(Math.E, -modifiedMembership) - 1);
         }
 
         protected override void OnParameterChanged(AlgorithmParameter parameter)

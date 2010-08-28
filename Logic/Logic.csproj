@@ -102,6 +102,7 @@
     <Compile Include="Algorithm.cs" />
     <Compile Include="AlgorithmResult.cs" />
     <Compile Include="Algorithms\AlgorithmsNames.cs" />
+    <Compile Include="Algorithms\LocalyAdaptiveFuzzyHistogramHiberbolization.cs" />
     <Compile Include="Algorithms\FuzzifierContrastEnhancer.cs" />
     <Compile Include="AlgorithmParameter.cs" />
     <Compile Include="Algorithms\FuzzyClassifierEdgeDetector.cs" />
