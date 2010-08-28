@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 using Logic;
 
@@ -23,6 +24,19 @@ namespace FuzzyProject
 
             histogramStripItem.Click += OnHistogramStripClick;
             setAsSourceStripItem.Click += (s, a) => this.InvokeChangeSourceRequested();
+            saveImageStripItem.Click += new EventHandler(OnSaveImageStripClick);
+
+        }
+
+        private void OnSaveImageStripClick(object sender, EventArgs e)
+        {
+            using (var saveFileDialog = new SaveFileDialog())
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.Image.Save(saveFileDialog.FileName, ImageFormat.Bmp);
+                }
+            }
         }
 
         public bool IsSource { get; set; }
