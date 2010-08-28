@@ -32,9 +32,21 @@ namespace FuzzyProject
         {
             using (var saveFileDialog = new SaveFileDialog())
             {
+                saveFileDialog.Filter = "(*.bmp)|*.bmp|(*.png)|*.png";
+                saveFileDialog.AddExtension = true;
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.Image.Save(saveFileDialog.FileName, ImageFormat.Bmp);
+                    ImageFormat format = ImageFormat.Bmp;
+                    if (saveFileDialog.FilterIndex == 1)
+                    {
+                       format = ImageFormat.Bmp;
+                    }
+                    if (saveFileDialog.FilterIndex == 2)
+                    {
+                        format = ImageFormat.Png;
+                    }
+
+                    this.Image.Save(saveFileDialog.FileName, format);
                 }
             }
         }
