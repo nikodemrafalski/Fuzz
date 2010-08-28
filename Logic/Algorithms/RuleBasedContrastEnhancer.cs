@@ -21,9 +21,9 @@ namespace Logic.Algorithms
             byte[,] pixels = this.Input.Image.GetPixels();
             if (gMin == -1 || gMean == -1 || gMax == -1)
             {
-                Tuple<byte, byte> minMax = pixels.GetMinAndMaxValues();
-                gMin = minMax.Item1;
-                gMax = minMax.Item2;
+                var stats = new ImageStatistics(this.Input.Image);
+                gMin = stats.Gray.Min;
+                gMax = stats.Gray.Max;
                 gMean = (byte)((gMax - gMin) / 2 + gMin);
             }
 

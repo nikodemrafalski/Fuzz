@@ -3,11 +3,13 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using AForge.Imaging;
+using AForge.Imaging.Filters;
 using Commons;
 using Logic;
 using Logic.Algorithms;
 using Autofac;
 using Logic.Evalutation;
+using Image = AForge.Imaging.Image;
 
 namespace FuzzyProject
 {
@@ -49,7 +51,7 @@ namespace FuzzyProject
         private void OnAlgorithmExecutionCompleted(object sender, EventArgs e)
         {
             this.resizedProcessed = selectedAlgoritm.Output.Image.ToManagedImage();
-            this.view.StoptNotifyingProgress();
+            this.view.StopNotifyingProgress();
             this.view.DisplayProcessedImage(this.resizedProcessed);
             this.EvaluateScores();
         }

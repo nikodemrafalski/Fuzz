@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using AForge.Imaging.Filters;
 using Logic;
 
 namespace FuzzyProject
@@ -49,7 +50,7 @@ namespace FuzzyProject
             this.operationProgressBar.Style = ProgressBarStyle.Marquee;
         }
 
-        public void StoptNotifyingProgress()
+        public void StopNotifyingProgress()
         {
             this.InvokeIfRequired(() =>
                                       {

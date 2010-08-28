@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using AForge.Imaging;
 using Commons;
 using Logic.Evalutation;
 
@@ -77,11 +78,12 @@ namespace Logic.Algorithms
 
         private double[,] Fuzzify(byte[,] input)
         {
-            Tuple<byte, byte> minMax = input.GetMinAndMaxValues();
-            this.maxGrayLevel = minMax.Item2;
+            var stats = new ImageStatistics(this.Input.Image);
+            int minGrayLevel = stats.Gray.Min;
+            this.maxGrayLevel = stats.Gray.Max;
             if (this.denominationalFuzzifier == -1)
             {
-                this.denominationalFuzzifier = this.CalculateDenominationalFuzzifier(minMax.Item1, minMax.Item2);
+                this.denominationalFuzzifier = this.CalculateDenominationalFuzzifier((byte)minGrayLevel, (byte)maxGrayLevel);
             }
 
             double[,] result = input.ApplyTransform((Func<byte, double>)this.MembershipFunction);

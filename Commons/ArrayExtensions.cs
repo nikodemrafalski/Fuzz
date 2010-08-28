@@ -69,12 +69,15 @@ namespace Commons
             int dim1 = self.GetLength(0);
             int dim2 = self.GetLength(1);
 
-            Parallel.For(0, dim1, i => Parallel.For(0, dim2, j =>
+            for (int i = 0; i < dim1; i++)
             {
-                byte current = self[i, j];
-                if (current > max) { max = current; }
-                if (current < min) { min = current; }
-            }));
+                for (int j = 0; j < dim2; j++)
+                {
+                    byte current = self[i, j];
+                    if (current > max) { max = current; }
+                    if (current < min) { min = current; }
+                }
+            }
 
             return new Tuple<byte, byte>(min, max);
         }

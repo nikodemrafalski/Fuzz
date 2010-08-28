@@ -11,7 +11,7 @@ namespace FuzzyProject
         void UpdateAlgorithmsList(IEnumerable<string> algoritmsNames);
         void UpdateParametersList(IEnumerable<AlgorithmParameter> paramerers);
         void StartNotifyingProgress();
-        void StoptNotifyingProgress();
+        void StopNotifyingProgress();
         void DisplayEvaluationScores(double sourceScore, double processedScore);
         void DisplayMeasures(double sourceScore, double processedScore);
     }
