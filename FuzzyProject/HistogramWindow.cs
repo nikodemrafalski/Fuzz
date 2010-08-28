@@ -31,9 +31,9 @@ namespace FuzzyProject
                     this.histogram.Statistics.Blue.Values;
 
                 this.label1.Text = this.histogram.Statistics.Blue.Min.ToString();
-                this.label2.Text = this.histogram.Statistics.Blue.Mean.ToString();
-                this.label3.Text = this.histogram.Statistics.Blue.Median.ToString();
-                this.label4.Text = this.histogram.Statistics.Blue.Max.ToString();
+                this.label2.Text = this.histogram.Statistics.Blue.Max.ToString();
+                this.label3.Text = this.histogram.Statistics.Blue.Mean.ToString();
+                this.label4.Text = this.histogram.Statistics.Blue.Median.ToString();
             }
         }
     }

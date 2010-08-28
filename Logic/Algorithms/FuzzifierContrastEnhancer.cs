@@ -103,7 +103,18 @@ namespace Logic.Algorithms
 
         private double InversedMembershipFunction(double membership)
         {
-            return this.maxGrayLevel + this.denominationalFuzzifier * (1 - 1 / Math.Pow(membership, 1 / exponentialFuzzifier));
+            double result =  this.maxGrayLevel + this.denominationalFuzzifier * (1 - 1 / Math.Pow(membership, 1 / exponentialFuzzifier));
+            if (result < 0)
+            {
+                return 0;
+            }
+
+            if (result > 255)
+            {
+                return 255;
+            }
+
+            return result;
         }
 
         protected override void OnParameterChanged(AlgorithmParameter parameter)
