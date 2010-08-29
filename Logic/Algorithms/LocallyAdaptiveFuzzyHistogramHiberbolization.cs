@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using AForge.Imaging;
 using Commons;
 using Logic.Evalutation;
 
@@ -9,36 +8,41 @@ namespace Logic.Algorithms
     public class LocallyAdaptiveFuzzyHistogramHiberbolization : Algorithm
     {
         private double beta = 1;
-        private int windowSize = 30;
         private Tuple<byte, byte>[,] localValues;
+        private int windowSize = 30;
 
         public LocallyAdaptiveFuzzyHistogramHiberbolization()
         {
-            this.AddParameter(new AlgorithmParameter("Beta", 1));
-            this.AddParameter(new AlgorithmParameter("WindowSize", 30));
+            AddParameter(new AlgorithmParameter("Beta", 1));
+            AddParameter(new AlgorithmParameter("WindowSize", 30));
         }
 
         public override AlgorithmResult ProcessData()
         {
-            byte[,] pixels = this.Input.Image.GetPixels();
-            this.CalculateLocalValues(pixels);
+            byte[,] pixels = Input.Image.GetPixels();
+            CalculateLocalValues(pixels);
             var memberships = new double[pixels.GetLength(0), pixels.GetLength(1)];
             Parallel.For(0, pixels.GetLength(0), i =>
                 Parallel.For(0, pixels.GetLength(1), j =>
-                    {
-                        Tuple<byte, byte> minMax = this.localValues[i, j];
-                        memberships[i, j] = this.MembershipFunction(pixels[i, j], minMax.Item1, minMax.Item2);
-                    }
+                {
+                    Tuple<byte, byte> minMax =
+                        localValues[i, j];
+                    memberships[i, j] =
+                        MembershipFunction(
+                            pixels[i, j],
+                            minMax.Item1,
+                            minMax.Item2);
+                }
             ));
 
             double[,] modifiedMembership = memberships.ApplyTransform(MembershipModification);
             byte[,] newValues = modifiedMembership.ApplyTransform(Defuzzyfication).NarrowToBytes();
-            this.Input.Image.SetPixels(newValues);
-            this.Input.Measure = FuzzyMeasures.Fuzz(memberships);
-            return new AlgorithmResult(this.Input.Image)
-            {
-                Measure = FuzzyMeasures.Fuzz(modifiedMembership)
-            };
+            Input.Image.SetPixels(newValues);
+            Input.Measure = FuzzyMeasures.Fuzz(memberships);
+            return new AlgorithmResult(Input.Image)
+                       {
+                           Measure = FuzzyMeasures.Fuzz(modifiedMembership)
+                       };
         }
 
         private void CalculateLocalValues(byte[,] pixels)
@@ -50,20 +54,20 @@ namespace Logic.Algorithms
             {
                 for (int j = 0; j < height; j++)
                 {
-                    this.localValues[i, j] =
-                        this.MinMax(this.GetWindowPixels(pixels, i, j, windowSize, width, height));
+                    localValues[i, j] =
+                        MinMax(GetWindowPixels(pixels, i, j, windowSize, width, height));
                 }
             }
         }
 
         private double MembershipFunction(byte grayLevel, int minGrayLevel, int maxGrayLevel)
         {
-            return (double)(grayLevel - minGrayLevel) / (double)(maxGrayLevel - minGrayLevel);
+            return (grayLevel - minGrayLevel) / (double)(maxGrayLevel - minGrayLevel);
         }
 
         private double MembershipModification(double memberhip)
         {
-            return Math.Pow(memberhip, this.beta);
+            return Math.Pow(memberhip, beta);
         }
 
         private double Defuzzyfication(double modifiedMembership)
@@ -75,12 +79,12 @@ namespace Logic.Algorithms
         {
             if (parameter.Name.Equals("Beta"))
             {
-                this.beta = parameter.Value;
+                beta = parameter.Value;
             }
 
             if (parameter.Name.Equals("WindowSize"))
             {
-                this.windowSize = (int)parameter.Value;
+                windowSize = (int)parameter.Value;
             }
         }
 

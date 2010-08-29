@@ -17,7 +17,7 @@ namespace Logic.Evalutation
                 }
             }
 
-            return result * 2 / (width * height);
+            return result*2/(width*height);
         }
     }
 }

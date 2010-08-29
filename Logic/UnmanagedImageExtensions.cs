@@ -1,8 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using AForge.Imaging;
-using System.Runtime.InteropServices;
+﻿using AForge.Imaging;
 
 namespace Logic
 {
@@ -10,10 +6,10 @@ namespace Logic
     {
         public static byte[,] GetPixels(this UnmanagedImage unmanagedImage)
         {
-            byte[,] pixelValues = new byte[unmanagedImage.Width, unmanagedImage.Height];
+            var pixelValues = new byte[unmanagedImage.Width,unmanagedImage.Height];
             unsafe
             {
-                byte* basePtr = (byte*)unmanagedImage.ImageData.ToPointer();
+                var basePtr = (byte*) unmanagedImage.ImageData.ToPointer();
                 byte* ptr;
 
                 int i = 0;
@@ -21,8 +17,8 @@ namespace Logic
                 {
                     for (int y = 0; y < unmanagedImage.Height; y++)
                     {
-                        ptr = basePtr + unmanagedImage.Stride * y + x;
-                        pixelValues[x,y] = *ptr;
+                        ptr = basePtr + unmanagedImage.Stride*y + x;
+                        pixelValues[x, y] = *ptr;
                     }
                 }
             }
@@ -32,10 +28,10 @@ namespace Logic
 
         public static void SetPixels(this UnmanagedImage unmanagedImage, byte[,] pixels)
         {
-            int bytesCount = unmanagedImage.Stride * unmanagedImage.Height;
+            int bytesCount = unmanagedImage.Stride*unmanagedImage.Height;
             unsafe
             {
-                byte* basePtr = (byte*)unmanagedImage.ImageData.ToPointer();
+                var basePtr = (byte*) unmanagedImage.ImageData.ToPointer();
                 byte* ptr;
 
                 int i = 0;
@@ -43,7 +39,7 @@ namespace Logic
                 {
                     for (int y = 0; y < unmanagedImage.Height; y++)
                     {
-                        ptr = basePtr + unmanagedImage.Stride * y + x;
+                        ptr = basePtr + unmanagedImage.Stride*y + x;
                         *ptr = pixels[x, y];
                     }
                 }

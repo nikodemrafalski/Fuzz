@@ -17,16 +17,17 @@ namespace FuzzyProject
                 item.Enabled = (Image != null);
             }
 
-            if (this.IsSource)
+            if (IsSource)
             {
-                this.setAsSourceStripItem.Enabled = false;
+                setAsSourceStripItem.Enabled = false;
             }
 
             histogramStripItem.Click += OnHistogramStripClick;
-            setAsSourceStripItem.Click += (s, a) => this.InvokeChangeSourceRequested();
-            saveImageStripItem.Click += new EventHandler(OnSaveImageStripClick);
-
+            setAsSourceStripItem.Click += (s, a) => InvokeChangeSourceRequested();
+            saveImageStripItem.Click += OnSaveImageStripClick;
         }
+
+        public bool IsSource { get; set; }
 
         private void OnSaveImageStripClick(object sender, EventArgs e)
         {
@@ -39,19 +40,17 @@ namespace FuzzyProject
                     ImageFormat format = ImageFormat.Bmp;
                     if (saveFileDialog.FilterIndex == 1)
                     {
-                       format = ImageFormat.Bmp;
+                        format = ImageFormat.Bmp;
                     }
                     if (saveFileDialog.FilterIndex == 2)
                     {
                         format = ImageFormat.Png;
                     }
 
-                    this.Image.Save(saveFileDialog.FileName, format);
+                    Image.Save(saveFileDialog.FileName, format);
                 }
             }
         }
-
-        public bool IsSource { get; set; }
 
         public event EventHandler ChangeSourceRequested;
 
@@ -94,9 +93,9 @@ namespace FuzzyProject
                 item.Enabled = (Image != null);
             }
 
-            if (this.IsSource)
+            if (IsSource)
             {
-                this.setAsSourceStripItem.Enabled = false;
+                setAsSourceStripItem.Enabled = false;
             }
         }
     }

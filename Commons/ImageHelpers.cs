@@ -1,17 +1,16 @@
-﻿using System.Drawing.Drawing2D;
+﻿using System;
+using System.Drawing;
 using AForge.Imaging.Filters;
+using Image = AForge.Imaging.Image;
 
 namespace Commons
 {
-    using System;
-    using System.Drawing;
-
     public static class ImageHelpers
     {
         public static Bitmap ConvertToGrayScale(this Bitmap sourceImage)
         {
             var filter = new Grayscale(0.2125, 0.7154, 0.0721);
-            if (AForge.Imaging.Image.IsGrayscale(sourceImage))
+            if (Image.IsGrayscale(sourceImage))
             {
                 return sourceImage;
             }
@@ -28,14 +27,14 @@ namespace Commons
             if (originalImage.Width > originalImage.Height)
             {
                 calculatedWidth = newWidth;
-                aspectRatio = (float)newWidth / originalImage.Width;
-                calculatedHeight = Convert.ToInt32(originalImage.Height * aspectRatio);
+                aspectRatio = (float) newWidth/originalImage.Width;
+                calculatedHeight = Convert.ToInt32(originalImage.Height*aspectRatio);
             }
             else
             {
                 calculatedHeight = newHeight;
-                aspectRatio = (float)newHeight / originalImage.Height;
-                calculatedWidth = Convert.ToInt32(originalImage.Width * aspectRatio);
+                aspectRatio = (float) newHeight/originalImage.Height;
+                calculatedWidth = Convert.ToInt32(originalImage.Width*aspectRatio);
             }
 
             if (originalImage.Width <= calculatedWidth || originalImage.Height <= calculatedHeight)
@@ -50,4 +49,3 @@ namespace Commons
         }
     }
 }
-

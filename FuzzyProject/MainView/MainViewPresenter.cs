@@ -3,65 +3,64 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using AForge.Imaging;
-using AForge.Imaging.Filters;
+using Autofac;
 using Commons;
 using Logic;
 using Logic.Algorithms;
-using Autofac;
 using Logic.Evalutation;
-using Image = AForge.Imaging.Image;
+using IContainer = Autofac.IContainer;
 
 namespace FuzzyProject
 {
     public class MainViewPresenter
     {
-        private readonly Autofac.IContainer container;
-        private IMainView view;
+        private readonly IContainer container;
         private Bitmap originalSizeSource;
-        private Bitmap resizedSource;
-        private Bitmap resizedProcessed;
-        private IAlgorithm selectedAlgoritm;
-        private int pictureWidth;
         private int pictureHeight;
+        private int pictureWidth;
+        private Bitmap resizedProcessed;
+        private Bitmap resizedSource;
+        private IAlgorithm selectedAlgoritm;
+        private IMainView view;
 
         public MainViewPresenter()
         {
-            this.container = AppFacade.DI.Container;
+            container = AppFacade.DI.Container;
         }
 
         public void AttachView(IMainView mainView)
         {
-            this.view = mainView;
-            this.view.UpdateAlgorithmsList(AlgorithmsNames.All);
+            view = mainView;
+            view.UpdateAlgorithmsList(AlgorithmsNames.All);
         }
 
         public void ProcessImage()
         {
-            if (this.resizedSource == null)
+            if (resizedSource == null)
             {
                 return;
             }
 
-            this.view.StartNotifyingProgress();
-            this.selectedAlgoritm.Input = new AlgorithmInput(this.resizedSource);
-            this.selectedAlgoritm.ExecutionCompleted += OnAlgorithmExecutionCompleted;
-            this.selectedAlgoritm.ProcessDataAsync();
+            view.StartNotifyingProgress();
+            selectedAlgoritm.Input = new AlgorithmInput(resizedSource);
+            selectedAlgoritm.ExecutionCompleted += OnAlgorithmExecutionCompleted;
+            selectedAlgoritm.ProcessDataAsync();
         }
 
         private void OnAlgorithmExecutionCompleted(object sender, EventArgs e)
         {
-            this.resizedProcessed = selectedAlgoritm.Output.Image.ToManagedImage();
-            this.view.StopNotifyingProgress();
-            this.view.DisplayProcessedImage(this.resizedProcessed);
-            this.EvaluateScores();
+            resizedProcessed = selectedAlgoritm.Output.Image.ToManagedImage();
+            view.StopNotifyingProgress();
+            view.DisplayProcessedImage(resizedProcessed);
+            EvaluateScores();
         }
 
         private void EvaluateScores()
         {
-            this.view.DisplayMeasures(this.selectedAlgoritm.Input.Measure, this.selectedAlgoritm.Output.Measure);
+            view.DisplayMeasures(selectedAlgoritm.Input.Measure, selectedAlgoritm.Output.Measure);
             double sourceScore = ContrastEvaluator.EvaluateC(UnmanagedImage.FromManagedImage(resizedSource));
             double processedScore = ContrastEvaluator.EvaluateC(UnmanagedImage.FromManagedImage(resizedProcessed));
-            this.view.DisplayEvaluationScores(sourceScore, processedScore);
+            view.DisplayEvaluationScores(sourceScore, processedScore);
         }
 
         public void LoadImage()
@@ -70,18 +69,18 @@ namespace FuzzyProject
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.originalSizeSource = new Bitmap(dialog.OpenFile()).ConvertToGrayScale();
-                    this.ShowSourceImage();
+                    originalSizeSource = new Bitmap(dialog.OpenFile()).ConvertToGrayScale();
+                    ShowSourceImage();
                 }
             }
         }
 
         private void ShowSourceImage()
         {
-            if (this.originalSizeSource != null)
+            if (originalSizeSource != null)
             {
-                this.resizedSource = this.originalSizeSource.ResizeImage(this.pictureWidth, this.pictureHeight);
-                view.DisplaySourceImage(this.resizedSource);
+                resizedSource = originalSizeSource.ResizeImage(pictureWidth, pictureHeight);
+                view.DisplaySourceImage(resizedSource);
             }
         }
 
@@ -93,21 +92,21 @@ namespace FuzzyProject
 
         public void ChangeSelectedAlgorithm(string algorithmName)
         {
-            this.selectedAlgoritm = container.Resolve<IAlgorithm>(algorithmName);
-            this.view.UpdateParametersList(this.selectedAlgoritm.Parameters);
+            selectedAlgoritm = container.Resolve<IAlgorithm>(algorithmName);
+            view.UpdateParametersList(selectedAlgoritm.Parameters);
         }
 
         public void HandlePictureResized(int width, int height)
         {
-            this.pictureWidth = width;
-            this.pictureHeight = height;
-            this.ShowSourceImage();
+            pictureWidth = width;
+            pictureHeight = height;
+            ShowSourceImage();
         }
 
         public void SetProcessedAsSource()
         {
-            this.originalSizeSource = this.resizedProcessed;
-            this.ShowSourceImage();
+            originalSizeSource = resizedProcessed;
+            ShowSourceImage();
         }
     }
 }

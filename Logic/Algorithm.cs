@@ -2,24 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using AForge.Imaging;
 
 namespace Logic
 {
     public abstract class Algorithm : IAlgorithm
     {
-        public event EventHandler<EventArgs> ExecutionCompleted;
         private readonly IList<AlgorithmParameter> parameters = new List<AlgorithmParameter>();
 
-        protected void AddParameter(AlgorithmParameter parameter)
-        {
-            this.parameters.Add(parameter);
-            parameter.PropertyChanged += this.OnParameterValueChanged;
-        }
+        #region IAlgorithm Members
+
+        public event EventHandler<EventArgs> ExecutionCompleted;
 
         public IList<AlgorithmParameter> Parameters
         {
-            get { return this.parameters; }
+            get { return parameters; }
         }
 
         public AlgorithmInput Input { get; set; }
@@ -39,6 +35,14 @@ namespace Logic
                                   }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
+        #endregion
+
+        protected void AddParameter(AlgorithmParameter parameter)
+        {
+            parameters.Add(parameter);
+            parameter.PropertyChanged += OnParameterValueChanged;
+        }
+
         protected virtual void OnParameterChanged(AlgorithmParameter parameter)
         {
         }
@@ -54,7 +58,7 @@ namespace Logic
 
         private void OnParameterValueChanged(object sender, PropertyChangingEventArgs e)
         {
-            this.OnParameterChanged((AlgorithmParameter)sender);
+            OnParameterChanged((AlgorithmParameter) sender);
         }
     }
 }

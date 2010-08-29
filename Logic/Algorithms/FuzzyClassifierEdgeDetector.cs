@@ -1,10 +1,9 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Logic.Algorithms
 {
-    using System.Linq;
-
     internal class FuzzyClassifierEdgeDetector : Algorithm
     {
         private double h = 15;
@@ -23,22 +22,25 @@ namespace Logic.Algorithms
             byte[,] pixels = Input.Image.GetPixels();
             int width = pixels.GetLength(0);
             int height = pixels.GetLength(1);
-            var result = new byte[this.Input.Image.Width, this.Input.Image.Height];
+            var result = new byte[Input.Image.Width,Input.Image.Height];
             Parallel.For(1, width - 1, i =>
-                Parallel.For(1, height - 1, j =>
-                {
-                    int[] featureVector = CalculateFeatureVector(i, j, pixels);
-                    double edgeMemberhip = EdgedMembership(featureVector);
-                    double backgroundMembership = BackgroundMembership(featureVector);
-                    if (backgroundMembership >= edgeMemberhip)
-                    {
-                        result[i, j] = 255;
-                    }
-                    else
-                    {
-                        result[i, j] = 0;
-                    }
-                }));
+                                       Parallel.For(1, height - 1, j =>
+                                                                       {
+                                                                           int[] featureVector =
+                                                                               CalculateFeatureVector(i, j, pixels);
+                                                                           double edgeMemberhip =
+                                                                               EdgedMembership(featureVector);
+                                                                           double backgroundMembership =
+                                                                               BackgroundMembership(featureVector);
+                                                                           if (backgroundMembership >= edgeMemberhip)
+                                                                           {
+                                                                               result[i, j] = 255;
+                                                                           }
+                                                                           else
+                                                                           {
+                                                                               result[i, j] = 0;
+                                                                           }
+                                                                       }));
 
             for (int i = 0; i < width; i++)
             {
@@ -85,11 +87,11 @@ namespace Logic.Algorithms
             for (int i = 0; i < 8; i++)
             {
                 featureVector[i] = Math.Abs(featureVector[i]);
-                tempVector[i] = (int)Math.Abs(featureVector[i] - h);
+                tempVector[i] = (int) Math.Abs(featureVector[i] - h);
             }
 
-            double vec = tempVector.Sum(x => (int)Math.Pow(x, 2));
-            return Math.Max(0, 1 - vec / omega);
+            double vec = tempVector.Sum(x => (int) Math.Pow(x, 2));
+            return Math.Max(0, 1 - vec/omega);
         }
 
         private double BackgroundMembership(int[] featureVector)
@@ -105,11 +107,11 @@ namespace Logic.Algorithms
             for (int i = 0; i < 8; i++)
             {
                 featureVector[i] = Math.Abs(featureVector[i]);
-                tempVector[i] = (int)Math.Abs(featureVector[i] - l);
+                tempVector[i] = (int) Math.Abs(featureVector[i] - l);
             }
 
-            double vec = tempVector.Sum(x => (int)Math.Pow(x, 2));
-            return Math.Max(0, 1 - vec / omega);
+            double vec = tempVector.Sum(x => (int) Math.Pow(x, 2));
+            return Math.Max(0, 1 - vec/omega);
         }
 
         protected override void OnParameterChanged(AlgorithmParameter parameter)

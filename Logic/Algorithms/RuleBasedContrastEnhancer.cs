@@ -1,34 +1,34 @@
-using System;
 using AForge.Fuzzy;
 using AForge.Imaging;
-using Commons;
 
 namespace Logic.Algorithms
 {
     public class RuleBasedContrastEnhancer : Algorithm
     {
-        private int gMin = -1, gMean = -1, gMax = -1;
+        private int gMax = -1;
+        private int gMean = -1;
+        private int gMin = -1;
 
         public RuleBasedContrastEnhancer()
         {
-            this.AddParameter(new AlgorithmParameter("GMin", -1));
-            this.AddParameter(new AlgorithmParameter("GMean", -1));
-            this.AddParameter(new AlgorithmParameter("GMax", -1));
+            AddParameter(new AlgorithmParameter("GMin", -1));
+            AddParameter(new AlgorithmParameter("GMean", -1));
+            AddParameter(new AlgorithmParameter("GMax", -1));
         }
 
         public override AlgorithmResult ProcessData()
         {
-            byte[,] pixels = this.Input.Image.GetPixels();
+            byte[,] pixels = Input.Image.GetPixels();
             if (gMin == -1 || gMean == -1 || gMax == -1)
             {
-                var stats = new ImageStatistics(this.Input.Image);
+                var stats = new ImageStatistics(Input.Image);
                 gMin = stats.Gray.Min;
                 gMax = stats.Gray.Max;
-                gMean = (byte)((gMax - gMin) / 2 + gMin);
+                gMean = (byte) ((gMax - gMin)/2 + gMin);
             }
 
-            InferenceSystem system = this.SetupInferenceSystem((byte)gMin, (byte)gMax, (byte)gMean);
-            var result = new byte[pixels.GetLength(0), pixels.GetLength(1)];
+            InferenceSystem system = SetupInferenceSystem((byte) gMin, (byte) gMax, (byte) gMean);
+            var result = new byte[pixels.GetLength(0),pixels.GetLength(1)];
 
             for (int i = 0; i < pixels.GetLength(0); i++)
             {
@@ -36,12 +36,12 @@ namespace Logic.Algorithms
                 {
                     system.SetInput("LumaIn", pixels[i, j]);
                     double inferrenceResult = system.Evaluate("LumaOut");
-                    result[i, j] = (byte)inferrenceResult;
+                    result[i, j] = (byte) inferrenceResult;
                 }
             }
 
-            this.Input.Image.SetPixels(result);
-            return new AlgorithmResult(this.Input.Image);
+            Input.Image.SetPixels(result);
+            return new AlgorithmResult(Input.Image);
         }
 
         private InferenceSystem SetupInferenceSystem(byte minLuma, byte maxLuma, byte meanLuma)
@@ -91,21 +91,23 @@ namespace Logic.Algorithms
         {
             if (parameter.Name.Equals("GMin"))
             {
-                this.gMin = (int)parameter.Value;
+                gMin = (int) parameter.Value;
             }
             else if (parameter.Name.Equals("GMean"))
             {
-                this.gMean = (int)parameter.Value;
+                gMean = (int) parameter.Value;
             }
             else if (parameter.Name.Equals("Gmax"))
             {
-                this.gMax = (int)parameter.Value;
+                gMax = (int) parameter.Value;
             }
         }
     }
 
     public class CogDefuzzifier : IDefuzzifier
     {
+        #region IDefuzzifier Members
+
         public double Defuzzify(FuzzyOutput fuzzyOutput, INorm normOperator)
         {
             double blackMembership = 0;
@@ -130,8 +132,10 @@ namespace Logic.Algorithms
                 }
             }
 
-            return (128 * grayMembership + 255 * whiteMembership) /
-                (blackMembership + grayMembership + whiteMembership);
+            return (128*grayMembership + 255*whiteMembership)/
+                   (blackMembership + grayMembership + whiteMembership);
         }
+
+        #endregion
     }
 }

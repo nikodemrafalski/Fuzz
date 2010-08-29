@@ -1,6 +1,6 @@
 using System.Drawing;
-using System.Threading.Tasks;
 using AForge.Imaging;
+using Image = System.Drawing.Image;
 
 namespace Logic
 {
@@ -10,11 +10,7 @@ namespace Logic
         {
         }
 
-        public ImageStatistics Statistics
-        {
-            get;
-            private set;
-        }
+        public ImageStatistics Statistics { get; private set; }
 
         public static HistogramData FromUnmanagedImage(UnmanagedImage image)
         {
@@ -23,11 +19,11 @@ namespace Logic
             return histogram;
         }
 
-        public static HistogramData FromImage(System.Drawing.Image image)
+        public static HistogramData FromImage(Image image)
         {
             return FromUnmanagedImage(
                 UnmanagedImage.FromManagedImage(
-                new Bitmap(image)));
+                    new Bitmap(image)));
         }
     }
 }

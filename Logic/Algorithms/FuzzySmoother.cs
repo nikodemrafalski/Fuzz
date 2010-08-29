@@ -5,47 +5,47 @@ namespace Logic.Algorithms
 {
     public class FuzzySmoother : Algorithm
     {
+        private int centerPoint = 30;
+        private InferenceSystem inferenceSystem;
         private int widthParam = 10;
         private int windowSize = 3;
-        private InferenceSystem inferenceSystem;
-        private int centerPoint = 30;
 
         public FuzzySmoother()
         {
-            this.AddParameter(new AlgorithmParameter("Width", 10));
-            this.AddParameter(new AlgorithmParameter("WindowSize", 3));
-            this.AddParameter(new AlgorithmParameter("Center", 30));
+            AddParameter(new AlgorithmParameter("Width", 10));
+            AddParameter(new AlgorithmParameter("WindowSize", 3));
+            AddParameter(new AlgorithmParameter("Center", 30));
         }
 
         public override AlgorithmResult ProcessData()
         {
-            var system = this.SetupInferenceSystem(windowSize);
-            byte[,] pixels = this.Input.Image.GetPixels();
+            InferenceSystem system = SetupInferenceSystem(windowSize);
+            byte[,] pixels = Input.Image.GetPixels();
             int width = pixels.GetLength(0);
             int height = pixels.GetLength(1);
 
-            var result = new byte[width, height];
+            var result = new byte[width,height];
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
                 {
-                    int[] windowData = this.GetNeighboursData(pixels, i, j, windowSize, width, height);
+                    int[] windowData = GetNeighboursData(pixels, i, j, windowSize, width, height);
                     result[i, j] = Modify(system, windowData, pixels[i, j]);
                 }
             }
 
-            this.Input.Image.SetPixels(result);
-            return new AlgorithmResult(this.Input.Image);
+            Input.Image.SetPixels(result);
+            return new AlgorithmResult(Input.Image);
         }
 
         private byte Modify(InferenceSystem system, int[] windowData, byte center)
         {
-            for (int i = 0; i < windowSize * windowSize - 1; i++)
+            for (int i = 0; i < windowSize*windowSize - 1; i++)
             {
                 system.SetInput(String.Format("IN{0}", i), windowData[i]);
             }
 
-            int x = center + (byte)system.Evaluate("OUT");
+            int x = center + (byte) system.Evaluate("OUT");
             if (x < 0)
             {
                 return 0;
@@ -56,15 +56,15 @@ namespace Logic.Algorithms
                 return 255;
             }
 
-            return (byte)x;
+            return (byte) x;
         }
 
         public InferenceSystem SetupInferenceSystem(int width)
         {
-            var mp = new TrapezoidalFunction(centerPoint - width / 2, centerPoint, centerPoint + width / 2);
-            var mn = new TrapezoidalFunction(-centerPoint - width / 2, -centerPoint, -centerPoint + width / 2);
-            var sp = new TrapezoidalFunction(centerPoint / 2 - width / 3, (double)centerPoint / 2, centerPoint / 2 + width / 3);
-            var sn = new TrapezoidalFunction(-centerPoint / 2 - width / 3, (double)-centerPoint / 2, -centerPoint / 2 + width / 3);
+            var mp = new TrapezoidalFunction(centerPoint - width/2, centerPoint, centerPoint + width/2);
+            var mn = new TrapezoidalFunction(-centerPoint - width/2, -centerPoint, -centerPoint + width/2);
+            var sp = new TrapezoidalFunction(centerPoint/2 - width/3, (double) centerPoint/2, centerPoint/2 + width/3);
+            var sn = new TrapezoidalFunction(-centerPoint/2 - width/3, (double) -centerPoint/2, -centerPoint/2 + width/3);
             var ze = new TrapezoidalFunction(-3, 0, 3);
 
             var mpSet = new FuzzySet("MP", mp);
@@ -75,7 +75,7 @@ namespace Logic.Algorithms
 
             var ruleDatabase = new Database();
 
-            for (int i = 0; i < windowSize * windowSize - 1; i++)
+            for (int i = 0; i < windowSize*windowSize - 1; i++)
             {
                 var variable = new LinguisticVariable(String.Format("IN{0}", i), -255, 255);
                 variable.AddLabel(mpSet);
@@ -83,7 +83,7 @@ namespace Logic.Algorithms
                 ruleDatabase.AddVariable(variable);
             }
 
-            var outVariable = new LinguisticVariable("OUT", -centerPoint - width / 2, centerPoint + width / 2);
+            var outVariable = new LinguisticVariable("OUT", -centerPoint - width/2, centerPoint + width/2);
             outVariable.AddLabel(spSet);
             outVariable.AddLabel(snSet);
             outVariable.AddLabel(zeSet);
@@ -92,7 +92,7 @@ namespace Logic.Algorithms
             string rule1 = "IF ";
             string rule2 = "IF ";
             string rule3 = "IF ";
-            for (int i = 0; i < windowSize * windowSize - 1; i++)
+            for (int i = 0; i < windowSize*windowSize - 1; i++)
             {
                 rule1 += String.Format("IN{0} is MP and ", i);
                 rule2 += String.Format("IN{0} is MN and ", i);
@@ -101,7 +101,7 @@ namespace Logic.Algorithms
 
             rule1 = rule1.Remove(rule1.Length - 4, 4);
             rule2 = rule2.Remove(rule2.Length - 4, 4);
-            rule3 = "IF NOT (" + rule1.Replace("IF", "") + ") AND NOT(" + rule2.Replace("IF", "") + ")"; 
+            rule3 = "IF NOT (" + rule1.Replace("IF", "") + ") AND NOT(" + rule2.Replace("IF", "") + ")";
 
             rule1 += " then OUT is SN";
             rule2 += " then OUT is SP";
@@ -118,24 +118,24 @@ namespace Logic.Algorithms
         {
             if (parameter.Name.Equals("Width"))
             {
-                this.widthParam = (int)parameter.Value;
+                widthParam = (int) parameter.Value;
             }
 
             if (parameter.Name.Equals("WindowSize"))
             {
-                this.windowSize = (int)parameter.Value;
+                windowSize = (int) parameter.Value;
             }
 
             if (parameter.Name.Equals("Center"))
             {
-                this.centerPoint = (int)parameter.Value;
+                centerPoint = (int) parameter.Value;
             }
         }
 
         private int[] GetNeighboursData(byte[,] pixels, int x, int y, int window, int width, int height)
         {
-            if (window % 2 == 0) window--;
-            int offset = window / 2;
+            if (window%2 == 0) window--;
+            int offset = window/2;
             int left = x - offset;
             int right = x + offset;
             int up = y - offset;
@@ -165,7 +165,7 @@ namespace Logic.Algorithms
                 down -= pad;
             }
 
-            var result = new int[(window * window) - 1];
+            var result = new int[(window*window) - 1];
             int num = 0;
             byte center = pixels[x, y];
             for (int i = left; i <= right; i++)
@@ -185,14 +185,18 @@ namespace Logic.Algorithms
             return result;
         }
 
+        #region Nested type: COG
+
         private class COG : IDefuzzifier
         {
-            private int intervals;
+            private readonly int intervals;
 
             public COG(int intervals)
             {
                 this.intervals = intervals;
             }
+
+            #region IDefuzzifier Members
 
             public double Defuzzify(FuzzyOutput fuzzyOutput, INorm normOperator)
             {
@@ -203,7 +207,7 @@ namespace Logic.Algorithms
                 double end = fuzzyOutput.OutputVariable.End;
 
                 // increment
-                double increment = (end - start) / this.intervals;
+                double increment = (end - start)/intervals;
                 // running through the speech universe and evaluating the labels at each point
                 for (double x = start; x < end; x += increment)
                 {
@@ -215,15 +219,19 @@ namespace Logic.Algorithms
                         double constrainedMembership = normOperator.Evaluate(membership, oc.FiringStrength);
 
 
-                        weightSum += x * constrainedMembership;
+                        weightSum += x*constrainedMembership;
                         membershipSum += constrainedMembership;
                     }
                 }
                 // if no membership was found, then the membershipSum is zero and the numerical output is unknown.
                 if (membershipSum == 0)
                     return 0;
-                return weightSum / membershipSum;
+                return weightSum/membershipSum;
             }
+
+            #endregion
         }
+
+        #endregion
     }
 }

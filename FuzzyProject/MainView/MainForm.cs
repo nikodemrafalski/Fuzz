@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using AForge.Imaging.Filters;
 using Logic;
 
 namespace FuzzyProject
@@ -15,12 +14,12 @@ namespace FuzzyProject
         public MainForm()
         {
             InitializeComponent();
-            this.presenter = new MainViewPresenter();
-            this.presenter.AttachView(this);
-            this.presenter.HandlePictureResized(this.sourcePictureBox.Width, this.sourcePictureBox.Height);
-            this.sourcePictureBox.IsSource = true;
-            this.processedPictureBox.ChangeSourceRequested += this.OnChangeSourceRequested;
-            this.parametersGridView.DataError += new DataGridViewDataErrorEventHandler(OnParametersGridViewDataError);
+            presenter = new MainViewPresenter();
+            presenter.AttachView(this);
+            presenter.HandlePictureResized(sourcePictureBox.Width, sourcePictureBox.Height);
+            sourcePictureBox.IsSource = true;
+            processedPictureBox.ChangeSourceRequested += OnChangeSourceRequested;
+            parametersGridView.DataError += OnParametersGridViewDataError;
         }
 
         private void OnChangeSourceRequested(object sender, EventArgs args)
@@ -32,55 +31,55 @@ namespace FuzzyProject
 
         public void DisplaySourceImage(Image image)
         {
-            this.sourcePictureBox.Image = image;
-            this.tabContainer.SelectedTab = this.sourceImageTabPage;
+            sourcePictureBox.Image = image;
+            tabContainer.SelectedTab = sourceImageTabPage;
         }
 
         public void DisplayProcessedImage(Image image)
         {
-            this.processedPictureBox.Image = image;
-            this.tabContainer.SelectedTab = this.processedImageTabPage;
+            processedPictureBox.Image = image;
+            tabContainer.SelectedTab = processedImageTabPage;
         }
 
         public void UpdateAlgorithmsList(IEnumerable<string> algoritmsNames)
         {
-            this.algoritmsListCombo.DataSource = algoritmsNames;
+            algoritmsListCombo.DataSource = algoritmsNames;
         }
 
         public void UpdateParametersList(IEnumerable<AlgorithmParameter> paramerers)
         {
-            this.algorithmParametersBindingSource.DataSource = paramerers;
+            algorithmParametersBindingSource.DataSource = paramerers;
         }
 
         public void StartNotifyingProgress()
         {
-            this.operatonStartedTicks = DateTime.Now.Ticks;
-            this.operationProgressBar.Enabled = true;
-            this.operationProgressBar.Style = ProgressBarStyle.Marquee;
+            operatonStartedTicks = DateTime.Now.Ticks;
+            operationProgressBar.Enabled = true;
+            operationProgressBar.Style = ProgressBarStyle.Marquee;
         }
 
         public void StopNotifyingProgress()
         {
             this.InvokeIfRequired(() =>
                                       {
-                                          this.operationProgressBar.Style = ProgressBarStyle.Continuous;
-                                          this.operationProgressBar.Enabled = false;
-                                          var span = new TimeSpan(DateTime.Now.Ticks - this.operatonStartedTicks);
-                                          this.operationTimerLabel.Text = span.ToString("G");
+                                          operationProgressBar.Style = ProgressBarStyle.Continuous;
+                                          operationProgressBar.Enabled = false;
+                                          var span = new TimeSpan(DateTime.Now.Ticks - operatonStartedTicks);
+                                          operationTimerLabel.Text = span.ToString("G");
                                       });
         }
 
 
         public void DisplayEvaluationScores(double sourceScore, double processedScore)
         {
-            this.sourceImageEvaluationScore.Text = sourceScore.ToString();
-            this.processedImageEvaluationScore.Text = processedScore.ToString();
+            sourceImageEvaluationScore.Text = sourceScore.ToString();
+            processedImageEvaluationScore.Text = processedScore.ToString();
         }
 
         public void DisplayMeasures(double sourceScore, double processedScore)
         {
-            this.fuzzSourceScore.Text = sourceScore.ToString();
-            this.fuzzProcessedScore.Text = processedScore.ToString();
+            fuzzSourceScore.Text = sourceScore.ToString();
+            fuzzProcessedScore.Text = processedScore.ToString();
         }
 
         #endregion
@@ -89,34 +88,34 @@ namespace FuzzyProject
 
         private void OnLoadImageToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.presenter.LoadImage();
+            presenter.LoadImage();
         }
 
         private void OnQuitToolStripMenuItemClick(object sender, EventArgs e)
         {
-            this.presenter.CloseApplication();
+            presenter.CloseApplication();
         }
 
         private void OnSizeChanged(object sender, EventArgs e)
         {
-            this.presenter.HandlePictureResized(this.sourcePictureBox.Width, this.sourcePictureBox.Height);
+            presenter.HandlePictureResized(sourcePictureBox.Width, sourcePictureBox.Height);
         }
 
         private void OnProcessImageClick(object sender, EventArgs e)
         {
-            this.presenter.ProcessImage();
+            presenter.ProcessImage();
         }
 
         private void OnAlgoritmsListSelectionChanged(object sender, EventArgs e)
         {
             var combo = sender as ComboBox;
 
-            if (combo == null || this.presenter == null)
+            if (combo == null || presenter == null)
             {
                 return;
             }
 
-            this.presenter.ChangeSelectedAlgorithm(combo.SelectedValue as string);
+            presenter.ChangeSelectedAlgorithm(combo.SelectedValue as string);
         }
 
         private void OnParametersGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -126,11 +125,11 @@ namespace FuzzyProject
                 return;
             }
 
-            var parameter = this.algorithmParametersBindingSource.Current as AlgorithmParameter;
+            var parameter = algorithmParametersBindingSource.Current as AlgorithmParameter;
             if (parameter != null)
             {
                 parameter.Value = parameter.DefaultValue;
-                this.algorithmParametersBindingSource.ResetCurrentItem();
+                algorithmParametersBindingSource.ResetCurrentItem();
             }
         }
 

@@ -1,6 +1,5 @@
 using System;
 using AForge.Imaging;
-using Commons;
 
 namespace Logic.Evalutation
 {
@@ -10,8 +9,8 @@ namespace Logic.Evalutation
         {
             byte[,] pixels = image.GetPixels();
             var stats = new ImageStatistics(image);
-            byte minGrayLevel = (byte) stats.Gray.Min;
-            byte maxGrayLevel = (byte) stats.Gray.Max;
+            var minGrayLevel = (byte) stats.Gray.Min;
+            var maxGrayLevel = (byte) stats.Gray.Max;
             double aggregate = 0;
 
             int width = pixels.GetLength(0);
@@ -25,8 +24,8 @@ namespace Logic.Evalutation
                 }
             }
 
-            aggregate = Math.Pow(width * height, -1) * aggregate;
-            return (maxGrayLevel - minGrayLevel) / aggregate;
+            aggregate = Math.Pow(width*height, -1)*aggregate;
+            return (maxGrayLevel - minGrayLevel)/aggregate;
         }
 
         public static double EvaluateW(UnmanagedImage image)
@@ -45,7 +44,7 @@ namespace Logic.Evalutation
                 }
             }
 
-            aggregate = Math.Pow(width * height, -1) * aggregate;
+            aggregate = Math.Pow(width*height, -1)*aggregate;
 
             double aggregate2 = 0;
 
@@ -58,7 +57,7 @@ namespace Logic.Evalutation
             }
 
 
-            return (4D / (width * height * Math.Pow(255, 2))) * aggregate2;
+            return (4D/(width*height*Math.Pow(255, 2)))*aggregate2;
         }
     }
 }

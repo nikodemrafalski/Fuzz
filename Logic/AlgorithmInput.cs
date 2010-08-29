@@ -7,12 +7,12 @@ namespace Logic
     {
         public AlgorithmInput(Bitmap bitmap)
         {
-            this.Image = UnmanagedImage.FromManagedImage(bitmap);
+            Image = UnmanagedImage.FromManagedImage(bitmap);
         }
 
         public AlgorithmInput(UnmanagedImage image)
         {
-            this.Image = image;
+            Image = image;
         }
 
         public UnmanagedImage Image { get; private set; }
