@@ -102,7 +102,7 @@
     <Compile Include="Algorithm.cs" />
     <Compile Include="AlgorithmResult.cs" />
     <Compile Include="Algorithms\AlgorithmsNames.cs" />
-    <Compile Include="Algorithms\LocalyAdaptiveFuzzyHistogramHiberbolization.cs" />
+    <Compile Include="Algorithms\LocallyAdaptiveFuzzyHistogramHiberbolization.cs" />
     <Compile Include="Algorithms\FuzzifierContrastEnhancer.cs" />
     <Compile Include="AlgorithmParameter.cs" />
     <Compile Include="Algorithms\FuzzyClassifierEdgeDetector.cs" />
@@ -121,9 +121,6 @@
       <Project>{D5BE1B3F-8183-4DE3-B189-4C182BD1582D}</Project>
       <Name>Commons</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

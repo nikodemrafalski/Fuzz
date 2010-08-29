@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<algorithms>
+  <algorithm name="FuzzifierContrastEnhancer" type="Logic.Algorithms.FuzzifierContrastEnhancer, Logic"/>
+  <algorithm name="FuzzyHistogramHiberbolization" type="Logic.Algorithms.FuzzyHistogramHiberbolization, Logic"/>
+  <algorithm name="RuleBasedContrastEnhancer" type="Logic.Algorithms.RuleBasedContrastEnhancer, Logic"/>
+  <algorithm name="LocallyAdaptiveFuzzyHistogramHiberbolization" type="Logic.Algorithms.LocallyAdaptiveFuzzyHistogramHiberbolization, Logic"/>
+</algorithms>

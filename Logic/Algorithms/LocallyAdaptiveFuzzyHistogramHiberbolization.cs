@@ -6,13 +6,13 @@ using Logic.Evalutation;
 
 namespace Logic.Algorithms
 {
-    public class LocalyAdaptiveFuzzyHistogramHiberbolization : Algorithm
+    public class LocallyAdaptiveFuzzyHistogramHiberbolization : Algorithm
     {
         private double beta = 1;
         private int windowSize = 30;
         private Tuple<byte, byte>[,] localValues;
 
-        public LocalyAdaptiveFuzzyHistogramHiberbolization()
+        public LocallyAdaptiveFuzzyHistogramHiberbolization()
         {
             this.AddParameter(new AlgorithmParameter("Beta", 1));
             this.AddParameter(new AlgorithmParameter("WindowSize", 30));

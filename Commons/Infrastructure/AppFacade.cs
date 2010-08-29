@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
+using System.Reflection;
 using Autofac;
 
 namespace Commons
@@ -16,7 +17,7 @@ namespace Commons
             public static void CreateBuilder()
             {
                 var builder = new ContainerBuilder();
-                var mefContainer = new CompositionContainer(GetApplicationRoot());
+                var mefContainer = new CompositionContainer(GetCatalog());
 
                 foreach (var initializer in mefContainer.GetExportedValues<IModuleInitializer>())
                 {
@@ -27,9 +28,11 @@ namespace Commons
             }
         }
 
-        private static DirectoryCatalog GetApplicationRoot()
+        private static AggregateCatalog GetCatalog()
         {
-            return new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory);
+            var catalog = new AggregateCatalog(new AssemblyCatalog(Assembly.GetEntryAssembly()));
+            catalog.Catalogs.Add(new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory));
+            return catalog;
         }
     }
 }
