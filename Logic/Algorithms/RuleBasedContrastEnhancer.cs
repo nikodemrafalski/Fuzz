@@ -79,7 +79,6 @@ namespace Logic.Algorithms
             database.AddVariable(lumaIn);
             database.AddVariable(lumaOut);
 
-
             var inferenceSystem = new InferenceSystem(database, new CogDefuzzifier());
             inferenceSystem.NewRule("Rule 1", "IF LumaIn IS Dark THEN LumaOut is Black");
             inferenceSystem.NewRule("Rule 2", "IF LumaIn IS Medium THEN LumaOut is Gray");

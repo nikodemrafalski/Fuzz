@@ -10,42 +10,44 @@ namespace Logic
     {
         public static byte[,] GetPixels(this UnmanagedImage unmanagedImage)
         {
-            int sourceBytes = unmanagedImage.Width * unmanagedImage.Height;
-            var rgbRawValues = new byte[sourceBytes];
-            Marshal.Copy(unmanagedImage.ImageData, rgbRawValues, 0, sourceBytes);
-
-            int x = 0, y = -1;
-            var result = new byte[unmanagedImage.Width, unmanagedImage.Height];
-            for (int i = 0; i < sourceBytes; i++)
+            byte[,] pixelValues = new byte[unmanagedImage.Width, unmanagedImage.Height];
+            unsafe
             {
-                if (x % unmanagedImage.Width == 0)
-                {
-                    x = 0;
-                    y++;
-                }
+                byte* basePtr = (byte*)unmanagedImage.ImageData.ToPointer();
+                byte* ptr;
 
-                result[x, y] = rgbRawValues[i];
-                x++;
+                int i = 0;
+                for (int x = 0; x < unmanagedImage.Width; x++)
+                {
+                    for (int y = 0; y < unmanagedImage.Height; y++)
+                    {
+                        ptr = basePtr + unmanagedImage.Stride * y + x;
+                        pixelValues[x,y] = *ptr;
+                    }
+                }
             }
 
-            return result;
+            return pixelValues;
         }
 
         public static void SetPixels(this UnmanagedImage unmanagedImage, byte[,] pixels)
         {
-            int bytesCount = unmanagedImage.Width * unmanagedImage.Height;
-            byte[] imageBytes = new byte[bytesCount];
-            int offset = 0;
-            for (int y = 0; y < pixels.GetLength(1); y++)
+            int bytesCount = unmanagedImage.Stride * unmanagedImage.Height;
+            unsafe
             {
-                for (int x = 0; x < pixels.GetLength(0); x++)
+                byte* basePtr = (byte*)unmanagedImage.ImageData.ToPointer();
+                byte* ptr;
+
+                int i = 0;
+                for (int x = 0; x < unmanagedImage.Width; x++)
                 {
-                    imageBytes[offset] = pixels[x, y];
-                    offset++;
+                    for (int y = 0; y < unmanagedImage.Height; y++)
+                    {
+                        ptr = basePtr + unmanagedImage.Stride * y + x;
+                        *ptr = pixels[x, y];
+                    }
                 }
             }
-
-            Marshal.Copy(imageBytes, 0, unmanagedImage.ImageData, bytesCount);
         }
     }
 }

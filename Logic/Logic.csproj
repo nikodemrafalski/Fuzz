@@ -40,6 +40,7 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -102,6 +103,7 @@
     <Compile Include="Algorithm.cs" />
     <Compile Include="AlgorithmResult.cs" />
     <Compile Include="Algorithms\AlgorithmsNames.cs" />
+    <Compile Include="Algorithms\FuzzySmoother.cs" />
     <Compile Include="Algorithms\LocallyAdaptiveFuzzyHistogramHiberbolization.cs" />
     <Compile Include="Algorithms\FuzzifierContrastEnhancer.cs" />
     <Compile Include="AlgorithmParameter.cs" />
