@@ -11,8 +11,8 @@ namespace Logic
     {
         public void RegisterComponents(ContainerBuilder builder)
         {
-            builder.RegisterType<RuleBasedContrastEnhancer>().Named<IAlgorithm>("RuleBasedContrastEnhancer");
-            AlgorithmsNames.All.Add("RuleBasedContrastEnhancer");
+            builder.RegisterType<FuzzyClassifierEdgeDetector>().Named<IAlgorithm>("FuzzyClassifierEdgeDetector");
+            AlgorithmsNames.All.Add("FuzzyClassifierEdgeDetector");
         }
     }
 }

@@ -20,6 +20,7 @@ namespace FuzzyProject
             this.presenter.HandlePictureResized(this.sourcePictureBox.Width, this.sourcePictureBox.Height);
             this.sourcePictureBox.IsSource = true;
             this.processedPictureBox.ChangeSourceRequested += this.OnChangeSourceRequested;
+            this.parametersGridView.DataError += new DataGridViewDataErrorEventHandler(OnParametersGridViewDataError);
         }
 
         private void OnChangeSourceRequested(object sender, EventArgs args)
@@ -131,6 +132,13 @@ namespace FuzzyProject
                 parameter.Value = parameter.DefaultValue;
                 this.algorithmParametersBindingSource.ResetCurrentItem();
             }
+        }
+
+        private void OnParametersGridViewDataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            string value = grid.CurrentCell.GetEditedFormattedValue(e.RowIndex, e.Context).ToString();
+            grid.CurrentCell.Value = Double.Parse(value.Replace('.', ','));
         }
 
         #endregion

@@ -39,7 +39,9 @@ namespace FuzzyProject
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.sourceImageTabPage = new System.Windows.Forms.TabPage();
+            this.sourcePictureBox = new FuzzyProject.CustomPictureBox();
             this.processedImageTabPage = new System.Windows.Forms.TabPage();
+            this.processedPictureBox = new FuzzyProject.CustomPictureBox();
             this.evaluationTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,16 +61,16 @@ namespace FuzzyProject
             this.algoritmLabel = new System.Windows.Forms.Label();
             this.algorithmConfigurationGroup = new System.Windows.Forms.GroupBox();
             this.parametersGridView = new System.Windows.Forms.DataGridView();
-            this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sourcePictureBox = new FuzzyProject.CustomPictureBox();
-            this.processedPictureBox = new FuzzyProject.CustomPictureBox();
+            this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
             this.mainMenuStrip.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.sourceImageTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).BeginInit();
             this.processedImageTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
             this.evaluationTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -76,8 +78,6 @@ namespace FuzzyProject
             this.algorithmConfigurationGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -144,6 +144,19 @@ namespace FuzzyProject
             this.sourceImageTabPage.Text = "Źródło";
             this.sourceImageTabPage.UseVisualStyleBackColor = true;
             // 
+            // sourcePictureBox
+            // 
+            this.sourcePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.sourcePictureBox.IsSource = false;
+            this.sourcePictureBox.Location = new System.Drawing.Point(3, 3);
+            this.sourcePictureBox.Name = "sourcePictureBox";
+            this.sourcePictureBox.Size = new System.Drawing.Size(746, 455);
+            this.sourcePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.sourcePictureBox.TabIndex = 0;
+            this.sourcePictureBox.TabStop = false;
+            // 
             // processedImageTabPage
             // 
             this.processedImageTabPage.Controls.Add(this.processedPictureBox);
@@ -154,6 +167,19 @@ namespace FuzzyProject
             this.processedImageTabPage.TabIndex = 1;
             this.processedImageTabPage.Text = "Przetworzony";
             this.processedImageTabPage.UseVisualStyleBackColor = true;
+            // 
+            // processedPictureBox
+            // 
+            this.processedPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.processedPictureBox.IsSource = false;
+            this.processedPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.processedPictureBox.Name = "processedPictureBox";
+            this.processedPictureBox.Size = new System.Drawing.Size(746, 441);
+            this.processedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.processedPictureBox.TabIndex = 0;
+            this.processedPictureBox.TabStop = false;
             // 
             // evaluationTabPage
             // 
@@ -353,11 +379,9 @@ namespace FuzzyProject
             this.parametersGridView.TabIndex = 5;
             this.parametersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnParametersGridViewCellContentClick);
             // 
-            // setParameterDefaultButtonValue
+            // algorithmParametersBindingSource
             // 
-            this.setParameterDefaultButtonValue.HeaderText = "Wartość domyślna";
-            this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
-            this.setParameterDefaultButtonValue.Text = "Przywróć";
+            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -374,33 +398,11 @@ namespace FuzzyProject
             this.valueDataGridViewTextBoxColumn.HeaderText = "Wartość";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             // 
-            // algorithmParametersBindingSource
+            // setParameterDefaultButtonValue
             // 
-            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
-            // 
-            // sourcePictureBox
-            // 
-            this.sourcePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.sourcePictureBox.Location = new System.Drawing.Point(3, 3);
-            this.sourcePictureBox.Name = "sourcePictureBox";
-            this.sourcePictureBox.Size = new System.Drawing.Size(746, 455);
-            this.sourcePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.sourcePictureBox.TabIndex = 0;
-            this.sourcePictureBox.TabStop = false;
-            // 
-            // processedPictureBox
-            // 
-            this.processedPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.processedPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.processedPictureBox.Name = "processedPictureBox";
-            this.processedPictureBox.Size = new System.Drawing.Size(746, 441);
-            this.processedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.processedPictureBox.TabIndex = 0;
-            this.processedPictureBox.TabStop = false;
+            this.setParameterDefaultButtonValue.HeaderText = "Wartość domyślna";
+            this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
+            this.setParameterDefaultButtonValue.Text = "Przywróć";
             // 
             // MainForm
             // 
@@ -420,7 +422,9 @@ namespace FuzzyProject
             this.mainMenuStrip.PerformLayout();
             this.tabContainer.ResumeLayout(false);
             this.sourceImageTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).EndInit();
             this.processedImageTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).EndInit();
             this.evaluationTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -431,8 +435,6 @@ namespace FuzzyProject
             this.algorithmConfigurationGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -457,9 +459,6 @@ namespace FuzzyProject
         private System.Windows.Forms.DataGridView parametersGridView;
         private System.Windows.Forms.BindingSource algorithmParametersBindingSource;
         private System.Windows.Forms.ToolStripStatusLabel operationTimerLabel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn setParameterDefaultButtonValue;
         private System.Windows.Forms.TabPage evaluationTabPage;
         private System.Windows.Forms.Label sourceImageEvaluationScore;
         private System.Windows.Forms.Label label2;
@@ -473,6 +472,9 @@ namespace FuzzyProject
         private System.Windows.Forms.Label fuzzSourceScore;
         private CustomPictureBox sourcePictureBox;
         private CustomPictureBox processedPictureBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn setParameterDefaultButtonValue;
     }
 }
 
