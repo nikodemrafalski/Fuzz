@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using FuzzyProject.Subjective;
 using Logic;
+using Logic.Subjective;
 
 namespace FuzzyProject
 {
@@ -141,5 +143,76 @@ namespace FuzzyProject
         }
 
         #endregion
+
+        private void OnNewToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using (var nameDialog = new SystemNameWindow())
+            {
+                if (nameDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var system = SubjectiveSystem.CreateNew(nameDialog.Name);
+                    ShowSystem(system);
+                }
+            }
+        }
+
+        private void ShowSystem(SubjectiveSystem system)
+        {
+            var newTab = new TabPage();
+            newTab.Text = system.SystemName;
+            var control = new SubjectiveSystemControl { Dock = DockStyle.Fill };
+            control.Setup(system);
+            newTab.Controls.Add(control);
+            this.tabContainer.TabPages.Add(newTab);
+            this.tabContainer.SelectedTab = newTab;
+        }
+
+        private void OnSaveToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            if (this.tabContainer.SelectedTab.Controls.Count == 0)
+            {
+                return;
+            }
+
+            var systemControl = this.tabContainer.SelectedTab.Controls[0] as SubjectiveSystemControl;
+            if (systemControl == null)
+            {
+                return;
+            }
+
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.Filter = @"Pliki stanu (*.state)|*.state";
+                dialog.AddExtension = true;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    SubjectiveSystem.SaveState(systemControl.SubjectiveSystem,dialog.FileName);
+                    this.tabContainer.TabPages.Remove(tabContainer.SelectedTab);
+                }
+            }
+        }
+
+        private void OnLoadToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            SubjectiveSystem system = null;
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = @"Pliki stanu (*.state)|*.state";
+                dialog.AddExtension = true;
+
+                if (dialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                system = SubjectiveSystem.LoadState(dialog.FileName);
+            }
+
+            if (system != null)
+            {
+                ShowSystem(system);
+            }
+        }
     }
 }

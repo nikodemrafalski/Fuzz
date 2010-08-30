@@ -115,6 +115,7 @@
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="Evalutation\ContrastEvaluator.cs" />
     <Compile Include="ModuleInitializer.cs" />
+    <Compile Include="Subjective\SubjectiveSystem.cs" />
     <Compile Include="UnmanagedImageExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

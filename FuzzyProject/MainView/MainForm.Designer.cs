@@ -37,6 +37,10 @@ namespace FuzzyProject
             this.loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemSubiektywnyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wczytajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.sourceImageTabPage = new System.Windows.Forms.TabPage();
             this.sourcePictureBox = new FuzzyProject.CustomPictureBox();
@@ -61,10 +65,10 @@ namespace FuzzyProject
             this.algoritmLabel = new System.Windows.Forms.Label();
             this.algorithmConfigurationGroup = new System.Windows.Forms.GroupBox();
             this.parametersGridView = new System.Windows.Forms.DataGridView();
-            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainMenuStrip.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.sourceImageTabPage.SuspendLayout();
@@ -83,7 +87,8 @@ namespace FuzzyProject
             // mainMenuStrip
             // 
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.systemSubiektywnyToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.Size = new System.Drawing.Size(784, 24);
@@ -118,6 +123,37 @@ namespace FuzzyProject
             this.quitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.quitToolStripMenuItem.Text = "Zakończ";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.OnQuitToolStripMenuItemClick);
+            // 
+            // systemSubiektywnyToolStripMenuItem
+            // 
+            this.systemSubiektywnyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nowyToolStripMenuItem,
+            this.wczytajToolStripMenuItem,
+            this.zapiszToolStripMenuItem});
+            this.systemSubiektywnyToolStripMenuItem.Name = "systemSubiektywnyToolStripMenuItem";
+            this.systemSubiektywnyToolStripMenuItem.Size = new System.Drawing.Size(126, 20);
+            this.systemSubiektywnyToolStripMenuItem.Text = "System subiektywny";
+            // 
+            // nowyToolStripMenuItem
+            // 
+            this.nowyToolStripMenuItem.Name = "nowyToolStripMenuItem";
+            this.nowyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nowyToolStripMenuItem.Text = "Nowy";
+            this.nowyToolStripMenuItem.Click += new System.EventHandler(this.OnNewToolStripMenuItemClick);
+            // 
+            // wczytajToolStripMenuItem
+            // 
+            this.wczytajToolStripMenuItem.Name = "wczytajToolStripMenuItem";
+            this.wczytajToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wczytajToolStripMenuItem.Text = "Wczytaj stan";
+            this.wczytajToolStripMenuItem.Click += new System.EventHandler(this.OnLoadToolStripMenuItemClick);
+            // 
+            // zapiszToolStripMenuItem
+            // 
+            this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
+            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zapiszToolStripMenuItem.Text = "Zapisz stan";
+            this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.OnSaveToolStripMenuItemClick);
             // 
             // tabContainer
             // 
@@ -379,10 +415,6 @@ namespace FuzzyProject
             this.parametersGridView.TabIndex = 5;
             this.parametersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnParametersGridViewCellContentClick);
             // 
-            // algorithmParametersBindingSource
-            // 
-            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
@@ -403,6 +435,10 @@ namespace FuzzyProject
             this.setParameterDefaultButtonValue.HeaderText = "Wartość domyślna";
             this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
             this.setParameterDefaultButtonValue.Text = "Przywróć";
+            // 
+            // algorithmParametersBindingSource
+            // 
+            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
             // 
             // MainForm
             // 
@@ -475,6 +511,10 @@ namespace FuzzyProject
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn setParameterDefaultButtonValue;
+        private System.Windows.Forms.ToolStripMenuItem systemSubiektywnyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nowyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wczytajToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
     }
 }
 
