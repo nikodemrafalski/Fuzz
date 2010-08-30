@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Commons;
+using System.Linq;
 
 namespace Logic.Subjective
 {
@@ -23,6 +26,24 @@ namespace Logic.Subjective
         public IList<string> Observers { get; private set; }
 
         public IList<string> ImagesPaths { get; private set; }
+
+        public IList<TrainingData> PrepareTrainingData(string observerName)
+        {
+            var list = new List<TrainingData>();
+            foreach (string path in ImagesPaths)
+            {
+                foreach (string algorithm in Algorithms)
+                {
+                    list.Add(new TrainingData
+                    {
+                        AlgorithmName = algorithm,
+                        ImagePath = path
+                    });
+                }
+            }
+
+            return list.Shuffle(new Random(100)).ToList();
+        }
 
         public static SubjectiveSystem CreateNew(string systemName)
         {
