@@ -7,20 +7,6 @@ namespace Commons
 {
     public static class Extensions
     {
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
-        {
-            T[] elements = source.ToArray();
-            // Note i > 0 to avoid final pointless iteration
-            for (int i = elements.Length - 1; i > 0; i--)
-            {
-                int swapIndex = rng.Next(i + 1);
-                yield return elements[swapIndex];
-                elements[swapIndex] = elements[i];
-            }
-
-            yield return elements[0];
-        }
-
         public static double[,] ApplyTransform(this double[,] self, Func<double, double> transform)
         {
             int dim1 = self.GetLength(0);

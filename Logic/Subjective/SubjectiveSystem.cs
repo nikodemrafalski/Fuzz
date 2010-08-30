@@ -42,7 +42,7 @@ namespace Logic.Subjective
                 }
             }
 
-            return list.Shuffle(new Random(100)).ToList();
+            return list.OrderBy(x => Guid.NewGuid()).ToList();
         }
 
         public static SubjectiveSystem CreateNew(string systemName)
