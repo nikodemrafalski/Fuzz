@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using FuzzyProject.Subjective;
 using Logic.Algorithms;
 using Logic.Subjective;
 
@@ -22,6 +23,7 @@ namespace FuzzyProject
             this.SubjectiveSystem = system;
             var freeAlgos = AlgorithmsNames.All.Where(x => !system.Algorithms.Contains(x));
             this.sourceAlgos.Items.AddRange(freeAlgos.ToArray());
+            this.RefreshImages();
         }
 
         private void OnAddAlgoButtonClick(object sender, EventArgs e)
@@ -100,6 +102,9 @@ namespace FuzzyProject
         private void OnTrainButtonClick(object sender, EventArgs e)
         {
             var x = this.SubjectiveSystem.PrepareTrainingData("");
+            var trainingWindow = new TrainingWindow();
+            trainingWindow.AttachData(x);
+            trainingWindow.ShowDialog();
         }
     }
 }

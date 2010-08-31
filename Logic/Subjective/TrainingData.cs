@@ -4,6 +4,6 @@ namespace Logic.Subjective
     {
         public string AlgorithmName { get; set; }
         public string ImagePath { get; set; }
-        public string UserScore { get; set; }
+        public byte? UserScore { get; set; }
     }
 }
