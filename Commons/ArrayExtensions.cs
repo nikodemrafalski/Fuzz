@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Commons
@@ -11,7 +9,7 @@ namespace Commons
         {
             int dim1 = self.GetLength(0);
             int dim2 = self.GetLength(1);
-            var result = new double[dim1, dim2];
+            var result = new double[dim1,dim2];
 
             Parallel.For(0, dim1, i => Parallel.For(0, dim2, j => { result[i, j] = transform(self[i, j]); }));
 
@@ -22,12 +20,12 @@ namespace Commons
         {
             int dim1 = self.GetLength(0);
             int dim2 = self.GetLength(1);
-            var result = new byte[dim1, dim2];
+            var result = new byte[dim1,dim2];
             for (int i = 0; i < dim1; i++)
             {
                 for (int j = 0; j < dim2; j++)
                 {
-                    result[i, j] = (byte)(self[i, j]);
+                    result[i, j] = (byte) (self[i, j]);
                 }
             }
 
@@ -38,7 +36,7 @@ namespace Commons
         {
             int dim1 = self.GetLength(0);
             int dim2 = self.GetLength(1);
-            var result = new double[dim1, dim2];
+            var result = new double[dim1,dim2];
 
             Parallel.For(0, dim1, i => Parallel.For(0, dim2, j => { result[i, j] = transform(self[i, j]); }));
 
@@ -49,7 +47,7 @@ namespace Commons
         {
             int dim1 = self.GetLength(0);
             int dim2 = self.GetLength(1);
-            var result = new byte[dim1, dim2];
+            var result = new byte[dim1,dim2];
 
             Parallel.For(0, dim1, i => Parallel.For(0, dim2, j => { result[i, j] = transform(self[i, j]); }));
 

@@ -49,9 +49,9 @@ namespace Logic.Algorithms
             byte[,] defuzzifiedPixels = Defuzzfy(modifiedMembershipValues);
             Input.Image.SetPixels(defuzzifiedPixels);
             return new AlgorithmResult(Input.Image)
-                       {
-                           Measure = FuzzyMeasures.Fuzz(modifiedMembershipValues)
-                       };
+                {
+                    Measure = FuzzyMeasures.Fuzz(modifiedMembershipValues)
+                };
         }
 
         private static double IntOperator(double membership)

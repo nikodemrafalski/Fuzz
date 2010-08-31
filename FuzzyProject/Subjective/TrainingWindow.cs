@@ -1,27 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using AForge.Imaging;
-using Autofac;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using AForge.Imaging;
+using Autofac;
+using Commons;
 using FuzzyProject.Properties;
 using Logic;
 using Logic.Subjective;
-using Commons;
 
 namespace FuzzyProject.Subjective
 {
     public partial class TrainingWindow : Form
     {
         private TrainingData currentData;
-        private int totalData;
+        private Bitmap currentPicture;
         private int currentPosition;
         private IList<TrainingData> data;
-        private Bitmap currentPicture;
+        private int totalData;
 
         public TrainingWindow()
         {
@@ -30,34 +27,34 @@ namespace FuzzyProject.Subjective
 
         public void AttachData(IList<TrainingData> trainingData)
         {
-            this.data = trainingData;
+            data = trainingData;
             currentData = data.First(x => x.UserScore == null);
             currentPosition = data.IndexOf(currentData);
             totalData = data.Count;
-            this.progressBar.Maximum = totalData;
-            this.progressBar.Value = currentPosition;
-            this.currentPicture = new Bitmap(this.currentData.ImagePath).ConvertToGrayScale();
+            progressBar.Maximum = totalData;
+            progressBar.Value = currentPosition;
+            currentPicture = new Bitmap(currentData.ImagePath).ConvertToGrayScale();
         }
 
         protected override void OnShown(EventArgs e)
         {
-            this.DisplayData();
+            DisplayData();
         }
 
         private void SetScore(byte score)
         {
-            this.currentData.UserScore = score;
+            currentData.UserScore = score;
         }
 
         private void DisplayData()
         {
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Bitmap resizedSource = currentPicture.ResizeImage(this.sourcePicture.Width, this.sourcePicture.Height);
-            this.sourcePicture.Image = resizedSource;
-            this.processedImage.Image = null;
-            var algorithm = AppFacade.DI.Container.Resolve<IAlgorithm>(this.currentData.AlgorithmInfo.AlgorithName);
-            algorithm.SetParameters(this.currentData.AlgorithmInfo.Parameters);
-            this.progressBar.Style = ProgressBarStyle.Marquee;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Bitmap resizedSource = currentPicture.ResizeImage(sourcePicture.Width, sourcePicture.Height);
+            sourcePicture.Image = resizedSource;
+            processedImage.Image = null;
+            var algorithm = AppFacade.DI.Container.Resolve<IAlgorithm>(currentData.AlgorithmInfo.AlgorithName);
+            algorithm.SetParameters(currentData.AlgorithmInfo.Parameters);
+            progressBar.Style = ProgressBarStyle.Marquee;
             algorithm.Input = new AlgorithmInput(UnmanagedImage.FromManagedImage(resizedSource));
             algorithm.ExecutionCompleted += OnAlgorithExecutionCompleted;
             algorithm.ProcessDataAsync();
@@ -68,45 +65,45 @@ namespace FuzzyProject.Subjective
             var algorithm = (IAlgorithm) sender;
             this.InvokeIfRequired(() =>
                 {
-                    this.processedImage.Image = algorithm.Output.Image.ToManagedImage();
-                    this.progressBar.Value = currentPosition;
-                    this.progressBar.Style = ProgressBarStyle.Continuous;
-                    this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                    processedImage.Image = algorithm.Output.Image.ToManagedImage();
+                    progressBar.Value = currentPosition;
+                    progressBar.Style = ProgressBarStyle.Continuous;
+                    FormBorderStyle = FormBorderStyle.SizableToolWindow;
                 });
         }
 
         private void OnScoreButtonClick(object sender, EventArgs eventArgs)
         {
-            var button = (Button)sender;
+            var button = (Button) sender;
             byte score = Convert.ToByte(button.Tag);
-            this.SetScore(score);
-            this.nextButton.Enabled = true;
+            SetScore(score);
+            nextButton.Enabled = true;
         }
 
         private void OnNextClick(object sender, EventArgs e)
         {
-            if (this.currentPosition == totalData - 1)
+            if (currentPosition == totalData - 1)
             {
-                this.Close();
-                this.DialogResult = DialogResult.OK;
+                Close();
+                DialogResult = DialogResult.OK;
                 return;
             }
 
-            this.nextButton.Enabled = false;
+            nextButton.Enabled = false;
             currentPosition++;
             if (currentPosition == totalData - 1)
             {
-                this.nextButton.Text = Resources.FinishCaption;    
+                nextButton.Text = Resources.FinishCaption;
             }
 
-            this.currentData = data[currentPosition];
-            this.currentPicture = new Bitmap(this.currentData.ImagePath).ConvertToGrayScale();
+            currentData = data[currentPosition];
+            currentPicture = new Bitmap(currentData.ImagePath).ConvertToGrayScale();
             DisplayData();
         }
 
         private void OnTrainingWindowResizeEnd(object sender, EventArgs e)
         {
-            this.DisplayData();
+            DisplayData();
         }
     }
 }

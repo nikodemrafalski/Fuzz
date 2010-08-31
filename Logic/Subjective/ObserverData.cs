@@ -27,7 +27,7 @@ namespace Logic.Subjective
 
         public void ResetTraining()
         {
-            foreach (var data in TrainingData)
+            foreach (TrainingData data in TrainingData)
             {
                 data.UserScore = null;
                 data.SystemScore = null;
@@ -43,11 +43,11 @@ namespace Logic.Subjective
 
             if (FullyTrained)
             {
-                this.Status = Resources.StatusFinished;
+                Status = Resources.StatusFinished;
             }
             else
             {
-                this.Status = Resources.StatusUnfinished;
+                Status = Resources.StatusUnfinished;
             }
 
             InvokePropertyChanged("Status");

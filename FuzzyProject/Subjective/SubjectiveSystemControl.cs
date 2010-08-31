@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Commons;
 using Autofac;
+using Commons;
 using FuzzyProject.Properties;
 using FuzzyProject.Subjective;
 using Logic;
@@ -23,24 +24,23 @@ namespace FuzzyProject
 
         public void Setup(SubjectiveSystem system)
         {
-            this.bindingSource.DataSource = system;
-            this.algorithmsBindingSource.DataSource = system.Algorithms;
-            this.observersBindingSource.DataSource = system.ObserversData;
-            this.algorithmsBindingSource.CurrentItemChanged += OnCurrentAlgorithmChanged;
-            this.SubjectiveSystem = system;
-            this.sourceAlgos.Items.AddRange(AlgorithmsNames.All.ToArray());
-            this.RefreshImages();
+            bindingSource.DataSource = system;
+            algorithmsBindingSource.DataSource = system.Algorithms;
+            observersBindingSource.DataSource = system.ObserversData;
+            algorithmsBindingSource.CurrentItemChanged += OnCurrentAlgorithmChanged;
+            SubjectiveSystem = system;
+            sourceAlgos.Items.AddRange(AlgorithmsNames.All.ToArray());
+            RefreshImages();
         }
 
         private void OnCurrentAlgorithmChanged(object sender, EventArgs e)
         {
-            var algorithmInfo = this.algorithmsBindingSource.Current as AlgorithmInfo;
+            var algorithmInfo = algorithmsBindingSource.Current as AlgorithmInfo;
             var mainView = AppFacade.DI.Container.Resolve<IMainView>();
             if (algorithmInfo == null)
             {
                 mainView.UpdateParametersList(new List<AlgorithmParameter>());
                 return;
-
             }
 
             mainView.UpdateParametersList(algorithmInfo.Parameters);
@@ -48,7 +48,7 @@ namespace FuzzyProject
 
         private void OnAddAlgoButtonClick(object sender, EventArgs e)
         {
-            string algo = this.sourceAlgos.SelectedItem as string;
+            var algo = sourceAlgos.SelectedItem as string;
             if (algo == null)
             {
                 return;
@@ -65,42 +65,42 @@ namespace FuzzyProject
                             CustomName = nameWindow.ObjectName
                         };
                     algorithmInfo.Parameters = new List<AlgorithmParameter>();
-                    foreach (var parameter in AppFacade.DI.Container.Resolve<IAlgorithm>(algo).Parameters)
+                    foreach (AlgorithmParameter parameter in AppFacade.DI.Container.Resolve<IAlgorithm>(algo).Parameters
+                        )
                     {
                         algorithmInfo.Parameters.Add(
                             new AlgorithmParameter(parameter.Name, parameter.DefaultValue)
                                 {
                                     Value = parameter.DefaultValue
                                 });
-
                     }
 
-                    this.SubjectiveSystem.Algorithms.Add(algorithmInfo);
+                    SubjectiveSystem.Algorithms.Add(algorithmInfo);
                 }
             }
         }
 
         private void OnRemoveAlgoButtonClick(object sender, EventArgs e)
         {
-            var algo = this.algorithmsBindingSource.Current as AlgorithmInfo;
+            var algo = algorithmsBindingSource.Current as AlgorithmInfo;
             if (algo == null)
             {
                 return;
             }
 
-            this.SubjectiveSystem.Algorithms.Remove(algo);
+            SubjectiveSystem.Algorithms.Remove(algo);
         }
 
         private void RefreshImages()
         {
-            this.imagesListView.Clear();
+            imagesListView.Clear();
 
-            foreach (string path in this.SubjectiveSystem.ImagesPaths)
+            foreach (string path in SubjectiveSystem.ImagesPaths)
             {
-                var item = new ListViewItem(System.IO.Path.GetFileName(path));
+                var item = new ListViewItem(Path.GetFileName(path));
                 item.Tag = path;
 
-                this.imagesListView.Items.Add(item);
+                imagesListView.Items.Add(item);
             }
         }
 
@@ -112,7 +112,7 @@ namespace FuzzyProject
                 dialog.Filter = @"(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG|All files (*.*)|*.*";
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.AddImages(dialog.FileNames);
+                    AddImages(dialog.FileNames);
                 }
             }
         }
@@ -121,28 +121,28 @@ namespace FuzzyProject
         {
             foreach (string path in paths)
             {
-                if (this.SubjectiveSystem.ImagesPaths.Contains(path) == false)
+                if (SubjectiveSystem.ImagesPaths.Contains(path) == false)
                 {
-                    this.SubjectiveSystem.ImagesPaths.Add(path);
+                    SubjectiveSystem.ImagesPaths.Add(path);
                 }
             }
 
-            this.RefreshImages();
+            RefreshImages();
         }
 
         private void OnRemoveImageButtonClick(object sender, EventArgs e)
         {
             foreach (ListViewItem selectedItem in imagesListView.SelectedItems)
             {
-                this.SubjectiveSystem.ImagesPaths.Remove(selectedItem.Tag as string);
+                SubjectiveSystem.ImagesPaths.Remove(selectedItem.Tag as string);
             }
 
-            this.RefreshImages();
+            RefreshImages();
         }
 
         private void OnTrainButtonClick(object sender, EventArgs e)
         {
-            var observerData = this.observersBindingSource.Current as ObserverData;
+            var observerData = observersBindingSource.Current as ObserverData;
             if (observerData == null || observerData.TrainingData.Count == 0)
             {
                 return;
@@ -151,7 +151,8 @@ namespace FuzzyProject
             if (observerData.FullyTrained)
             {
                 if (MessageBox.Show(Resources.SubsequentTrainingQuestion,
-                                Resources.SubsequentTrainingCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    Resources.SubsequentTrainingCaption, MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     observerData.ResetTraining();
                 }
@@ -173,19 +174,19 @@ namespace FuzzyProject
             {
                 if (nameWindow.ShowDialog() == DialogResult.OK)
                 {
-                    this.SubjectiveSystem.AddObserver(nameWindow.ObjectName);
+                    SubjectiveSystem.AddObserver(nameWindow.ObjectName);
                 }
             }
 
-            this.observersBindingSource.ResetBindings(false);
+            observersBindingSource.ResetBindings(false);
         }
 
         private void OnRemoveObserverClick(object sender, EventArgs e)
         {
-            var current = this.observersBindingSource.Current as ObserverData;
+            var current = observersBindingSource.Current as ObserverData;
             if (current != null)
             {
-                this.SubjectiveSystem.ObserversData.Remove(current);
+                SubjectiveSystem.ObserversData.Remove(current);
             }
         }
     }

@@ -30,10 +30,10 @@ namespace Logic.Subjective
             var observerData = new ObserverData
                 {
                     ObserverName = observerName,
-                    TrainingData = this.PrepareTrainingData()
+                    TrainingData = PrepareTrainingData()
                 };
 
-            this.ObserversData.Add(observerData);
+            ObserversData.Add(observerData);
             observerData.CheckTrainingStatus();
         }
 
@@ -57,7 +57,7 @@ namespace Logic.Subjective
 
         public static SubjectiveSystem CreateNew(string systemName)
         {
-            return new SubjectiveSystem { SystemName = systemName };
+            return new SubjectiveSystem {SystemName = systemName};
         }
 
         public static void SaveState(SubjectiveSystem system, string fileName)
@@ -74,7 +74,7 @@ namespace Logic.Subjective
             using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
                 var formatter = new BinaryFormatter();
-                return (SubjectiveSystem)formatter.Deserialize(stream);
+                return (SubjectiveSystem) formatter.Deserialize(stream);
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using Commons;
 using Autofac;
+using Commons;
 
 namespace FuzzyProject
 {

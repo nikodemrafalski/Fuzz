@@ -27,9 +27,9 @@ namespace Logic.Algorithms
             Input.Image.SetPixels(newValues);
             Input.Measure = FuzzyMeasures.Fuzz(memberships);
             return new AlgorithmResult(Input.Image)
-                       {
-                           Measure = FuzzyMeasures.Fuzz(modifiedMembership)
-                       };
+                {
+                    Measure = FuzzyMeasures.Fuzz(modifiedMembership)
+                };
         }
 
         private double MembershipFunction(byte grayLevel, int minGrayLevel, int maxGrayLevel)

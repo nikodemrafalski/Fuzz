@@ -21,35 +21,35 @@ namespace Logic.Algorithms
         {
             byte[,] pixels = Input.Image.GetPixels();
             CalculateLocalValues(pixels);
-            var memberships = new double[pixels.GetLength(0), pixels.GetLength(1)];
+            var memberships = new double[pixels.GetLength(0),pixels.GetLength(1)];
             Parallel.For(0, pixels.GetLength(0), i =>
-                Parallel.For(0, pixels.GetLength(1), j =>
-                {
-                    Tuple<byte, byte> minMax =
-                        localValues[i, j];
-                    memberships[i, j] =
-                        MembershipFunction(
-                            pixels[i, j],
-                            minMax.Item1,
-                            minMax.Item2);
-                }
-            ));
+                                                 Parallel.For(0, pixels.GetLength(1), j =>
+                                                     {
+                                                         Tuple<byte, byte> minMax =
+                                                             localValues[i, j];
+                                                         memberships[i, j] =
+                                                             MembershipFunction(
+                                                                 pixels[i, j],
+                                                                 minMax.Item1,
+                                                                 minMax.Item2);
+                                                     }
+                                                     ));
 
             double[,] modifiedMembership = memberships.ApplyTransform(MembershipModification);
             byte[,] newValues = modifiedMembership.ApplyTransform(Defuzzyfication).NarrowToBytes();
             Input.Image.SetPixels(newValues);
             Input.Measure = FuzzyMeasures.Fuzz(memberships);
             return new AlgorithmResult(Input.Image)
-                       {
-                           Measure = FuzzyMeasures.Fuzz(modifiedMembership)
-                       };
+                {
+                    Measure = FuzzyMeasures.Fuzz(modifiedMembership)
+                };
         }
 
         private void CalculateLocalValues(byte[,] pixels)
         {
             int width = pixels.GetLength(0);
             int height = pixels.GetLength(1);
-            localValues = new Tuple<byte, byte>[width, height];
+            localValues = new Tuple<byte, byte>[width,height];
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
@@ -62,7 +62,7 @@ namespace Logic.Algorithms
 
         private double MembershipFunction(byte grayLevel, int minGrayLevel, int maxGrayLevel)
         {
-            return (grayLevel - minGrayLevel) / (double)(maxGrayLevel - minGrayLevel);
+            return (grayLevel - minGrayLevel)/(double) (maxGrayLevel - minGrayLevel);
         }
 
         private double MembershipModification(double memberhip)
@@ -72,7 +72,7 @@ namespace Logic.Algorithms
 
         private double Defuzzyfication(double modifiedMembership)
         {
-            return (255 / (Math.Pow(Math.E, -1) - 1)) * (Math.Pow(Math.E, -modifiedMembership) - 1);
+            return (255/(Math.Pow(Math.E, -1) - 1))*(Math.Pow(Math.E, -modifiedMembership) - 1);
         }
 
         protected override void OnParameterChanged(AlgorithmParameter parameter)
@@ -84,14 +84,14 @@ namespace Logic.Algorithms
 
             if (parameter.Name.Equals("WindowSize"))
             {
-                windowSize = (int)parameter.Value;
+                windowSize = (int) parameter.Value;
             }
         }
 
         private byte[] GetWindowPixels(byte[,] pixels, int x, int y, int window, int width, int height)
         {
-            if (window % 2 == 0) window--;
-            int offset = window / 2;
+            if (window%2 == 0) window--;
+            int offset = window/2;
             int left = x - offset;
             int right = x + offset;
             int up = y - offset;
@@ -121,7 +121,7 @@ namespace Logic.Algorithms
                 down -= pad;
             }
 
-            var result = new byte[window * window];
+            var result = new byte[window*window];
             int num = 0;
             for (int i = left; i <= right; i++)
             {

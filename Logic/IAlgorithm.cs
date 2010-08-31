@@ -11,9 +11,8 @@ namespace Logic
 
         AlgorithmInput Input { get; set; }
 
-        void SetParameters(IEnumerable<AlgorithmParameter> parameters);
-
         AlgorithmResult Output { get; }
+        void SetParameters(IEnumerable<AlgorithmParameter> parameters);
         event EventHandler<EventArgs> ExecutionCompleted;
 
         AlgorithmResult ProcessData();

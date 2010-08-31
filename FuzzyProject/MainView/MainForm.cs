@@ -22,12 +22,83 @@ namespace FuzzyProject
             sourcePictureBox.IsSource = true;
             processedPictureBox.ChangeSourceRequested += OnChangeSourceRequested;
             parametersGridView.DataError += OnParametersGridViewDataError;
-            this.algoritmsListCombo.SelectedItem = null;
+            algoritmsListCombo.SelectedItem = null;
         }
 
         private void OnChangeSourceRequested(object sender, EventArgs args)
         {
             presenter.SetProcessedAsSource();
+        }
+
+        private void OnNewToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using (var nameDialog = new NameWindow())
+            {
+                if (nameDialog.ShowDialog() == DialogResult.OK)
+                {
+                    SubjectiveSystem system = SubjectiveSystem.CreateNew(nameDialog.ObjectName);
+                    ShowSystem(system);
+                }
+            }
+        }
+
+        private void ShowSystem(SubjectiveSystem system)
+        {
+            var newTab = new TabPage();
+            newTab.Text = system.SystemName;
+            var control = new SubjectiveSystemControl {Dock = DockStyle.Fill};
+            control.Setup(system);
+            newTab.Controls.Add(control);
+            tabContainer.TabPages.Add(newTab);
+            tabContainer.SelectedTab = newTab;
+        }
+
+        private void OnSaveToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            if (tabContainer.SelectedTab.Controls.Count == 0)
+            {
+                return;
+            }
+
+            var systemControl = tabContainer.SelectedTab.Controls[0] as SubjectiveSystemControl;
+            if (systemControl == null)
+            {
+                return;
+            }
+
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.Filter = @"Pliki stanu (*.state)|*.state";
+                dialog.AddExtension = true;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    SubjectiveSystem.SaveState(systemControl.SubjectiveSystem, dialog.FileName);
+                    tabContainer.TabPages.Remove(tabContainer.SelectedTab);
+                }
+            }
+        }
+
+        private void OnLoadToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            SubjectiveSystem system = null;
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = @"Pliki stanu (*.state)|*.state";
+                dialog.AddExtension = true;
+
+                if (dialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                system = SubjectiveSystem.LoadState(dialog.FileName);
+            }
+
+            if (system != null)
+            {
+                ShowSystem(system);
+            }
         }
 
         #region IMainView implementation
@@ -64,12 +135,12 @@ namespace FuzzyProject
         public void StopNotifyingProgress()
         {
             this.InvokeIfRequired(() =>
-                                      {
-                                          operationProgressBar.Style = ProgressBarStyle.Continuous;
-                                          operationProgressBar.Enabled = false;
-                                          var span = new TimeSpan(DateTime.Now.Ticks - operatonStartedTicks);
-                                          operationTimerLabel.Text = span.ToString("G");
-                                      });
+                {
+                    operationProgressBar.Style = ProgressBarStyle.Continuous;
+                    operationProgressBar.Enabled = false;
+                    var span = new TimeSpan(DateTime.Now.Ticks - operatonStartedTicks);
+                    operationTimerLabel.Text = span.ToString("G");
+                });
         }
 
 
@@ -144,76 +215,5 @@ namespace FuzzyProject
         }
 
         #endregion
-
-        private void OnNewToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            using (var nameDialog = new NameWindow())
-            {
-                if (nameDialog.ShowDialog() == DialogResult.OK)
-                {
-                    var system = SubjectiveSystem.CreateNew(nameDialog.ObjectName);
-                    ShowSystem(system);
-                }
-            }
-        }
-
-        private void ShowSystem(SubjectiveSystem system)
-        {
-            var newTab = new TabPage();
-            newTab.Text = system.SystemName;
-            var control = new SubjectiveSystemControl { Dock = DockStyle.Fill };
-            control.Setup(system);
-            newTab.Controls.Add(control);
-            this.tabContainer.TabPages.Add(newTab);
-            this.tabContainer.SelectedTab = newTab;
-        }
-
-        private void OnSaveToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            if (this.tabContainer.SelectedTab.Controls.Count == 0)
-            {
-                return;
-            }
-
-            var systemControl = this.tabContainer.SelectedTab.Controls[0] as SubjectiveSystemControl;
-            if (systemControl == null)
-            {
-                return;
-            }
-
-            using (var dialog = new SaveFileDialog())
-            {
-                dialog.Filter = @"Pliki stanu (*.state)|*.state";
-                dialog.AddExtension = true;
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    SubjectiveSystem.SaveState(systemControl.SubjectiveSystem,dialog.FileName);
-                    this.tabContainer.TabPages.Remove(tabContainer.SelectedTab);
-                }
-            }
-        }
-
-        private void OnLoadToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            SubjectiveSystem system = null;
-            using (var dialog = new OpenFileDialog())
-            {
-                dialog.Filter = @"Pliki stanu (*.state)|*.state";
-                dialog.AddExtension = true;
-
-                if (dialog.ShowDialog() != DialogResult.OK)
-                {
-                    return;
-                }
-
-                system = SubjectiveSystem.LoadState(dialog.FileName);
-            }
-
-            if (system != null)
-            {
-                ShowSystem(system);
-            }
-        }
     }
 }

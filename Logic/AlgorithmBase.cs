@@ -14,11 +14,7 @@ namespace Logic
 
         public event EventHandler<EventArgs> ExecutionCompleted;
 
-        public string AlgorithmName
-        {
-            get;
-            set;
-        }
+        public string AlgorithmName { get; set; }
 
         public IList<AlgorithmParameter> Parameters
         {
@@ -29,10 +25,10 @@ namespace Logic
 
         public void SetParameters(IEnumerable<AlgorithmParameter> algorithmParameters)
         {
-            this.parameters = new List<AlgorithmParameter>(algorithmParameters);
+            parameters = new List<AlgorithmParameter>(algorithmParameters);
             foreach (AlgorithmParameter parameter in parameters)
             {
-                this.OnParameterChanged(parameter);
+                OnParameterChanged(parameter);
             }
         }
 
@@ -45,10 +41,10 @@ namespace Logic
             Task<AlgorithmResult>.Factory
                 .StartNew(ProcessData)
                 .ContinueWith(t =>
-                                  {
-                                      Output = t.Result;
-                                      InvokeExecutionCompleted();
-                                  }, TaskScheduler.FromCurrentSynchronizationContext());
+                    {
+                        Output = t.Result;
+                        InvokeExecutionCompleted();
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         #endregion

@@ -25,22 +25,22 @@ namespace Logic.Algorithms
             var result = new byte[Input.Image.Width,Input.Image.Height];
             Parallel.For(1, width - 1, i =>
                                        Parallel.For(1, height - 1, j =>
-                                                                       {
-                                                                           int[] featureVector =
-                                                                               CalculateFeatureVector(i, j, pixels);
-                                                                           double edgeMemberhip =
-                                                                               EdgedMembership(featureVector);
-                                                                           double backgroundMembership =
-                                                                               BackgroundMembership(featureVector);
-                                                                           if (backgroundMembership >= edgeMemberhip)
-                                                                           {
-                                                                               result[i, j] = 255;
-                                                                           }
-                                                                           else
-                                                                           {
-                                                                               result[i, j] = 0;
-                                                                           }
-                                                                       }));
+                                           {
+                                               int[] featureVector =
+                                                   CalculateFeatureVector(i, j, pixels);
+                                               double edgeMemberhip =
+                                                   EdgedMembership(featureVector);
+                                               double backgroundMembership =
+                                                   BackgroundMembership(featureVector);
+                                               if (backgroundMembership >= edgeMemberhip)
+                                               {
+                                                   result[i, j] = 255;
+                                               }
+                                               else
+                                               {
+                                                   result[i, j] = 0;
+                                               }
+                                           }));
 
             for (int i = 0; i < width; i++)
             {
