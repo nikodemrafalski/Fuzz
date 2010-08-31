@@ -5,7 +5,7 @@ using Logic.Evalutation;
 
 namespace Logic.Algorithms
 {
-    internal class FuzzifierContrastEnhancer : Algorithm
+    internal class FuzzifierContrastEnhancer : AlgorithmBase
     {
         private int crossoverPoint = -1;
         private double denominationalFuzzifier;

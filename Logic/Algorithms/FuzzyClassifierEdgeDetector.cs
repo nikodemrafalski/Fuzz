@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Algorithms
 {
-    internal class FuzzyClassifierEdgeDetector : Algorithm
+    internal class FuzzyClassifierEdgeDetector : AlgorithmBase
     {
         private double h = 15;
         private double l = 6;

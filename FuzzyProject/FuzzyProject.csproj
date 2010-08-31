@@ -117,11 +117,11 @@
     <Compile Include="Subjective\SubjectiveSystemControl.Designer.cs">
       <DependentUpon>SubjectiveSystemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Subjective\SystemNameWindow.cs">
+    <Compile Include="Subjective\NameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Subjective\SystemNameWindow.Designer.cs">
-      <DependentUpon>SystemNameWindow.cs</DependentUpon>
+    <Compile Include="Subjective\NameWindow.Designer.cs">
+      <DependentUpon>NameWindow.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CustomPictureBox.resx">
       <DependentUpon>CustomPictureBox.cs</DependentUpon>
@@ -149,10 +149,11 @@
     <EmbeddedResource Include="Subjective\SubjectiveSystemControl.resx">
       <DependentUpon>SubjectiveSystemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Subjective\SystemNameWindow.resx">
-      <DependentUpon>SystemNameWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Subjective\NameWindow.resx">
+      <DependentUpon>NameWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Logic.AlgorithmParameter.datasource" />
+    <None Include="Properties\DataSources\Logic.Subjective.ObserverData.datasource" />
     <None Include="Properties\DataSources\Logic.Subjective.SubjectiveSystem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

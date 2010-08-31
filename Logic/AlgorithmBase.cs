@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public abstract class Algorithm : IAlgorithm
+    [Serializable]
+    public abstract class AlgorithmBase : IAlgorithm
     {
         private readonly IList<AlgorithmParameter> parameters = new List<AlgorithmParameter>();
 
@@ -13,12 +14,28 @@ namespace Logic
 
         public event EventHandler<EventArgs> ExecutionCompleted;
 
+        public string AlgorithmName
+        {
+            get;
+            set;
+        }
+
         public IList<AlgorithmParameter> Parameters
         {
             get { return parameters; }
         }
 
         public AlgorithmInput Input { get; set; }
+
+        public void SetParameters(IEnumerable<AlgorithmParameter> parameters)
+        {
+            this.parameters.Clear();
+            foreach (AlgorithmParameter parameter in parameters)
+            {
+                this.parameters.Add(parameter);
+                this.OnParameterChanged(parameter);
+            }
+        }
 
         public AlgorithmResult Output { get; protected set; }
 

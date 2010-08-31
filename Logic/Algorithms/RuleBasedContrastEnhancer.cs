@@ -3,7 +3,7 @@ using AForge.Imaging;
 
 namespace Logic.Algorithms
 {
-    public class RuleBasedContrastEnhancer : Algorithm
+    public class RuleBasedContrastEnhancer : AlgorithmBase
     {
         private int gMax = -1;
         private int gMean = -1;

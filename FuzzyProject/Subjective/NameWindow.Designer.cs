@@ -1,6 +1,6 @@
 ﻿namespace FuzzyProject.Subjective
 {
-    partial class SystemNameWindow
+    partial class NameWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -72,7 +72,7 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnButton2Click);
             // 
-            // SystemNameWindow
+            // NameWindow
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -84,9 +84,8 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "SystemNameWindow";
+            this.Name = "NameWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Nazwa systemu...";
             this.ResumeLayout(false);
             this.PerformLayout();
 

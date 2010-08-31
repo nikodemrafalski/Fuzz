@@ -146,7 +146,7 @@ namespace FuzzyProject
 
         private void OnNewToolStripMenuItemClick(object sender, EventArgs e)
         {
-            using (var nameDialog = new SystemNameWindow())
+            using (var nameDialog = new NameWindow())
             {
                 if (nameDialog.ShowDialog() == DialogResult.OK)
                 {

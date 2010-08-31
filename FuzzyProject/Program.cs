@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Commons;
+using Autofac;
 
 namespace FuzzyProject
 {
@@ -18,7 +19,7 @@ namespace FuzzyProject
             AppFacade.DI.CreateBuilder();
             AppFacade.DI.Container = AppFacade.DI.Builder.Build();
 
-            Application.Run(new MainForm());
+            Application.Run(AppFacade.DI.Container.Resolve<IMainView>() as MainForm);
         }
     }
 }

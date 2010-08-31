@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FuzzyProject.Properties {
+namespace Logic.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FuzzyProject.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FuzzyProject.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Logic.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,20 @@ namespace FuzzyProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zakończ.
+        ///   Looks up a localized string similar to Zakończony.
         /// </summary>
-        internal static string FinishCaption {
+        internal static string StatusFinished {
             get {
-                return ResourceManager.GetString("FinishCaption", resourceCulture);
+                return ResourceManager.GetString("StatusFinished", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ponowny trening.
+        ///   Looks up a localized string similar to Niedokończony.
         /// </summary>
-        internal static string SubsequentTrainingCaption {
+        internal static string StatusUnfinished {
             get {
-                return ResourceManager.GetString("SubsequentTrainingCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to System został już przetrenowany. Czy chcesz ponownie przetrenować system?.
-        /// </summary>
-        internal static string SubsequentTrainingQuestion {
-            get {
-                return ResourceManager.GetString("SubsequentTrainingQuestion", resourceCulture);
+                return ResourceManager.GetString("StatusUnfinished", resourceCulture);
             }
         }
     }

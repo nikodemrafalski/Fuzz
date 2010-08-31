@@ -23,10 +23,6 @@ namespace FuzzyProject
         private IAlgorithm selectedAlgoritm;
         private IMainView view;
 
-        public MainViewPresenter()
-        {
-            container = AppFacade.DI.Container;
-        }
 
         public void AttachView(IMainView mainView)
         {
@@ -92,7 +88,12 @@ namespace FuzzyProject
 
         public void ChangeSelectedAlgorithm(string algorithmName)
         {
-            selectedAlgoritm = container.Resolve<IAlgorithm>(algorithmName);
+            if (AppFacade.DI.Container == null)
+            {
+                return;
+            }
+
+            selectedAlgoritm = AppFacade.DI.Container.Resolve<IAlgorithm>(algorithmName);
             view.UpdateParametersList(selectedAlgoritm.Parameters);
         }
 

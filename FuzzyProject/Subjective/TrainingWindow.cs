@@ -54,11 +54,13 @@ namespace FuzzyProject.Subjective
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Bitmap resizedSource = currentPicture.ResizeImage(this.sourcePicture.Width, this.sourcePicture.Height);
             this.sourcePicture.Image = resizedSource;
-            var algorith = AppFacade.DI.Container.Resolve<IAlgorithm>(this.currentData.AlgorithmName);
+            this.processedImage.Image = null;
+            var algorithm = AppFacade.DI.Container.Resolve<IAlgorithm>(this.currentData.AlgorithmInfo.AlgorithName);
+            algorithm.SetParameters(algorithm.Parameters);
             this.progressBar.Style = ProgressBarStyle.Marquee;
-            algorith.Input = new AlgorithmInput(UnmanagedImage.FromManagedImage(resizedSource));
-            algorith.ExecutionCompleted += OnAlgorithExecutionCompleted;
-            algorith.ProcessDataAsync();
+            algorithm.Input = new AlgorithmInput(UnmanagedImage.FromManagedImage(resizedSource));
+            algorithm.ExecutionCompleted += OnAlgorithExecutionCompleted;
+            algorithm.ProcessDataAsync();
         }
 
         private void OnAlgorithExecutionCompleted(object sender, EventArgs e)

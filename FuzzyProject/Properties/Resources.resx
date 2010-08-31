@@ -117,4 +117,10 @@
 	<data name="FinishCaption">
 		<value xml:space="preserve">Zakończ</value>
 	</data>
+	<data name="SubsequentTrainingQuestion">
+		<value xml:space="preserve">System został już przetrenowany. Czy chcesz ponownie przetrenować system?</value>
+	</data>
+	<data name="SubsequentTrainingCaption">
+		<value xml:space="preserve">Ponowny trening</value>
+	</data>
 </root>

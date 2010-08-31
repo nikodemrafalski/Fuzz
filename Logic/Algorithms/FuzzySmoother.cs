@@ -3,7 +3,7 @@ using AForge.Fuzzy;
 
 namespace Logic.Algorithms
 {
-    public class FuzzySmoother : Algorithm
+    public class FuzzySmoother : AlgorithmBase
     {
         private int centerPoint = 30;
         private InferenceSystem inferenceSystem;

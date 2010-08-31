@@ -4,3 +4,4 @@ glob:*/bin/*
 glob:*/obj/*
 glob:*_ReSharper*
 glob:FuzzyProject/FuzzyProject.csproj.ReSharper.user
+glob:Logic/Logic.csproj.ReSharper.user

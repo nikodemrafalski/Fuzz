@@ -9,14 +9,19 @@ using System.Windows.Forms;
 
 namespace FuzzyProject.Subjective
 {
-    public partial class SystemNameWindow : Form
+    public partial class NameWindow : Form
     {
-        public SystemNameWindow()
+        public NameWindow()
         {
             InitializeComponent();
         }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
+
+        protected override void OnShown(EventArgs e)
+        {
+            this.textBox1.Text = Name;
+        }
 
         private void OnButton1Click(object sender, EventArgs e)
         {

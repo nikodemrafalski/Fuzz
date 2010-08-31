@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using Commons;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Logic.Subjective
 {
@@ -14,31 +12,43 @@ namespace Logic.Subjective
     {
         public SubjectiveSystem()
         {
-            Algorithms = new BindingList<string>();
-            Observers = new BindingList<string>();
+            Algorithms = new BindingList<AlgorithmInfo>();
+            ObserversData = new BindingList<ObserverData>();
             ImagesPaths = new BindingList<string>();
         }
 
         public string SystemName { get; private set; }
 
-        public IList<string> Algorithms { get; private set; }
+        public IList<AlgorithmInfo> Algorithms { get; private set; }
 
-        public IList<string> Observers { get; private set; }
+        public IList<ObserverData> ObserversData { get; private set; }
 
         public IList<string> ImagesPaths { get; private set; }
 
-        public IList<TrainingData> PrepareTrainingData(string observerName)
+        public void AddObserver(string observerName)
+        {
+            var observerData = new ObserverData
+                {
+                    ObserverName = observerName,
+                    TrainingData = this.PrepareTrainingData()
+                };
+
+            this.ObserversData.Add(observerData);
+            observerData.CheckTrainingStatus();
+        }
+
+        private IList<TrainingData> PrepareTrainingData()
         {
             var list = new List<TrainingData>();
             foreach (string path in ImagesPaths)
             {
-                foreach (string algorithm in Algorithms)
+                foreach (AlgorithmInfo algorithm in Algorithms)
                 {
                     list.Add(new TrainingData
-                    {
-                        AlgorithmName = algorithm,
-                        ImagePath = path
-                    });
+                        {
+                            AlgorithmInfo = algorithm,
+                            ImagePath = path
+                        });
                 }
             }
 

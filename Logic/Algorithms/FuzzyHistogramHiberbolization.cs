@@ -5,7 +5,7 @@ using Logic.Evalutation;
 
 namespace Logic.Algorithms
 {
-    public class FuzzyHistogramHiberbolization : Algorithm
+    public class FuzzyHistogramHiberbolization : AlgorithmBase
     {
         private double beta = 1;
 

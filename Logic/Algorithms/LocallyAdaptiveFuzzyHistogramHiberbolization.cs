@@ -5,7 +5,7 @@ using Logic.Evalutation;
 
 namespace Logic.Algorithms
 {
-    public class LocallyAdaptiveFuzzyHistogramHiberbolization : Algorithm
+    public class LocallyAdaptiveFuzzyHistogramHiberbolization : AlgorithmBase
     {
         private double beta = 1;
         private Tuple<byte, byte>[,] localValues;

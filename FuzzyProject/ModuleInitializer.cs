@@ -25,6 +25,8 @@ namespace FuzzyProject
                 builder.RegisterType(algorithm).Named<IAlgorithm>(algorithmName);
                 AlgorithmsNames.All.Add(algorithmName);
             }
+
+            builder.RegisterInstance(new MainForm()).As<IMainView>();
         }
 
         #endregion

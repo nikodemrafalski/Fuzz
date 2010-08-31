@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Commons;
+using Autofac;
+using FuzzyProject.Properties;
 using FuzzyProject.Subjective;
+using Logic;
 using Logic.Algorithms;
 using Logic.Subjective;
 
@@ -20,9 +24,9 @@ namespace FuzzyProject
         public void Setup(SubjectiveSystem system)
         {
             this.bindingSource.DataSource = system;
+            this.observersBindingSource.DataSource = system.ObserversData;
             this.SubjectiveSystem = system;
-            var freeAlgos = AlgorithmsNames.All.Where(x => !system.Algorithms.Contains(x));
-            this.sourceAlgos.Items.AddRange(freeAlgos.ToArray());
+            this.sourceAlgos.Items.AddRange(AlgorithmsNames.All.ToArray());
             this.RefreshImages();
         }
 
@@ -34,19 +38,31 @@ namespace FuzzyProject
                 return;
             }
 
-            this.sourceAlgos.Items.Remove(algo);
-            this.SubjectiveSystem.Algorithms.Add(algo);
+            using (var nameWindow = new NameWindow())
+            {
+                nameWindow.Name = algo;
+                if (nameWindow.ShowDialog() == DialogResult.OK)
+                {
+                    var algorithmInfo = new AlgorithmInfo
+                        {
+                            AlgorithName = algo,
+                            CustomName = nameWindow.Name,
+                            Parameters = AppFacade.DI.Container.Resolve<IAlgorithm>(algo).Parameters
+                        };
+
+                    this.SubjectiveSystem.Algorithms.Add(algorithmInfo);
+                }
+            }
         }
 
         private void OnRemoveAlgoButtonClick(object sender, EventArgs e)
         {
-            string algo = this.algorithmsBindingSource.Current as string;
+            var algo = this.algorithmsBindingSource.Current as AlgorithmInfo;
             if (algo == null)
             {
                 return;
             }
 
-            this.sourceAlgos.Items.Add(algo);
             this.SubjectiveSystem.Algorithms.Remove(algo);
         }
 
@@ -101,10 +117,51 @@ namespace FuzzyProject
 
         private void OnTrainButtonClick(object sender, EventArgs e)
         {
-            var x = this.SubjectiveSystem.PrepareTrainingData("");
+            var observerData = this.observersBindingSource.Current as ObserverData;
+            if (observerData == null || observerData.TrainingData.Count == 0)
+            {
+                return;
+            }
+
+            if (observerData.FullyTrained)
+            {
+                if (MessageBox.Show(Resources.SubsequentTrainingQuestion,
+                                Resources.SubsequentTrainingCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    observerData.ResetTraining();
+                }
+                else
+                {
+                    return;
+                }
+            }
+
             var trainingWindow = new TrainingWindow();
-            trainingWindow.AttachData(x);
+            trainingWindow.AttachData(observerData.TrainingData);
             trainingWindow.ShowDialog();
+            observerData.CheckTrainingStatus();
+        }
+
+        private void OnAddObserverClick(object sender, EventArgs e)
+        {
+            using (var nameWindow = new NameWindow())
+            {
+                if (nameWindow.ShowDialog() == DialogResult.OK)
+                {
+                    this.SubjectiveSystem.AddObserver(nameWindow.Name);
+                }
+            }
+
+            this.observersBindingSource.ResetBindings(false);
+        }
+
+        private void OnRemoveObserverClick(object sender, EventArgs e)
+        {
+            var current = this.observersBindingSource.Current as ObserverData;
+            if (current != null)
+            {
+                this.SubjectiveSystem.ObserversData.Remove(current);
+            }
         }
     }
 }
