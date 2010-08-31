@@ -24,10 +24,26 @@ namespace FuzzyProject
         public void Setup(SubjectiveSystem system)
         {
             this.bindingSource.DataSource = system;
+            this.algorithmsBindingSource.DataSource = system.Algorithms;
             this.observersBindingSource.DataSource = system.ObserversData;
+            this.algorithmsBindingSource.CurrentItemChanged += OnCurrentAlgorithmChanged;
             this.SubjectiveSystem = system;
             this.sourceAlgos.Items.AddRange(AlgorithmsNames.All.ToArray());
             this.RefreshImages();
+        }
+
+        private void OnCurrentAlgorithmChanged(object sender, EventArgs e)
+        {
+            var algorithmInfo = this.algorithmsBindingSource.Current as AlgorithmInfo;
+            var mainView = AppFacade.DI.Container.Resolve<IMainView>();
+            if (algorithmInfo == null)
+            {
+                mainView.UpdateParametersList(new List<AlgorithmParameter>());
+                return;
+
+            }
+
+            mainView.UpdateParametersList(algorithmInfo.Parameters);
         }
 
         private void OnAddAlgoButtonClick(object sender, EventArgs e)
@@ -40,15 +56,24 @@ namespace FuzzyProject
 
             using (var nameWindow = new NameWindow())
             {
-                nameWindow.Name = algo;
+                nameWindow.ObjectName = algo;
                 if (nameWindow.ShowDialog() == DialogResult.OK)
                 {
                     var algorithmInfo = new AlgorithmInfo
                         {
                             AlgorithName = algo,
-                            CustomName = nameWindow.Name,
-                            Parameters = AppFacade.DI.Container.Resolve<IAlgorithm>(algo).Parameters
+                            CustomName = nameWindow.ObjectName
                         };
+                    algorithmInfo.Parameters = new List<AlgorithmParameter>();
+                    foreach (var parameter in AppFacade.DI.Container.Resolve<IAlgorithm>(algo).Parameters)
+                    {
+                        algorithmInfo.Parameters.Add(
+                            new AlgorithmParameter(parameter.Name, parameter.DefaultValue)
+                                {
+                                    Value = parameter.DefaultValue
+                                });
+
+                    }
 
                     this.SubjectiveSystem.Algorithms.Add(algorithmInfo);
                 }
@@ -148,7 +173,7 @@ namespace FuzzyProject
             {
                 if (nameWindow.ShowDialog() == DialogResult.OK)
                 {
-                    this.SubjectiveSystem.AddObserver(nameWindow.Name);
+                    this.SubjectiveSystem.AddObserver(nameWindow.ObjectName);
                 }
             }
 

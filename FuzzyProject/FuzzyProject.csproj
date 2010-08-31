@@ -153,6 +153,7 @@
       <DependentUpon>NameWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Logic.AlgorithmParameter.datasource" />
+    <None Include="Properties\DataSources\Logic.Subjective.AlgorithmInfo.datasource" />
     <None Include="Properties\DataSources\Logic.Subjective.ObserverData.datasource" />
     <None Include="Properties\DataSources\Logic.Subjective.SubjectiveSystem.datasource" />
     <None Include="Properties\Settings.settings">

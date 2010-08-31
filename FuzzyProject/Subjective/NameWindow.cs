@@ -16,16 +16,16 @@ namespace FuzzyProject.Subjective
             InitializeComponent();
         }
 
-        public string Name { get; set; }
+        public string ObjectName { get; set; }
 
         protected override void OnShown(EventArgs e)
         {
-            this.textBox1.Text = Name;
+            this.textBox1.Text = ObjectName;
         }
 
         private void OnButton1Click(object sender, EventArgs e)
         {
-            this.Name = this.textBox1.Text;
+            this.ObjectName = this.textBox1.Text;
             this.DialogResult = DialogResult.OK;
         }
 

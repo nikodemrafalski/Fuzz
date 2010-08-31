@@ -22,6 +22,7 @@ namespace FuzzyProject
             sourcePictureBox.IsSource = true;
             processedPictureBox.ChangeSourceRequested += OnChangeSourceRequested;
             parametersGridView.DataError += OnParametersGridViewDataError;
+            this.algoritmsListCombo.SelectedItem = null;
         }
 
         private void OnChangeSourceRequested(object sender, EventArgs args)
@@ -150,7 +151,7 @@ namespace FuzzyProject
             {
                 if (nameDialog.ShowDialog() == DialogResult.OK)
                 {
-                    var system = SubjectiveSystem.CreateNew(nameDialog.Name);
+                    var system = SubjectiveSystem.CreateNew(nameDialog.ObjectName);
                     ShowSystem(system);
                 }
             }

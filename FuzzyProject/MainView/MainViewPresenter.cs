@@ -32,7 +32,7 @@ namespace FuzzyProject
 
         public void ProcessImage()
         {
-            if (resizedSource == null)
+            if (resizedSource == null || selectedAlgoritm == null)
             {
                 return;
             }

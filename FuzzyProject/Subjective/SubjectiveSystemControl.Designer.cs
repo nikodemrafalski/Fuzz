@@ -41,9 +41,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.imagesListView = new System.Windows.Forms.ListView();
             this.button3 = new System.Windows.Forms.Button();
+            this.observersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.observersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -53,8 +53,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.algorithmsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.observersBindingSource)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -102,16 +102,17 @@
             // selectedAlgos
             // 
             this.selectedAlgos.DataSource = this.algorithmsBindingSource;
+            this.selectedAlgos.DisplayMember = "CustomName";
             this.selectedAlgos.FormattingEnabled = true;
             this.selectedAlgos.Location = new System.Drawing.Point(169, 19);
             this.selectedAlgos.Name = "selectedAlgos";
             this.selectedAlgos.Size = new System.Drawing.Size(121, 134);
             this.selectedAlgos.TabIndex = 1;
+            this.selectedAlgos.ValueMember = "CustomName";
             // 
             // algorithmsBindingSource
             // 
-            this.algorithmsBindingSource.DataMember = "Algorithms";
-            this.algorithmsBindingSource.DataSource = this.bindingSource;
+            this.algorithmsBindingSource.DataSource = typeof(Logic.Subjective.AlgorithmInfo);
             // 
             // bindingSource
             // 
@@ -176,6 +177,10 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.OnTrainButtonClick);
             // 
+            // observersBindingSource
+            // 
+            this.observersBindingSource.DataSource = typeof(Logic.Subjective.ObserverData);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label3);
@@ -200,10 +205,6 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 23);
             this.label3.TabIndex = 7;
-            // 
-            // observersBindingSource
-            // 
-            this.observersBindingSource.DataSource = typeof(Logic.Subjective.ObserverData);
             // 
             // label2
             // 
@@ -271,9 +272,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.algorithmsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.observersBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.observersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
