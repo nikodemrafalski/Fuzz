@@ -56,7 +56,7 @@ namespace FuzzyProject.Subjective
             this.sourcePicture.Image = resizedSource;
             this.processedImage.Image = null;
             var algorithm = AppFacade.DI.Container.Resolve<IAlgorithm>(this.currentData.AlgorithmInfo.AlgorithName);
-            algorithm.SetParameters(algorithm.Parameters);
+            algorithm.SetParameters(this.currentData.AlgorithmInfo.Parameters);
             this.progressBar.Style = ProgressBarStyle.Marquee;
             algorithm.Input = new AlgorithmInput(UnmanagedImage.FromManagedImage(resizedSource));
             algorithm.ExecutionCompleted += OnAlgorithExecutionCompleted;

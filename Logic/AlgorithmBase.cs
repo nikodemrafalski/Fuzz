@@ -8,7 +8,7 @@ namespace Logic
     [Serializable]
     public abstract class AlgorithmBase : IAlgorithm
     {
-        private readonly IList<AlgorithmParameter> parameters = new List<AlgorithmParameter>();
+        private IList<AlgorithmParameter> parameters = new List<AlgorithmParameter>();
 
         #region IAlgorithm Members
 
@@ -27,12 +27,11 @@ namespace Logic
 
         public AlgorithmInput Input { get; set; }
 
-        public void SetParameters(IEnumerable<AlgorithmParameter> parameters)
+        public void SetParameters(IEnumerable<AlgorithmParameter> algorithmParameters)
         {
-            this.parameters.Clear();
+            this.parameters = new List<AlgorithmParameter>(algorithmParameters);
             foreach (AlgorithmParameter parameter in parameters)
             {
-                this.parameters.Add(parameter);
                 this.OnParameterChanged(parameter);
             }
         }
