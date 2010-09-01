@@ -110,10 +110,10 @@
     <Compile Include="Algorithms\FuzzyClassifierEdgeDetector.cs" />
     <Compile Include="Algorithms\FuzzyHistogramHiberbolization.cs" />
     <Compile Include="Algorithms\RuleBasedContrastEnhancer.cs" />
-    <Compile Include="Evalutation\FuzzyMeasures.cs" />
+    <Compile Include="Measures\FuzzyMeasures.cs" />
     <Compile Include="HistogramData.cs" />
     <Compile Include="IAlgorithm.cs" />
-    <Compile Include="Evalutation\ContrastEvaluator.cs" />
+    <Compile Include="Measures\ContrastMeasures.cs" />
     <Compile Include="ModuleInitializer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -121,6 +121,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Subjective\AlgorithmInfo.cs" />
+    <Compile Include="IMeasure.cs" />
     <Compile Include="Subjective\ObserverData.cs" />
     <Compile Include="Subjective\SubjectiveSystem.cs" />
     <Compile Include="Subjective\TrainingData.cs" />

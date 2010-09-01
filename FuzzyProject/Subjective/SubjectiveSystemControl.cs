@@ -189,5 +189,16 @@ namespace FuzzyProject
                 SubjectiveSystem.ObserversData.Remove(current);
             }
         }
+
+        private void OnInferingButtonCLick(object sender, EventArgs e)
+        {
+            var observerData = this.observersBindingSource.Current as ObserverData;
+            if (observerData == null)
+            {
+                return;
+            }
+
+            this.SubjectiveSystem.Infere(observerData);
+        }
     }
 }

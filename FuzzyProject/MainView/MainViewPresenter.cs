@@ -54,8 +54,8 @@ namespace FuzzyProject
         private void EvaluateScores()
         {
             view.DisplayMeasures(selectedAlgoritm.Input.Measure, selectedAlgoritm.Output.Measure);
-            double sourceScore = ContrastEvaluator.EvaluateC(UnmanagedImage.FromManagedImage(resizedSource));
-            double processedScore = ContrastEvaluator.EvaluateC(UnmanagedImage.FromManagedImage(resizedProcessed));
+            double sourceScore = ContrastMeasures.EvaluateWAbs(UnmanagedImage.FromManagedImage(resizedSource));
+            double processedScore = ContrastMeasures.EvaluateWAbs(UnmanagedImage.FromManagedImage(resizedProcessed));
             view.DisplayEvaluationScores(sourceScore, processedScore);
         }
 

@@ -49,6 +49,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
@@ -68,7 +69,7 @@
             this.groupBox1.Size = new System.Drawing.Size(296, 161);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Algorytmy";
+            this.groupBox1.Text = "1. Algorytmy";
             // 
             // sourceAlgos
             // 
@@ -128,7 +129,7 @@
             this.groupBox2.Size = new System.Drawing.Size(296, 285);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Obrazy";
+            this.groupBox2.Text = "2. Obrazy";
             // 
             // button2
             // 
@@ -169,11 +170,11 @@
             // 
             this.button3.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.observersBindingSource, "CanBeTrained", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(21, 88);
+            this.button3.Location = new System.Drawing.Point(21, 101);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(94, 23);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Trenuj";
+            this.button3.Text = "Trenowanie";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.OnTrainButtonClick);
             // 
@@ -183,6 +184,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.button5);
@@ -195,7 +197,7 @@
             this.groupBox3.Size = new System.Drawing.Size(300, 161);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Trenowanie";
+            this.groupBox3.Text = "3. Trening";
             // 
             // label3
             // 
@@ -259,6 +261,18 @@
             this.comboBox1.TabIndex = 3;
             this.comboBox1.ValueMember = "ObserverName";
             // 
+            // button6
+            // 
+            this.button6.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.observersBindingSource, "FullyTrained", true));
+            this.button6.Enabled = false;
+            this.button6.Location = new System.Drawing.Point(21, 130);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(94, 23);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "Wnioskowanie";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.OnInferingButtonCLick);
+            // 
             // SubjectiveSystemControl
             // 
             this.BackColor = System.Drawing.SystemColors.Window;
@@ -301,5 +315,6 @@
         private System.Windows.Forms.BindingSource observersBindingSource;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button6;
     }
 }
