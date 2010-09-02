@@ -111,7 +111,7 @@
     <Compile Include="Algorithms\FuzzyHistogramHiberbolization.cs" />
     <Compile Include="Algorithms\RuleBasedContrastEnhancer.cs" />
     <Compile Include="Measures\FuzzyMeasures.cs" />
-    <Compile Include="HistogramData.cs" />
+    <Compile Include="Statistics.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="Measures\ContrastMeasures.cs" />
     <Compile Include="ModuleInitializer.cs" />
@@ -121,7 +121,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Subjective\AlgorithmInfo.cs" />
-    <Compile Include="IMeasure.cs" />
     <Compile Include="Subjective\ObserverData.cs" />
     <Compile Include="Subjective\SubjectiveSystem.cs" />
     <Compile Include="Subjective\TrainingData.cs" />

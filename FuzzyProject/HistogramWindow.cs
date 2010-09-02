@@ -5,26 +5,26 @@ namespace FuzzyProject
 {
     public partial class HistogramWindow : Form
     {
-        private HistogramData histogram;
+        private Statistics histogram;
 
         public HistogramWindow()
         {
             InitializeComponent();
         }
 
-        public HistogramData Histogram
+        public Statistics Histogram
         {
             get { return histogram; }
             set
             {
                 histogram = value;
                 histogramControl.Values =
-                    histogram.Statistics.Blue.Values;
+                    histogram.ImageStatistics.Blue.Values;
 
-                label1.Text = histogram.Statistics.Blue.Min.ToString();
-                label2.Text = histogram.Statistics.Blue.Max.ToString();
-                label3.Text = histogram.Statistics.Blue.Mean.ToString();
-                label4.Text = histogram.Statistics.Blue.Median.ToString();
+                label1.Text = histogram.ImageStatistics.Blue.Min.ToString();
+                label2.Text = histogram.ImageStatistics.Blue.Max.ToString();
+                label3.Text = histogram.ImageStatistics.Blue.Mean.ToString();
+                label4.Text = histogram.ImageStatistics.Blue.Median.ToString();
             }
         }
     }

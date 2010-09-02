@@ -24,9 +24,8 @@ namespace Logic.Algorithms
             double[,] memberships = pixels.ApplyTransform(x => MembershipFunction(x, minGray, maxGray));
             double[,] modifiedMembership = memberships.ApplyTransform(MembershipModification);
             byte[,] newValues = modifiedMembership.ApplyTransform(Defuzzyfication).NarrowToBytes();
-            Input.Image.SetPixels(newValues);
             Input.Measure = FuzzyMeasures.Fuzz(memberships);
-            return new AlgorithmResult(Input.Image)
+            return new AlgorithmResult(newValues)
                 {
                     Measure = FuzzyMeasures.Fuzz(modifiedMembership)
                 };

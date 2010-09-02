@@ -60,9 +60,22 @@ namespace FuzzyProject.Subjective
             algorithm.ProcessDataAsync();
         }
 
+        private double GetSystemScore(AlgorithmInput input, AlgorithmResult result)
+        {
+            var inputStatistics = Statistics.FromUnmanagedImage(input.Image);
+            var outputStatistics = Statistics.FromUnmanagedImage(result.Image);
+
+            double inputScore = inputStatistics.GetContrastMeasure();
+            double resultScore = outputStatistics.GetContrastMeasure();
+
+            double finalScore = resultScore/inputScore;
+            return finalScore;
+        }
+
         private void OnAlgorithExecutionCompleted(object sender, EventArgs e)
         {
             var algorithm = (IAlgorithm) sender;
+            this.currentData.SystemScore = this.GetSystemScore(algorithm.Input, algorithm.Output);
             this.InvokeIfRequired(() =>
                 {
                     processedImage.Image = algorithm.Output.Image.ToManagedImage();

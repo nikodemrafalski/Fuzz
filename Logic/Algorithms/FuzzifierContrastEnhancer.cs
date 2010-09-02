@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using AForge.Imaging;
 using Commons;
 using Logic.Evalutation;
@@ -9,7 +10,7 @@ namespace Logic.Algorithms
     {
         private int crossoverPoint = -1;
         private double denominationalFuzzifier;
-        private double desiredFuzziness;
+        private double desiredFuzziness = -1;
         private double exponentialFuzzifier = 1;
         private int iterations = 1;
         private double maxGrayLevel;
@@ -28,7 +29,7 @@ namespace Logic.Algorithms
             double[,] membershipValues = Fuzzify(pixels);
             Input.Measure = FuzzyMeasures.Fuzz(membershipValues);
             double[,] modifiedMembershipValues = membershipValues;
-            if (desiredFuzziness != 0)
+            if (desiredFuzziness != -1D)
             {
                 iterations = 200;
             }
@@ -36,7 +37,7 @@ namespace Logic.Algorithms
             for (int i = 0; i < iterations; i++)
             {
                 modifiedMembershipValues = modifiedMembershipValues.ApplyTransform(IntOperator);
-                if (desiredFuzziness != -1)
+                if (desiredFuzziness != -1D)
                 {
                     double measure = FuzzyMeasures.Fuzz(modifiedMembershipValues);
                     if (measure <= desiredFuzziness)
@@ -47,8 +48,7 @@ namespace Logic.Algorithms
             }
 
             byte[,] defuzzifiedPixels = Defuzzfy(modifiedMembershipValues);
-            Input.Image.SetPixels(defuzzifiedPixels);
-            return new AlgorithmResult(Input.Image)
+            return new AlgorithmResult(defuzzifiedPixels)
                 {
                     Measure = FuzzyMeasures.Fuzz(modifiedMembershipValues)
                 };

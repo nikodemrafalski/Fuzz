@@ -54,8 +54,7 @@ namespace Logic.Algorithms
                 result[width - 1, i] = 255;
             }
 
-            Input.Image.SetPixels(result);
-            return new AlgorithmResult(Input.Image);
+            return new AlgorithmResult(result);
         }
 
         private int[] CalculateFeatureVector(int x, int y, byte[,] pixels)

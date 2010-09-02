@@ -34,8 +34,7 @@ namespace Logic.Algorithms
                 }
             }
 
-            Input.Image.SetPixels(result);
-            return new AlgorithmResult(Input.Image);
+            return new AlgorithmResult(result);
         }
 
         private byte Modify(InferenceSystem system, int[] windowData, byte center)

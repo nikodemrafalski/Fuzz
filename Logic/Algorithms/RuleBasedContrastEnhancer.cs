@@ -40,8 +40,7 @@ namespace Logic.Algorithms
                 }
             }
 
-            Input.Image.SetPixels(result);
-            return new AlgorithmResult(Input.Image);
+            return new AlgorithmResult(result);
         }
 
         private InferenceSystem SetupInferenceSystem(byte minLuma, byte maxLuma, byte meanLuma)

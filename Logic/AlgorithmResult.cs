@@ -1,3 +1,5 @@
+using System.Drawing;
+using System.Drawing.Imaging;
 using AForge.Imaging;
 
 namespace Logic
@@ -7,6 +9,14 @@ namespace Logic
         public AlgorithmResult(UnmanagedImage image)
         {
             Image = image;
+        }
+
+        public AlgorithmResult(byte[,] pixels)
+        {
+            var image = new Bitmap(pixels.GetLength(0), pixels.GetLength(1), PixelFormat.Format8bppIndexed);
+            var unmanagedImage = UnmanagedImage.FromManagedImage(image);
+            unmanagedImage.SetPixels(pixels);
+            this.Image = unmanagedImage;
         }
 
         public UnmanagedImage Image { get; private set; }

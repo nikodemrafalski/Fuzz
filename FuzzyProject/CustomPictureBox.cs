@@ -70,7 +70,7 @@ namespace FuzzyProject
                 return;
             }
 
-            HistogramData histogram = HistogramData.FromImage(Image);
+            Statistics histogram = Statistics.FromImage(Image);
             var histogramWindow = new HistogramWindow();
             histogramWindow.Histogram = histogram;
             histogramWindow.Show();
