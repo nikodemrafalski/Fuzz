@@ -128,6 +128,7 @@
     <Compile Include="Subjective\EvaluationResult.cs" />
     <Compile Include="Subjective\Evaluator.cs" />
     <Compile Include="Subjective\ObserverData.cs" />
+    <Compile Include="Subjective\ProcessingMethod.cs" />
     <Compile Include="Subjective\SubjectiveSystem.cs" />
     <Compile Include="Subjective\TrainingData.cs" />
     <Compile Include="UnmanagedImageExtensions.cs" />

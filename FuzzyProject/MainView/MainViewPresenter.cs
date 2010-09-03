@@ -65,6 +65,7 @@ namespace FuzzyProject
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    dialog.Filter = @"(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG|All files (*.*)|*.*";
                     originalSizeSource = new Bitmap(dialog.OpenFile()).ConvertToGrayScale();
                     ShowSourceImage();
                 }

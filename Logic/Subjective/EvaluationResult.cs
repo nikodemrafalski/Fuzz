@@ -1,5 +1,8 @@
+using System;
+
 namespace Logic.Subjective
 {
+    [Serializable]
     public class EvaluationResult
     {
         public EvaluationResult(string algorithm, double score)

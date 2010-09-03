@@ -43,19 +43,24 @@
             this.button3 = new System.Windows.Forms.Button();
             this.observersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.processingMethodCombo = new System.Windows.Forms.ComboBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.observersBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -199,6 +204,18 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "3. Trening";
             // 
+            // button6
+            // 
+            this.button6.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.observersBindingSource, "FullyTrained", true));
+            this.button6.Enabled = false;
+            this.button6.Location = new System.Drawing.Point(21, 130);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(94, 23);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "Wnioskowanie";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.OnInferingButtonCLick);
+            // 
             // label3
             // 
             this.label3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.observersBindingSource, "Status", true, System.Windows.Forms.DataSourceUpdateMode.Never));
@@ -261,21 +278,54 @@
             this.comboBox1.TabIndex = 3;
             this.comboBox1.ValueMember = "ObserverName";
             // 
-            // button6
+            // groupBox4
             // 
-            this.button6.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.observersBindingSource, "FullyTrained", true));
-            this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(21, 130);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(94, 23);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "Wnioskowanie";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.OnInferingButtonCLick);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.processingMethodCombo);
+            this.groupBox4.Controls.Add(this.button7);
+            this.groupBox4.Location = new System.Drawing.Point(307, 171);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(300, 279);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "4. Wykorzystanie ocen algorytmów";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(21, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(135, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Metoda przetwarzania:";
+            // 
+            // processingMethodCombo
+            // 
+            this.processingMethodCombo.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.observersBindingSource, "EvaluationDone", true));
+            this.processingMethodCombo.Enabled = false;
+            this.processingMethodCombo.FormattingEnabled = true;
+            this.processingMethodCombo.Location = new System.Drawing.Point(21, 105);
+            this.processingMethodCombo.Name = "processingMethodCombo";
+            this.processingMethodCombo.Size = new System.Drawing.Size(270, 21);
+            this.processingMethodCombo.TabIndex = 1;
+            // 
+            // button7
+            // 
+            this.button7.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.observersBindingSource, "EvaluationDone", true));
+            this.button7.Enabled = false;
+            this.button7.Location = new System.Drawing.Point(21, 19);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(94, 50);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "Przetwarzaj obraz";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.OnProcessImageClick);
             // 
             // SubjectiveSystemControl
             // 
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -289,6 +339,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.observersBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,5 +368,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox processingMethodCombo;
     }
 }

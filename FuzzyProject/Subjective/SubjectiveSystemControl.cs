@@ -18,6 +18,9 @@ namespace FuzzyProject
         public SubjectiveSystemControl()
         {
             InitializeComponent();
+            this.processingMethodCombo.DataSource = EnumHelper.ToList(typeof(ProcessingMethod));
+            processingMethodCombo.ValueMember = "Key";
+            processingMethodCombo.DisplayMember = "Value";
         }
 
         public SubjectiveSystem SubjectiveSystem { get; private set; }
@@ -199,6 +202,17 @@ namespace FuzzyProject
             }
 
             this.SubjectiveSystem.Infere(observerData);
+        }
+
+        private void OnProcessImageClick(object sender, EventArgs e)
+        {
+            var observerData = (ObserverData)this.observersBindingSource.Current;
+            using (var processingWindow = new ProcessingWindow(this.SubjectiveSystem,
+                observerData,
+                (ProcessingMethod)this.processingMethodCombo.SelectedValue))
+            {
+                processingWindow.ShowDialog();
+            }
         }
     }
 }

@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using Commons;
+using Autofac;
 
 namespace Logic.Subjective
 {
@@ -81,7 +84,34 @@ namespace Logic.Subjective
         public void Infere(ObserverData observerData)
         {
             var evaluator = new Evaluator();
-            evaluator.Evaluate(observerData.TrainingData);
+            IList<EvaluationResult> evaluationResults = evaluator.Evaluate(observerData.TrainingData);
+            observerData.SetEvaluationResults(evaluationResults);
+        }
+
+        public Bitmap ProcessImage(Bitmap image, ObserverData observerData, ProcessingMethod processingMethod)
+        {
+            if (processingMethod == ProcessingMethod.UseAlgorithmWithHighestScore)
+            {
+                string bestAlgorithm =
+                    observerData.EvaluationResults.OrderByDescending(x => x.AlgorithScore).First().AlgorithCustomName;
+                AlgorithmInfo algorithmInfo = this.Algorithms.Where(x => x.CustomName == bestAlgorithm).Single();
+                var algorithm = AppFacade.DI.Container.Resolve<IAlgorithm>(algorithmInfo.AlgorithName);
+                algorithm.SetParameters(algorithmInfo.Parameters);
+                return SimpleProcessing(image, algorithm);
+            }
+            if (processingMethod == ProcessingMethod.AlgorithmsFusion)
+            {
+                throw new NotImplementedException();
+            }
+
+            throw new NotSupportedException();
+        }
+
+        private static Bitmap SimpleProcessing(Bitmap image, IAlgorithm algorithm)
+        {
+            algorithm.Input = new AlgorithmInput(image);
+            AlgorithmResult result = algorithm.ProcessData();
+            return result.Image.ToManagedImage();
         }
     }
 }

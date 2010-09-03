@@ -10,13 +10,11 @@ namespace Logic.Subjective
     public class ObserverData : INotifyPropertyChanged
     {
         public string ObserverName { get; set; }
-
         public IList<TrainingData> TrainingData { get; set; }
-
+        public IList<EvaluationResult> EvaluationResults { get; private set; }
         public bool FullyTrained { get; private set; }
-
         public string Status { get; private set; }
-
+        public bool EvaluationDone { get; private set; }
         public bool CanBeTrained { get; private set; }
 
         #region INotifyPropertyChanged Members
@@ -33,6 +31,7 @@ namespace Logic.Subjective
                 data.SystemScore = null;
             }
 
+            this.EvaluationDone = false;
             CheckTrainingStatus();
         }
 
@@ -53,6 +52,7 @@ namespace Logic.Subjective
             InvokePropertyChanged("Status");
             InvokePropertyChanged("CanBeTrained");
             InvokePropertyChanged("FullyTrained");
+            InvokePropertyChanged("EvaluationDone");
         }
 
         private void InvokePropertyChanged(string propertyName)
@@ -62,6 +62,13 @@ namespace Logic.Subjective
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public void SetEvaluationResults(IList<EvaluationResult> evaluationResults)
+        {
+            this.EvaluationResults = evaluationResults;
+            this.EvaluationDone = true;
+            this.InvokePropertyChanged("EvaluationDone");
         }
     }
 }

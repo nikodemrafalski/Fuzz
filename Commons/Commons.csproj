@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensions.cs" />
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="ImageHelpers.cs" />
     <Compile Include="Infrastructure\AppFacade.cs" />
     <Compile Include="Guard.cs" />
