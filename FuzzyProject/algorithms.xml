@@ -6,4 +6,5 @@
   <algorithm name="RuleBasedContrastEnhancer" type="Logic.Algorithms.RuleBasedContrastEnhancer, Logic" />
   <algorithm name="LocallyAdaptiveFuzzyHistogramHiberbolization" type="Logic.Algorithms.LocallyAdaptiveFuzzyHistogramHiberbolization, Logic" />
   <!--<algorithm name="FuzzySmoother" type="Logic.Algorithms.FuzzySmoother, Logic"/>-->
+  <algorithm name="FuzzyClassifierEdgeDetector" type ="Logic.Algorithms.FuzzyClassifierEdgeDetector, Logic"/>
 </algorithms>

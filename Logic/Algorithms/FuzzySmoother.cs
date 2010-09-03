@@ -62,9 +62,9 @@ namespace Logic.Algorithms
         {
             var mp = new TrapezoidalFunction(centerPoint - width/2, centerPoint, centerPoint + width/2);
             var mn = new TrapezoidalFunction(-centerPoint - width/2, -centerPoint, -centerPoint + width/2);
-            var sp = new TrapezoidalFunction(centerPoint/2 - width/3, (double) centerPoint/2, centerPoint/2 + width/3);
-            var sn = new TrapezoidalFunction(-centerPoint/2 - width/3, (double) -centerPoint/2, -centerPoint/2 + width/3);
-            var ze = new TrapezoidalFunction(-3, 0, 3);
+            var sp = new TrapezoidalFunction(-centerPoint/2 + width/4, (double) centerPoint/2, centerPoint/2 + width/3);
+            var sn = new TrapezoidalFunction(-centerPoint/2 - width/3, (double) -centerPoint/2, centerPoint/2 - width/4);
+            var ze = new TrapezoidalFunction(-(double)centerPoint / 4, 0, (double)centerPoint / 4);
 
             var mpSet = new FuzzySet("MP", mp);
             var mnSet = new FuzzySet("MN", mn);
@@ -87,7 +87,7 @@ namespace Logic.Algorithms
             outVariable.AddLabel(snSet);
             outVariable.AddLabel(zeSet);
             ruleDatabase.AddVariable(outVariable);
-            var inferenceSystem = new InferenceSystem(ruleDatabase, new COG(100));
+            var inferenceSystem = new InferenceSystem(ruleDatabase, new CentroidDefuzzifier(100));
             string rule1 = "IF ";
             string rule2 = "IF ";
             string rule3 = "IF ";

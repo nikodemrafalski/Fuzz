@@ -12,8 +12,6 @@ namespace Logic
 
         public void RegisterComponents(ContainerBuilder builder)
         {
-            builder.RegisterType<FuzzyClassifierEdgeDetector>().Named<IAlgorithm>("FuzzyClassifierEdgeDetector");
-            AlgorithmsNames.All.Add("FuzzyClassifierEdgeDetector");
         }
 
         #endregion
