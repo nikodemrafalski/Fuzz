@@ -111,6 +111,10 @@
     <Compile Include="Algorithms\FuzzyHistogramHiberbolization.cs" />
     <Compile Include="Algorithms\RuleBasedContrastEnhancer.cs" />
     <Compile Include="Measures\FuzzyMeasures.cs" />
+    <Compile Include="MembershipFunctions\PITypeMembership.cs" />
+    <Compile Include="MembershipFunctions\STypeMembership.cs" />
+    <Compile Include="MembershipFunctions\VeryHedge.cs" />
+    <Compile Include="MembershipFunctions\ZTypeMembership.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="Measures\ContrastMeasures.cs" />
