@@ -125,6 +125,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Subjective\AlgorithmInfo.cs" />
+    <Compile Include="Subjective\EvaluationResult.cs" />
     <Compile Include="Subjective\Evaluator.cs" />
     <Compile Include="Subjective\ObserverData.cs" />
     <Compile Include="Subjective\SubjectiveSystem.cs" />

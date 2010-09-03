@@ -22,14 +22,16 @@ namespace Logic.Subjective
             Dictionary<string, double> userMeans = CalculateMos(datas);
             Dictionary<string, double> normalizedUserMeans = CalculateNormalizedMos(datas);
             Dictionary<string, double> systemMeans = CalculateSystemMeans(datas);
-            Dictionary<string, double> systemNormalizedMeans = CalculateNormalizedSystemMeans(datas);
+            Dictionary<string, double> normalizedSystemMeans = CalculateNormalizedSystemMeans(datas);
 
             var result = new List<EvaluationResult>();
             foreach (string algorithm in algorithms)
             {
-                inferenceSystem.SetInput("OBJECTIVE", systemNormalizedMeans[algorithm]);
-                inferenceSystem.SetInput("SUBJECTIVE", systemNormalizedMeans[algorithm]);
+                inferenceSystem.SetInput("OBJECTIVE", normalizedSystemMeans[algorithm]);
+                inferenceSystem.SetInput("SUBJECTIVE", normalizedUserMeans[algorithm]);
+                var scoreVar = inferenceSystem.ExecuteInference("ALGORITHM_SCORE");
                 double finalScore = inferenceSystem.Evaluate("ALGORITHM_SCORE");
+
                 result.Add(new EvaluationResult(algorithm,finalScore));
             }
 
