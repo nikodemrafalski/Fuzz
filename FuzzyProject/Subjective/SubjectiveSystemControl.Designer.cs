@@ -303,6 +303,7 @@
             // processingMethodCombo
             // 
             this.processingMethodCombo.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.observersBindingSource, "EvaluationDone", true));
+            this.processingMethodCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.processingMethodCombo.Enabled = false;
             this.processingMethodCombo.FormattingEnabled = true;
             this.processingMethodCombo.Location = new System.Drawing.Point(21, 105);

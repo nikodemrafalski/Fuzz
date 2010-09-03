@@ -31,6 +31,11 @@ namespace FuzzyProject.Subjective
                     dialog.Filter = @"(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG|All files (*.*)|*.*";
                     originalSizeSource = new Bitmap(dialog.OpenFile()).ConvertToGrayScale();
                 }
+                else
+                {
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
+                }
             }
 
             DisplayData();

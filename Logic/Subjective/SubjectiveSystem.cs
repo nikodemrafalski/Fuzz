@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using AForge.Imaging;
 using Commons;
 using Autofac;
 
@@ -101,7 +102,7 @@ namespace Logic.Subjective
             }
             if (processingMethod == ProcessingMethod.AlgorithmsFusion)
             {
-                throw new NotImplementedException();
+                return FusionProcessing(image, this.Algorithms, observerData.EvaluationResults);
             }
 
             throw new NotSupportedException();
@@ -112,6 +113,39 @@ namespace Logic.Subjective
             algorithm.Input = new AlgorithmInput(image);
             AlgorithmResult result = algorithm.ProcessData();
             return result.Image.ToManagedImage();
+        }
+
+        private static Bitmap FusionProcessing(Bitmap image,
+            IEnumerable<AlgorithmInfo> algorithms,
+            IEnumerable<EvaluationResult> algoritmsScores)
+        {
+            double totalScore = algoritmsScores.Sum(x => x.AlgorithScore);
+            var results = new Dictionary<double, byte[,]>();
+            foreach (var score in algoritmsScores)
+            {
+                AlgorithmInfo algorithmInfo = algorithms.Where(x => x.CustomName == score.AlgorithCustomName).Single();
+                var algorithm = AppFacade.DI.Container.Resolve<IAlgorithm>(algorithmInfo.AlgorithName);
+                algorithm.SetParameters(algorithmInfo.Parameters);
+                algorithm.Input = new AlgorithmInput(image);
+                UnmanagedImage result = algorithm.ProcessData().Image;
+                results.Add(score.AlgorithScore / totalScore, result.GetPixels());
+            }
+
+            UnmanagedImage fusionImage =
+                UnmanagedImage.FromManagedImage(new Bitmap(image.Width, image.Height, image.PixelFormat));
+
+            var fusionBytes = new byte[image.Width, image.Height];
+            for (int i = 0; i < image.Width; i++)
+            {
+                for (int j = 0; j < image.Height; j++)
+                {
+                    double level = results.Sum(keyValuePair => (keyValuePair.Key*keyValuePair.Value[i, j]));
+                    fusionBytes[i, j] = (byte) level;
+                }
+            }
+
+            fusionImage.SetPixels(fusionBytes);
+            return fusionImage.ToManagedImage();
         }
     }
 }
