@@ -5,8 +5,9 @@ using Autofac;
 using Commons;
 using Logic;
 using Logic.Algorithms;
+using Presentation.MainView;
 
-namespace FuzzyProject
+namespace Presentation
 {
     [Export(typeof (IModuleInitializer))]
     public class ModuleInitializer : IModuleInitializer

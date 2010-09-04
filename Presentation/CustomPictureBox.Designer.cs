@@ -1,4 +1,4 @@
-﻿namespace FuzzyProject
+﻿namespace Presentation
 {
     partial class CustomPictureBox
     {

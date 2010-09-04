@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using Logic;
 
-namespace FuzzyProject
+namespace Presentation
 {
     public partial class HistogramWindow : Form
     {

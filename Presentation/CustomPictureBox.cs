@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using Logic;
 
-namespace FuzzyProject
+namespace Presentation
 {
     public partial class CustomPictureBox : PictureBox
     {

@@ -6,11 +6,11 @@ using System.Windows.Forms;
 using AForge.Imaging;
 using Autofac;
 using Commons;
-using FuzzyProject.Properties;
 using Logic;
 using Logic.Subjective;
+using Presentation.Properties;
 
-namespace FuzzyProject.Subjective
+namespace Presentation.Subjective
 {
     public partial class TrainingWindow : Form
     {

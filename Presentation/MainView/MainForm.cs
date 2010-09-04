@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using FuzzyProject.Subjective;
 using Logic;
 using Logic.Subjective;
+using Presentation.Subjective;
 
-namespace FuzzyProject
+namespace Presentation.MainView
 {
     public partial class MainForm : Form, IMainView
     {

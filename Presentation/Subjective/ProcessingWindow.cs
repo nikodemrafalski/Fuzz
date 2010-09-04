@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Commons;
 using Logic.Subjective;
 
-namespace FuzzyProject.Subjective
+namespace Presentation.Subjective
 {
     public partial class ProcessingWindow : Form
     {

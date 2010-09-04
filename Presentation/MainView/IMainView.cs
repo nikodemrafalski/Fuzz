@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Logic;
 
-namespace FuzzyProject
+namespace Presentation.MainView
 {
     public interface IMainView
     {

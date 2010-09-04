@@ -1,4 +1,4 @@
-﻿namespace FuzzyProject.Subjective
+﻿namespace Presentation.Subjective
 {
     partial class TrainingWindow
     {
@@ -39,9 +39,9 @@
             this.badButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.sourcePicture = new FuzzyProject.CustomPictureBox();
+            this.sourcePicture = new CustomPictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.processedImage = new FuzzyProject.CustomPictureBox();
+            this.processedImage = new CustomPictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();

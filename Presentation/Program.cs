@@ -2,8 +2,9 @@
 using System.Windows.Forms;
 using Autofac;
 using Commons;
+using Presentation.MainView;
 
-namespace FuzzyProject
+namespace Presentation
 {
     internal static class Program
     {

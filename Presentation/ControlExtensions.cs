@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace FuzzyProject
+namespace Presentation
 {
     public static class ControlExtensions
     {

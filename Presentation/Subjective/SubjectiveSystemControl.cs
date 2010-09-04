@@ -5,13 +5,13 @@ using System.Linq;
 using System.Windows.Forms;
 using Autofac;
 using Commons;
-using FuzzyProject.Properties;
-using FuzzyProject.Subjective;
+using Presentation.MainView;
+using Presentation.Properties;
 using Logic;
 using Logic.Algorithms;
 using Logic.Subjective;
 
-namespace FuzzyProject
+namespace Presentation.Subjective
 {
     public partial class SubjectiveSystemControl : UserControl
     {

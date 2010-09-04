@@ -1,4 +1,4 @@
-﻿namespace FuzzyProject.Subjective
+﻿namespace Presentation.Subjective
 {
     partial class ProcessingWindow
     {
@@ -31,9 +31,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.sourcePicture = new FuzzyProject.CustomPictureBox();
+            this.sourcePicture = new CustomPictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.processedImage = new FuzzyProject.CustomPictureBox();
+            this.processedImage = new CustomPictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sourcePicture)).BeginInit();

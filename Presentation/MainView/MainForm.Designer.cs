@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FuzzyProject
+﻿namespace Presentation.MainView
 {
     partial class MainForm
     {
@@ -43,9 +41,9 @@ namespace FuzzyProject
             this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.sourceImageTabPage = new System.Windows.Forms.TabPage();
-            this.sourcePictureBox = new FuzzyProject.CustomPictureBox();
+            this.sourcePictureBox = new CustomPictureBox();
             this.processedImageTabPage = new System.Windows.Forms.TabPage();
-            this.processedPictureBox = new FuzzyProject.CustomPictureBox();
+            this.processedPictureBox = new CustomPictureBox();
             this.evaluationTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();

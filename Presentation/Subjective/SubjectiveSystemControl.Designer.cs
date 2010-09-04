@@ -1,4 +1,4 @@
-﻿namespace FuzzyProject
+﻿namespace Presentation.Subjective
 {
     partial class SubjectiveSystemControl
     {

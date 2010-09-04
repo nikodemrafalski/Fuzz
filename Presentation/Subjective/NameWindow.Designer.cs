@@ -1,4 +1,4 @@
-﻿namespace FuzzyProject.Subjective
+﻿namespace Presentation.Subjective
 {
     partial class NameWindow
     {

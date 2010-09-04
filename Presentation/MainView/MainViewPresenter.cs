@@ -10,7 +10,7 @@ using Logic.Algorithms;
 using Logic.Evalutation;
 using IContainer = Autofac.IContainer;
 
-namespace FuzzyProject
+namespace Presentation.MainView
 {
     public class MainViewPresenter
     {

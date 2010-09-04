@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FuzzyProject.Subjective
+namespace Presentation.Subjective
 {
     public partial class NameWindow : Form
     {
