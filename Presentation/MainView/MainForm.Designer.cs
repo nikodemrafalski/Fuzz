@@ -41,9 +41,9 @@
             this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.sourceImageTabPage = new System.Windows.Forms.TabPage();
-            this.sourcePictureBox = new CustomPictureBox();
+            this.sourcePictureBox = new Presentation.CustomPictureBox();
             this.processedImageTabPage = new System.Windows.Forms.TabPage();
-            this.processedPictureBox = new CustomPictureBox();
+            this.processedPictureBox = new Presentation.CustomPictureBox();
             this.evaluationTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -135,21 +135,21 @@
             // nowyToolStripMenuItem
             // 
             this.nowyToolStripMenuItem.Name = "nowyToolStripMenuItem";
-            this.nowyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nowyToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.nowyToolStripMenuItem.Text = "Nowy";
             this.nowyToolStripMenuItem.Click += new System.EventHandler(this.OnNewToolStripMenuItemClick);
             // 
             // wczytajToolStripMenuItem
             // 
             this.wczytajToolStripMenuItem.Name = "wczytajToolStripMenuItem";
-            this.wczytajToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wczytajToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.wczytajToolStripMenuItem.Text = "Wczytaj stan";
             this.wczytajToolStripMenuItem.Click += new System.EventHandler(this.OnLoadToolStripMenuItemClick);
             // 
             // zapiszToolStripMenuItem
             // 
             this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.zapiszToolStripMenuItem.Text = "Zapisz stan";
             this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.OnSaveToolStripMenuItemClick);
             // 
@@ -450,7 +450,7 @@
             this.Controls.Add(this.mainMenuStrip);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
-            this.Text = "Fuzzy";
+            this.Text = "Fuzz";
             this.ResizeEnd += new System.EventHandler(this.OnSizeChanged);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
