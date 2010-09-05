@@ -13,6 +13,5 @@ namespace Presentation.MainView
         void StartNotifyingProgress();
         void StopNotifyingProgress();
         void DisplayEvaluationScores(double sourceScore, double processedScore);
-        void DisplayMeasures(double sourceScore, double processedScore);
     }
 }

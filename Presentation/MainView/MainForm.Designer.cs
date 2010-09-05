@@ -41,20 +41,13 @@
             this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.sourceImageTabPage = new System.Windows.Forms.TabPage();
-            this.sourcePictureBox = new Presentation.CustomPictureBox();
             this.processedImageTabPage = new System.Windows.Forms.TabPage();
-            this.processedPictureBox = new Presentation.CustomPictureBox();
             this.evaluationTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.sourceImageEvaluationScore = new System.Windows.Forms.Label();
             this.processedImageEvaluationScore = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.fuzzProcessedScore = new System.Windows.Forms.Label();
-            this.fuzzSourceScore = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.operationProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.operationTimerLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -62,24 +55,27 @@
             this.algoritmsListCombo = new System.Windows.Forms.ComboBox();
             this.algoritmLabel = new System.Windows.Forms.Label();
             this.algorithmConfigurationGroup = new System.Windows.Forms.GroupBox();
+            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.parametersGridView = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sourcePictureBox = new Presentation.CustomPictureBox();
+            this.processedPictureBox = new Presentation.CustomPictureBox();
             this.mainMenuStrip.SuspendLayout();
             this.tabContainer.SuspendLayout();
             this.sourceImageTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).BeginInit();
             this.processedImageTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
             this.evaluationTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.algorithmConfigurationGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -89,7 +85,7 @@
             this.systemSubiektywnyToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(784, 24);
+            this.mainMenuStrip.Size = new System.Drawing.Size(684, 24);
             this.mainMenuStrip.TabIndex = 0;
             this.mainMenuStrip.Text = "menuStrip1";
             // 
@@ -164,7 +160,7 @@
             this.tabContainer.Location = new System.Drawing.Point(12, 27);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.SelectedIndex = 0;
-            this.tabContainer.Size = new System.Drawing.Size(760, 487);
+            this.tabContainer.Size = new System.Drawing.Size(660, 435);
             this.tabContainer.TabIndex = 1;
             // 
             // sourceImageTabPage
@@ -173,23 +169,10 @@
             this.sourceImageTabPage.Location = new System.Drawing.Point(4, 22);
             this.sourceImageTabPage.Name = "sourceImageTabPage";
             this.sourceImageTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.sourceImageTabPage.Size = new System.Drawing.Size(752, 461);
+            this.sourceImageTabPage.Size = new System.Drawing.Size(652, 409);
             this.sourceImageTabPage.TabIndex = 0;
             this.sourceImageTabPage.Text = "Źródło";
             this.sourceImageTabPage.UseVisualStyleBackColor = true;
-            // 
-            // sourcePictureBox
-            // 
-            this.sourcePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.sourcePictureBox.IsSource = false;
-            this.sourcePictureBox.Location = new System.Drawing.Point(3, 3);
-            this.sourcePictureBox.Name = "sourcePictureBox";
-            this.sourcePictureBox.Size = new System.Drawing.Size(746, 455);
-            this.sourcePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.sourcePictureBox.TabIndex = 0;
-            this.sourcePictureBox.TabStop = false;
             // 
             // processedImageTabPage
             // 
@@ -197,32 +180,18 @@
             this.processedImageTabPage.Location = new System.Drawing.Point(4, 22);
             this.processedImageTabPage.Name = "processedImageTabPage";
             this.processedImageTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.processedImageTabPage.Size = new System.Drawing.Size(752, 461);
+            this.processedImageTabPage.Size = new System.Drawing.Size(652, 409);
             this.processedImageTabPage.TabIndex = 1;
             this.processedImageTabPage.Text = "Przetworzony";
             this.processedImageTabPage.UseVisualStyleBackColor = true;
             // 
-            // processedPictureBox
-            // 
-            this.processedPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.processedPictureBox.IsSource = false;
-            this.processedPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.processedPictureBox.Name = "processedPictureBox";
-            this.processedPictureBox.Size = new System.Drawing.Size(746, 441);
-            this.processedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.processedPictureBox.TabIndex = 0;
-            this.processedPictureBox.TabStop = false;
-            // 
             // evaluationTabPage
             // 
             this.evaluationTabPage.Controls.Add(this.groupBox2);
-            this.evaluationTabPage.Controls.Add(this.groupBox1);
             this.evaluationTabPage.Location = new System.Drawing.Point(4, 22);
             this.evaluationTabPage.Name = "evaluationTabPage";
             this.evaluationTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.evaluationTabPage.Size = new System.Drawing.Size(752, 461);
+            this.evaluationTabPage.Size = new System.Drawing.Size(652, 409);
             this.evaluationTabPage.TabIndex = 2;
             this.evaluationTabPage.Text = "Ewaluacja";
             this.evaluationTabPage.UseVisualStyleBackColor = true;
@@ -276,63 +245,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Obraz źródłowy:";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.fuzzProcessedScore);
-            this.groupBox1.Controls.Add(this.fuzzSourceScore);
-            this.groupBox1.Location = new System.Drawing.Point(6, 112);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 89);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Fuzz";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(10, 55);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(173, 20);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Obraz przetworzony:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(10, 32);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Obraz źródłowy:";
-            // 
-            // fuzzProcessedScore
-            // 
-            this.fuzzProcessedScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.fuzzProcessedScore.Location = new System.Drawing.Point(200, 55);
-            this.fuzzProcessedScore.Name = "fuzzProcessedScore";
-            this.fuzzProcessedScore.Size = new System.Drawing.Size(129, 20);
-            this.fuzzProcessedScore.TabIndex = 2;
-            // 
-            // fuzzSourceScore
-            // 
-            this.fuzzSourceScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.fuzzSourceScore.Location = new System.Drawing.Point(200, 32);
-            this.fuzzSourceScore.Name = "fuzzSourceScore";
-            this.fuzzSourceScore.Size = new System.Drawing.Size(128, 20);
-            this.fuzzSourceScore.TabIndex = 3;
-            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.operationProgressBar,
             this.operationTimerLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 692);
+            this.statusStrip.Location = new System.Drawing.Point(0, 640);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip.Size = new System.Drawing.Size(684, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip";
             // 
@@ -374,7 +294,7 @@
             // 
             this.algoritmLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.algoritmLabel.AutoSize = true;
-            this.algoritmLabel.Location = new System.Drawing.Point(16, 651);
+            this.algoritmLabel.Location = new System.Drawing.Point(16, 599);
             this.algoritmLabel.Name = "algoritmLabel";
             this.algoritmLabel.Size = new System.Drawing.Size(50, 13);
             this.algoritmLabel.TabIndex = 5;
@@ -384,21 +304,37 @@
             // 
             this.algorithmConfigurationGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.algorithmConfigurationGroup.Controls.Add(this.parametersGridView);
+            this.algorithmConfigurationGroup.Controls.Add(this.groupBox1);
             this.algorithmConfigurationGroup.Controls.Add(this.algoritmsListCombo);
             this.algorithmConfigurationGroup.Controls.Add(this.startProcessingButton);
-            this.algorithmConfigurationGroup.Location = new System.Drawing.Point(13, 520);
+            this.algorithmConfigurationGroup.Location = new System.Drawing.Point(13, 468);
             this.algorithmConfigurationGroup.Name = "algorithmConfigurationGroup";
-            this.algorithmConfigurationGroup.Size = new System.Drawing.Size(752, 169);
+            this.algorithmConfigurationGroup.Size = new System.Drawing.Size(652, 169);
             this.algorithmConfigurationGroup.TabIndex = 6;
             this.algorithmConfigurationGroup.TabStop = false;
             this.algorithmConfigurationGroup.Text = "Algorytm";
+            // 
+            // algorithmParametersBindingSource
+            // 
+            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.parametersGridView);
+            this.groupBox1.Location = new System.Drawing.Point(203, 16);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(443, 147);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Parametry";
             // 
             // parametersGridView
             // 
             this.parametersGridView.AllowUserToAddRows = false;
             this.parametersGridView.AllowUserToDeleteRows = false;
-            this.parametersGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.parametersGridView.AutoGenerateColumns = false;
             this.parametersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.parametersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -407,11 +343,11 @@
             this.valueDataGridViewTextBoxColumn,
             this.setParameterDefaultButtonValue});
             this.parametersGridView.DataSource = this.algorithmParametersBindingSource;
-            this.parametersGridView.Location = new System.Drawing.Point(203, 16);
+            this.parametersGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.parametersGridView.Location = new System.Drawing.Point(3, 16);
             this.parametersGridView.Name = "parametersGridView";
-            this.parametersGridView.Size = new System.Drawing.Size(425, 153);
-            this.parametersGridView.TabIndex = 5;
-            this.parametersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnParametersGridViewCellContentClick);
+            this.parametersGridView.Size = new System.Drawing.Size(437, 128);
+            this.parametersGridView.TabIndex = 6;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -434,21 +370,44 @@
             this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
             this.setParameterDefaultButtonValue.Text = "Przywróć";
             // 
-            // algorithmParametersBindingSource
+            // sourcePictureBox
             // 
-            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
+            this.sourcePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.sourcePictureBox.IsSource = false;
+            this.sourcePictureBox.Location = new System.Drawing.Point(3, 3);
+            this.sourcePictureBox.Name = "sourcePictureBox";
+            this.sourcePictureBox.Size = new System.Drawing.Size(646, 403);
+            this.sourcePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.sourcePictureBox.TabIndex = 0;
+            this.sourcePictureBox.TabStop = false;
+            // 
+            // processedPictureBox
+            // 
+            this.processedPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.processedPictureBox.IsSource = false;
+            this.processedPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.processedPictureBox.Name = "processedPictureBox";
+            this.processedPictureBox.Size = new System.Drawing.Size(746, 441);
+            this.processedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.processedPictureBox.TabIndex = 0;
+            this.processedPictureBox.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 714);
+            this.ClientSize = new System.Drawing.Size(684, 662);
             this.Controls.Add(this.algorithmConfigurationGroup);
             this.Controls.Add(this.algoritmLabel);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.tabContainer);
             this.Controls.Add(this.mainMenuStrip);
             this.MainMenuStrip = this.mainMenuStrip;
+            this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "MainForm";
             this.Text = "Fuzz";
             this.ResizeEnd += new System.EventHandler(this.OnSizeChanged);
@@ -456,19 +415,18 @@
             this.mainMenuStrip.PerformLayout();
             this.tabContainer.ResumeLayout(false);
             this.sourceImageTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).EndInit();
             this.processedImageTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).EndInit();
             this.evaluationTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.algorithmConfigurationGroup.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,7 +448,6 @@
         private System.Windows.Forms.Label algoritmLabel;
         private System.Windows.Forms.ToolStripProgressBar operationProgressBar;
         private System.Windows.Forms.GroupBox algorithmConfigurationGroup;
-        private System.Windows.Forms.DataGridView parametersGridView;
         private System.Windows.Forms.BindingSource algorithmParametersBindingSource;
         private System.Windows.Forms.ToolStripStatusLabel operationTimerLabel;
         private System.Windows.Forms.TabPage evaluationTabPage;
@@ -499,20 +456,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label processedImageEvaluationScore;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label fuzzProcessedScore;
-        private System.Windows.Forms.Label fuzzSourceScore;
         private CustomPictureBox sourcePictureBox;
         private CustomPictureBox processedPictureBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn setParameterDefaultButtonValue;
         private System.Windows.Forms.ToolStripMenuItem systemSubiektywnyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nowyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wczytajToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView parametersGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn setParameterDefaultButtonValue;
     }
 }
 

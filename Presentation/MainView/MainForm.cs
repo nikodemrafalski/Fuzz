@@ -150,12 +150,6 @@ namespace Presentation.MainView
             processedImageEvaluationScore.Text = processedScore.ToString();
         }
 
-        public void DisplayMeasures(double sourceScore, double processedScore)
-        {
-            fuzzSourceScore.Text = sourceScore.ToString();
-            fuzzProcessedScore.Text = processedScore.ToString();
-        }
-
         #endregion
 
         #region EventHandlers

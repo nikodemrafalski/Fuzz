@@ -53,7 +53,7 @@ namespace Presentation.MainView
 
         private void EvaluateScores()
         {
-            view.DisplayMeasures(selectedAlgoritm.Input.Measure, selectedAlgoritm.Output.Measure);
+            //view.DisplayMeasures(selectedAlgoritm.Input.Measure, selectedAlgoritm.Output.Measure);
             double sourceScore = ContrastMeasures.EvaluateWAbs(UnmanagedImage.FromManagedImage(resizedSource));
             double processedScore = ContrastMeasures.EvaluateWAbs(UnmanagedImage.FromManagedImage(resizedProcessed));
             view.DisplayEvaluationScores(sourceScore, processedScore);
