@@ -35,6 +35,7 @@ namespace Presentation.Subjective
                 {
                     this.DialogResult = DialogResult.Cancel;
                     this.Close();
+                    return;
                 }
             }
 

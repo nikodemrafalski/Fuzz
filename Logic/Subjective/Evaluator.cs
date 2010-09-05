@@ -46,7 +46,7 @@ namespace Logic.Subjective
 
             foreach (string algorithm in algorithms)
             {
-                IEnumerable<TrainingData> algorithScores = datas.Where(x => x.AlgorithmInfo.AlgorithName == algorithm);
+                IEnumerable<TrainingData> algorithScores = datas.Where(x => x.AlgorithmInfo.CustomName == algorithm);
                 double sumOfScores = algorithScores.Sum(x => x.SystemScore.Value);
                 double mean = sumOfScores / algorithScores.Count();
                 meanValues.Add(algorithm, mean);
