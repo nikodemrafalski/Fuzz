@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,12 +55,12 @@
             this.algoritmsListCombo = new System.Windows.Forms.ComboBox();
             this.algoritmLabel = new System.Windows.Forms.Label();
             this.algorithmConfigurationGroup = new System.Windows.Forms.GroupBox();
-            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.parametersGridView = new System.Windows.Forms.DataGridView();
+            this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.setParameterDefaultButtonValue = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.algorithmParametersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sourcePictureBox = new Presentation.CustomPictureBox();
             this.processedPictureBox = new Presentation.CustomPictureBox();
             this.mainMenuStrip.SuspendLayout();
@@ -71,9 +71,9 @@
             this.groupBox2.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.algorithmConfigurationGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -314,19 +314,15 @@
             this.algorithmConfigurationGroup.TabStop = false;
             this.algorithmConfigurationGroup.Text = "Algorytm";
             // 
-            // algorithmParametersBindingSource
-            // 
-            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.parametersGridView);
-            this.groupBox1.Location = new System.Drawing.Point(203, 16);
+            this.groupBox1.Location = new System.Drawing.Point(203, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(443, 147);
+            this.groupBox1.Size = new System.Drawing.Size(443, 163);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parametry";
@@ -346,8 +342,14 @@
             this.parametersGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.parametersGridView.Location = new System.Drawing.Point(3, 16);
             this.parametersGridView.Name = "parametersGridView";
-            this.parametersGridView.Size = new System.Drawing.Size(437, 128);
+            this.parametersGridView.Size = new System.Drawing.Size(437, 144);
             this.parametersGridView.TabIndex = 6;
+            // 
+            // setParameterDefaultButtonValue
+            // 
+            this.setParameterDefaultButtonValue.HeaderText = "Wartość domyślna";
+            this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
+            this.setParameterDefaultButtonValue.Text = "Przywróć";
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -359,22 +361,18 @@
             // valueDataGridViewTextBoxColumn
             // 
             this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            dataGridViewCellStyle1.Format = "N5";
-            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "N5";
+            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.valueDataGridViewTextBoxColumn.HeaderText = "Wartość";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             // 
-            // setParameterDefaultButtonValue
+            // algorithmParametersBindingSource
             // 
-            this.setParameterDefaultButtonValue.HeaderText = "Wartość domyślna";
-            this.setParameterDefaultButtonValue.Name = "setParameterDefaultButtonValue";
-            this.setParameterDefaultButtonValue.Text = "Przywróć";
+            this.algorithmParametersBindingSource.DataSource = typeof(Logic.AlgorithmParameter);
             // 
             // sourcePictureBox
             // 
-            this.sourcePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.sourcePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sourcePictureBox.IsSource = false;
             this.sourcePictureBox.Location = new System.Drawing.Point(3, 3);
             this.sourcePictureBox.Name = "sourcePictureBox";
@@ -385,13 +383,11 @@
             // 
             // processedPictureBox
             // 
-            this.processedPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.processedPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.processedPictureBox.IsSource = false;
             this.processedPictureBox.Location = new System.Drawing.Point(3, 3);
             this.processedPictureBox.Name = "processedPictureBox";
-            this.processedPictureBox.Size = new System.Drawing.Size(746, 441);
+            this.processedPictureBox.Size = new System.Drawing.Size(646, 403);
             this.processedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.processedPictureBox.TabIndex = 0;
             this.processedPictureBox.TabStop = false;
@@ -409,6 +405,7 @@
             this.MainMenuStrip = this.mainMenuStrip;
             this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "MainForm";
+            this.ShowIcon = false;
             this.Text = "Fuzz";
             this.ResizeEnd += new System.EventHandler(this.OnSizeChanged);
             this.mainMenuStrip.ResumeLayout(false);
@@ -422,9 +419,9 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.algorithmConfigurationGroup.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.parametersGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.algorithmParametersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sourcePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processedPictureBox)).EndInit();
             this.ResumeLayout(false);

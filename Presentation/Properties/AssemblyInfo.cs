@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
         )]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nikodem Rafalski")]
-[assembly: AssemblyProduct("FuzzyProject")]
+[assembly: AssemblyProduct("Fuzz")]
 [assembly: AssemblyCopyright("Copyright © Nikodem Rafalski 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
