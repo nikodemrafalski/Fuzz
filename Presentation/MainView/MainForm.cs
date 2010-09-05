@@ -73,7 +73,7 @@ namespace Presentation.MainView
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    SubjectiveSystem.SaveState(systemControl.SubjectiveSystem, dialog.FileName);
+                    SubjectiveSystem.SaveState(systemControl.SystemInstance, dialog.FileName);
                     tabContainer.TabPages.Remove(tabContainer.SelectedTab);
                 }
             }

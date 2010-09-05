@@ -68,7 +68,7 @@ namespace Logic.Subjective
             var mosValues = new Dictionary<string, double>();
             foreach (string algorithm in algorithms)
             {
-                IEnumerable<TrainingData> algorithScores = datas.Where(x => x.AlgorithmInfo.AlgorithName == algorithm);
+                IEnumerable<TrainingData> algorithScores = datas.Where(x => x.AlgorithmInfo.CustomName == algorithm);
                 int sumOfScores = algorithScores.Sum(x => x.UserScore.Value);
                 double mos = sumOfScores / (double)algorithScores.Count();
                 mosValues.Add(algorithm, mos);

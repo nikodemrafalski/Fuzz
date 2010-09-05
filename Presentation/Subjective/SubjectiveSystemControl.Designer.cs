@@ -37,8 +37,6 @@
             this.algorithmsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.imagesListView = new System.Windows.Forms.ListView();
             this.button3 = new System.Windows.Forms.Button();
             this.observersBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -54,6 +52,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.processingMethodCombo = new System.Windows.Forms.ComboBox();
             this.button7 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.algorithmsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
@@ -131,34 +131,10 @@
             this.groupBox2.Controls.Add(this.imagesListView);
             this.groupBox2.Location = new System.Drawing.Point(4, 171);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(296, 285);
+            this.groupBox2.Size = new System.Drawing.Size(296, 222);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2. Obrazy";
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(88, 256);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Usuń";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.OnRemoveImageButtonClick);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(6, 256);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Dodaj";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.OnSelectImagesClick);
             // 
             // imagesListView
             // 
@@ -166,7 +142,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.imagesListView.Location = new System.Drawing.Point(8, 19);
             this.imagesListView.Name = "imagesListView";
-            this.imagesListView.Size = new System.Drawing.Size(282, 231);
+            this.imagesListView.Size = new System.Drawing.Size(282, 160);
             this.imagesListView.TabIndex = 0;
             this.imagesListView.UseCompatibleStateImageBehavior = false;
             this.imagesListView.View = System.Windows.Forms.View.List;
@@ -285,7 +261,7 @@
             this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Location = new System.Drawing.Point(307, 171);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(300, 279);
+            this.groupBox4.Size = new System.Drawing.Size(300, 222);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "4. Wykorzystanie ocen algorytmów";
@@ -323,6 +299,30 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.OnProcessImageClick);
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.Location = new System.Drawing.Point(88, 185);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 24);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Usuń";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.OnRemoveImageButtonClick);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(8, 185);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 24);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Dodaj";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.OnSelectImagesClick);
+            // 
             // SubjectiveSystemControl
             // 
             this.BackColor = System.Drawing.SystemColors.Window;
@@ -356,8 +356,6 @@
         private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.BindingSource algorithmsBindingSource;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListView imagesListView;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -373,5 +371,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox processingMethodCombo;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

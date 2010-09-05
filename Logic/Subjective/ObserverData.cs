@@ -14,7 +14,7 @@ namespace Logic.Subjective
         public IList<EvaluationResult> EvaluationResults { get; private set; }
         public bool FullyTrained { get; private set; }
         public string Status { get; private set; }
-        public bool EvaluationDone { get; private set; }
+        public bool EvaluationDone { get; internal set; }
         public bool CanBeTrained { get; private set; }
 
         #region INotifyPropertyChanged Members
@@ -22,18 +22,6 @@ namespace Logic.Subjective
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
-
-        public void ResetTraining()
-        {
-            foreach (TrainingData data in TrainingData)
-            {
-                data.UserScore = null;
-                data.SystemScore = null;
-            }
-
-            this.EvaluationDone = false;
-            CheckTrainingStatus();
-        }
 
         public void CheckTrainingStatus()
         {

@@ -23,7 +23,7 @@ namespace Presentation.Subjective
             processingMethodCombo.DisplayMember = "Value";
         }
 
-        public SubjectiveSystem SubjectiveSystem { get; private set; }
+        public SubjectiveSystem SystemInstance { get; private set; }
 
         public void Setup(SubjectiveSystem system)
         {
@@ -31,7 +31,7 @@ namespace Presentation.Subjective
             algorithmsBindingSource.DataSource = system.Algorithms;
             observersBindingSource.DataSource = system.ObserversData;
             algorithmsBindingSource.CurrentItemChanged += OnCurrentAlgorithmChanged;
-            SubjectiveSystem = system;
+            SystemInstance = system;
             sourceAlgos.Items.AddRange(AlgorithmsNames.All.ToArray());
             RefreshImages();
         }
@@ -78,7 +78,7 @@ namespace Presentation.Subjective
                                 });
                     }
 
-                    SubjectiveSystem.Algorithms.Add(algorithmInfo);
+                    SystemInstance.Algorithms.Add(algorithmInfo);
                 }
             }
         }
@@ -91,14 +91,14 @@ namespace Presentation.Subjective
                 return;
             }
 
-            SubjectiveSystem.Algorithms.Remove(algo);
+            SystemInstance.Algorithms.Remove(algo);
         }
 
         private void RefreshImages()
         {
             imagesListView.Clear();
 
-            foreach (string path in SubjectiveSystem.ImagesPaths)
+            foreach (string path in SystemInstance.ImagesPaths)
             {
                 var item = new ListViewItem(Path.GetFileName(path));
                 item.Tag = path;
@@ -124,9 +124,9 @@ namespace Presentation.Subjective
         {
             foreach (string path in paths)
             {
-                if (SubjectiveSystem.ImagesPaths.Contains(path) == false)
+                if (SystemInstance.ImagesPaths.Contains(path) == false)
                 {
-                    SubjectiveSystem.ImagesPaths.Add(path);
+                    SystemInstance.ImagesPaths.Add(path);
                 }
             }
 
@@ -137,7 +137,7 @@ namespace Presentation.Subjective
         {
             foreach (ListViewItem selectedItem in imagesListView.SelectedItems)
             {
-                SubjectiveSystem.ImagesPaths.Remove(selectedItem.Tag as string);
+                SystemInstance.ImagesPaths.Remove(selectedItem.Tag as string);
             }
 
             RefreshImages();
@@ -157,7 +157,7 @@ namespace Presentation.Subjective
                                     Resources.SubsequentTrainingCaption, MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    observerData.ResetTraining();
+                    this.SystemInstance.ResetData(observerData);
                 }
                 else
                 {
@@ -177,7 +177,7 @@ namespace Presentation.Subjective
             {
                 if (nameWindow.ShowDialog() == DialogResult.OK)
                 {
-                    SubjectiveSystem.AddObserver(nameWindow.ObjectName);
+                    SystemInstance.AddObserver(nameWindow.ObjectName);
                 }
             }
 
@@ -189,7 +189,7 @@ namespace Presentation.Subjective
             var current = observersBindingSource.Current as ObserverData;
             if (current != null)
             {
-                SubjectiveSystem.ObserversData.Remove(current);
+                SystemInstance.ObserversData.Remove(current);
             }
         }
 
@@ -201,13 +201,13 @@ namespace Presentation.Subjective
                 return;
             }
 
-            this.SubjectiveSystem.Infere(observerData);
+            this.SystemInstance.Infere(observerData);
         }
 
         private void OnProcessImageClick(object sender, EventArgs e)
         {
             var observerData = (ObserverData)this.observersBindingSource.Current;
-            using (var processingWindow = new ProcessingWindow(this.SubjectiveSystem,
+            using (var processingWindow = new ProcessingWindow(this.SystemInstance,
                 observerData,
                 (ProcessingMethod)this.processingMethodCombo.SelectedValue))
             {

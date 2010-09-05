@@ -56,7 +56,7 @@ namespace Logic.Subjective
                 }
             }
 
-            return list.OrderBy(x => Guid.NewGuid()).ToList();
+            return list.OrderBy(x => Guid.NewGuid()).OrderBy(x=>Guid.NewGuid()).ToList();
         }
 
         public static SubjectiveSystem CreateNew(string systemName)
@@ -146,6 +146,19 @@ namespace Logic.Subjective
 
             fusionImage.SetPixels(fusionBytes);
             return fusionImage.ToManagedImage();
+        }
+
+        public void ResetData(ObserverData observerData)
+        {
+            foreach (TrainingData data in observerData.TrainingData)
+            {
+                data.UserScore = null;
+                data.SystemScore = null;
+            }
+
+            observerData.EvaluationDone = false;
+            observerData.CheckTrainingStatus();
+            observerData.TrainingData = PrepareTrainingData();
         }
     }
 }
