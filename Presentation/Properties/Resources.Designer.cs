@@ -61,6 +61,15 @@ namespace Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nazwa nie jest unikalna.
+        /// </summary>
+        internal static string AlgoNameNotUnique {
+            get {
+                return ResourceManager.GetString("AlgoNameNotUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zakończ.
         /// </summary>
         internal static string FinishCaption {

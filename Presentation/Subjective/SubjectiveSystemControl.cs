@@ -57,30 +57,52 @@ namespace Presentation.Subjective
                 return;
             }
 
+            string customeName = string.Empty;
+
             using (var nameWindow = new NameWindow())
             {
                 nameWindow.ObjectName = algo;
-                if (nameWindow.ShowDialog() == DialogResult.OK)
+                do
                 {
-                    var algorithmInfo = new AlgorithmInfo
-                        {
-                            AlgorithName = algo,
-                            CustomName = nameWindow.ObjectName
-                        };
-                    algorithmInfo.Parameters = new List<AlgorithmParameter>();
-                    foreach (AlgorithmParameter parameter in AppFacade.DI.Container.Resolve<IAlgorithm>(algo).Parameters
-                        )
+                    nameWindow.ShowDialog();
+                    if (this.SystemInstance.Algorithms.FirstOrDefault(
+                        x => x.CustomName == nameWindow.ObjectName) == null)
                     {
-                        algorithmInfo.Parameters.Add(
-                            new AlgorithmParameter(parameter.Name, parameter.DefaultValue)
-                                {
-                                    Value = parameter.DefaultValue
-                                });
+                        customeName = nameWindow.ObjectName;
+                        break;
                     }
 
-                    SystemInstance.Algorithms.Add(algorithmInfo);
+                    if (nameWindow.DialogResult == DialogResult.OK)
+                    {
+                        MessageBox.Show(Resources.AlgoNameNotUnique, string.Empty, MessageBoxButtons.OK,
+                                    MessageBoxIcon.Exclamation);
+                    }
+
+                } while (nameWindow.DialogResult != DialogResult.Cancel);
+
+                if (nameWindow.DialogResult == DialogResult.Cancel)
+                {
+                    return;
                 }
             }
+
+            var algorithmInfo = new AlgorithmInfo
+                {
+                    AlgorithName = algo,
+                    CustomName = customeName
+                };
+            algorithmInfo.Parameters = new List<AlgorithmParameter>();
+            foreach (AlgorithmParameter parameter in AppFacade.DI.Container.Resolve<IAlgorithm>(algo).Parameters
+                )
+            {
+                algorithmInfo.Parameters.Add(
+                    new AlgorithmParameter(parameter.Name, parameter.DefaultValue)
+                    {
+                        Value = parameter.DefaultValue
+                    });
+            }
+
+            SystemInstance.Algorithms.Add(algorithmInfo);
         }
 
         private void OnRemoveAlgoButtonClick(object sender, EventArgs e)
