@@ -8,3 +8,4 @@ glob:Logic/Logic.csproj.ReSharper.user
 glob:_Output/*
 glob:Fuzz.5.0.ReSharper.user
 glob:Presentation/FuzzyProject.csproj.ReSharper.user
+glob:Presentation/Presentation.csproj.ReSharper.user
