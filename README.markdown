@@ -5,7 +5,7 @@ Nikodem Rafalski
 
 ### About
 This is an application developed as a part of my master's thesis
-- Fuzzy modelling in image processing
+- Fuzzy modeling in image processing
 The application implements edge detection and contast enhancement using four diffent fuzzy logic algorithms
 The application contains also subjective image enhancement subsystem (more in thesis).
 
